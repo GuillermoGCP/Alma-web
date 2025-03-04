@@ -1,0 +1,199 @@
+/*Contenedores principales*/
+.admin-panel {
+  display: flex;
+  min-height: 100vh;
+  background-color: #fdeee7;
+}
+.admin-content {
+  width: calc(100% - 250px);
+  max-width: 100%;
+  margin-left: 270px;
+  flex-grow: 1; /* Permite que este contenedor crezca según el contenido */
+  overflow-y: auto; /* Agrega scroll si el contenido es más largo que la ventana */
+  padding: 1rem;
+}
+
+/*Header del sidebar*/
+
+.admin-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  text-align: center;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  padding: 1rem;
+  background-color: #b380b5;
+  min-width: 250px; /* Ancho mínimo */
+  width: 20vw; /* Ancho relativo en vista normal */
+  max-width: 300px; /* Ancho máximo */
+}
+
+.admin-header h1 {
+  margin: 0;
+  font-size: 0.6rem;
+  color: white;
+  font-family: outfit;
+  font-weight: bold;
+}
+
+/*Estilos del icono casa para volver siempre al inicio del dashboard*/
+
+.home-button {
+  background: transparent; /* Fondo transparente */
+  border: none; /* Sin borde */
+  cursor: pointer; /* Cursor de mano */
+  font-size: 20px; /* Cambia el tamaño del icono */
+  color: white; /* Cambia el color del icono */
+  transition: color 0.3s; /* Transición suave para el color */
+}
+
+.home-button .faHome:hover {
+  color: black; /* Cambia el color en hover */
+}
+
+/*Sidebar*/
+
+.sidebar {
+  position: fixed;
+  background-color: #d8e2dc;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 100vh;
+  /* Ancho mínimo y responsive */
+  min-width: 250px; /* Ancho mínimo */
+  width: 20vw; /* Ancho relativo en vista normal */
+  max-width: 300px; /* Ancho máximo */
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar-btn {
+  background-color: white;
+  border: none;
+  color: #b380b5;
+  padding: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+  width: 100%;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 5px;
+  font-family: outfit;
+  font-weight: bold;
+}
+
+.sidebar-btn:hover {
+  background-color: #b380b5;
+  color: white;
+}
+
+.sidebar-btn.active {
+  background-color: #b380b5; /* Color de fondo morado cuando está activo */
+  color: white; /* Texto blanco cuando está activo */
+}
+
+/*Footer del sidebar con los botones de cerrar sesión y volver al web*/
+
+.footer-dashboard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.back-to-site-link {
+  text-decoration: none;
+  font-family: Outfit;
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 20px;
+  margin: 0px 0px;
+  background-color: #e0bb8e;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: background-color 0.3s ease;
+}
+
+.back-to-site-link:hover {
+  text-decoration: none;
+  background-color: white;
+  color: #b380b5;
+  font-size: 0.8rem;
+}
+
+/*VERSION MOBILE*/
+
+@media (max-width: 768px) {
+  .admin-panel {
+    display: block;
+    flex-direction: column;
+    min-height: 60vh;
+  }
+  .contenedor-lista-dashboard {
+    padding: 5rem 3rem 1rem 3rem;
+  }
+  .sidebar {
+    padding: 0;
+    max-width: 100vw; /* Ancho máximo */
+    position: fixed; /* Fijamos el sidebar en la parte superior */
+    top: 0;
+    left: 0;
+    z-index: 999;
+    width: 100%;
+    position: relative;
+    height: auto;
+    box-shadow: none;
+    background-color: #d8e2dc;
+    overflow-y: auto; /* Habilitamos el scroll si el contenido es muy largo */
+    overflow-x: none;
+  }
+
+  .admin-header {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 1rem;
+    margin: 0;
+    width: 100vw;
+    max-width: none;
+  }
+  .admin-content {
+    width: 100%;
+    padding: 0;
+    padding-bottom: 2rem;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column; /* Asegura que el contenido se alinee en columna */
+  }
+
+  .sidebar-btn {
+    font-size: 1rem; /* Ajustar el tamaño del texto de los botones en mobile */
+  }
+  .footer-dashboard {
+    padding: 1rem 2rem;
+  }
+}
+
+@media (min-width: 1300px) {
+  .admin-content {
+    width: calc(100% - 350px);
+    max-width: 100%;
+    margin-left: 350px;
+    flex-grow: 1; /* Permite que este contenedor crezca según el contenido */
+    overflow-y: auto; /* Agrega scroll si el contenido es más largo que la ventana */
+    padding: 1rem;
+  }
+}

@@ -1,0 +1,353 @@
+.calendar-section {
+  padding-bottom: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centra todo el contenido de la sección */
+  width: 100%;
+}
+/* Añadimos un contenedor flexible para las tarjetas */
+.calendar-section > div {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Alinea las tarjetas desde el inicio */
+  flex-wrap: wrap; /* Permite que las tarjetas se acomoden si no hay espacio */
+  gap: 20px;
+  width: 100%;
+}
+.section-title-activity {
+  color: #b380b5;
+  margin-bottom: 1.5rem;
+  font-size: 2.5rem;
+  font-family: outfit;
+  text-align: center;
+}
+
+.contenedor-ver-actividades-inicio {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.boton-ver-actividades {
+  background-color: #b380b5;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 3em;
+  font-size: 1.4em;
+  font-weight: bold;
+  width: auto; /* Cambiado para que se ajuste al contenido */
+  max-width: 100%; /* Asegura que no se desborde */
+  height: auto; /* Se ajusta al contenido */
+  font-family: outfit;
+  text-decoration: none;
+  padding: 1rem 2rem;
+  margin-top: 1rem;
+  display: inline-block; /* Asegura que no se superponga con el texto */
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.boton-ver-actividades:hover {
+  color: #b380b5;
+  background-color: transparent;
+  border: 1px solid #b380b5;
+  transform: translateY(-5px);
+}
+
+.event-attachments {
+  font-family: bellota;
+}
+
+.event-attachments img {
+  width: 50px;
+  height: 50px;
+  margin: 5px;
+}
+
+.event-title {
+  font-size: 1.4rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 0.5rem;
+  color: #b380b5;
+  font-family: outfit;
+}
+
+.event-speaker {
+  font-size: 0.9rem;
+  font-family: outfit;
+  padding: 0 1.6rem;
+  text-align: center;
+  line-height: 1.4rem;
+}
+
+.event-date {
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+.register-button {
+  margin-top: 1rem;
+  color: #b380b5;
+  background-color: transparent;
+  border-radius: 2rem;
+  border: 1px solid #b380b5;
+  width: 12rem;
+  height: 2rem;
+}
+
+.register-button:hover {
+  cursor: pointer;
+  background-color: white;
+}
+
+/*CALENDARIO*/
+
+.section-title-calendar {
+  text-align: center;
+  color: #b380b5;
+  font-size: 2.5rem;
+  font-family: outfit;
+}
+
+.calendar-content {
+  padding: 1rem;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.calendar-container {
+  display: flex;
+}
+
+.event-details {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #d8e2dc;
+  border-radius: 1.5rem;
+  padding: 1rem;
+  width: 40%;
+  max-width: 100%;
+}
+
+.event-image-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.event-image {
+  flex-shrink: 0;
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+}
+
+.event-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.event-info {
+  text-align: center;
+}
+
+.event-title {
+  font-size: 1rem;
+  color: #a768ab;
+  font-family: outfit;
+}
+
+.event-description {
+  font-size: 0.8rem;
+  color: #555;
+  font-family: bellota;
+}
+
+.event-date {
+  font-size: 0.9rem;
+  color: #555;
+  font-family: bellota;
+  text-align: center;
+}
+
+.calendar-wrapper {
+  width: 80%;
+  max-width: 100%;
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 1rem;
+  border-radius: 1.5rem;
+}
+
+.calendar {
+  height: 450px;
+}
+
+.no-events {
+  font-family: Outfit;
+  text-align: center;
+}
+
+.rbc-calendar {
+  border: none;
+  font-family: outfit;
+}
+
+.rbc-month-view {
+  border: none;
+  padding: 0 1rem;
+}
+
+.rbc-month-row {
+  border: none;
+}
+
+.rbc-header {
+  text-transform: lowercase;
+  padding-bottom: 0.5rem;
+}
+
+.rbc-header + .rbc-header {
+  border-left: none;
+}
+
+.rbc-date-cell {
+  padding: 0.3rem;
+}
+.rbc-date-cell button {
+  font-family: outfit;
+  font-size: 0.7rem;
+}
+.rbc-off-range-bg {
+  background: none;
+}
+
+.rbc-today {
+  font-weight: bold;
+  background-color: #d8e2dc;
+  display: flex;
+  margin: 0 auto;
+}
+
+.rbc-day-bg {
+  border: none;
+}
+
+.rbc-selected {
+  color: white;
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.rbc-event {
+  display: none;
+}
+
+.rbc-event-label {
+  display: none;
+}
+
+.rbc-event-content {
+  visibility: hidden;
+}
+
+.rbc-row-segment {
+  padding: 0;
+}
+
+.rbc-day-slot .rbc-time-slot {
+  border-top: none;
+}
+
+.day-with-event {
+  background-color: #9c6fa057;
+  color: white;
+}
+
+/*LEYENDA CALENDARIO*/
+.calendar-legend {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Centra la leyenda */
+  margin-top: 1rem; /* Separa la leyenda del calendario */
+  width: 100%;
+  text-align: center;
+}
+.legend-item {
+  margin: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.legend-color {
+  width: 20px;
+  height: 20px;
+  margin-right: 0.5rem;
+}
+.color-cuadrado-leyenda {
+  background-color: #d8e2dc;
+}
+.leyenda-dia-con-evento {
+  background-color: #9c6fa057;
+}
+
+.selected-day {
+  background-color: #e0e0e0;
+}
+
+@media (max-width: 768px) {
+  .activities {
+    flex-direction: column; /* Cambia a disposición vertical */
+    justify-content: center; /* Centra las tarjetas verticalmente */
+    align-items: center; /* Centra horizontalmente las tarjetas */
+  }
+
+  .activity {
+    width: 60vw; /* Asegura que las tarjetas ocupen la mayor parte de la pantalla */
+    height: 18rem; /* Ajusta la altura para pantallas más pequeñas */
+    margin: 1rem 0; /* Añade espacio entre las tarjetas */
+  }
+
+  .card-inner {
+    width: 100%;
+    height: 100%;
+  }
+
+  .section-title-activity {
+    font-size: 2rem; /* Reduce el tamaño del título para pantallas más pequeñas */
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+
+  .contenedor-ver-actividades-inicio {
+    padding: 2rem; /* Reduce el padding para ajustarse a pantallas pequeñas */
+  }
+
+  .boton-ver-actividades {
+    width: 15rem; /* Reduce el ancho del botón */
+    height: 2.5rem;
+    font-size: 1.2em; /* Ajusta el tamaño de la fuente */
+  }
+  .calendar-wrapper {
+    width: 350px;
+  }
+
+  .calendar-legend {
+    flex-direction: column;
+    margin: 1rem 0 0 0;
+  }
+  .legend-item {
+    margin-bottom: 2px;
+  }
+}

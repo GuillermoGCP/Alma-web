@@ -1,0 +1,80 @@
+li {
+  list-style: none;
+}
+
+ol {
+  padding: 0;
+}
+
+.list-btn {
+  background-color: white;
+  border: none;
+  color: black;
+  padding: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+  width: 300px;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 5px;
+  font-family: outfit;
+  font-weight: bold;
+}
+
+.list-btn:hover {
+  background-color: #b380b5;
+  color: white;
+}
+
+.cancel-btn {
+  background-color: transparent;
+  border: none;
+  margin-left: 20px;
+  cursor: pointer;
+}
+
+.delete-btn {
+  margin-bottom: 1rem;
+  margin-left: 1rem;
+  border: none;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  height: 3.3rem;
+  width: 12.5rem;
+  margin-top: 1rem;
+  font-family: Outfit;
+  background-color: #f37b60;
+  box-shadow: 0px 4px #cc4527; /* Sombra inferior para dar efecto de relieve */
+
+  transition: all 0.2s ease-in-out;
+}
+
+.delete-btn:hover {
+  background-color: #ff0400;
+  color: #fff;
+}
+
+.confirm-btn {
+  background-color: #b380b5;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  height: 2.3rem;
+  width: 14rem;
+  margin-top: 1rem;
+  font-family: "Outfit", sans-serif;
+  box-shadow: 0px 4px #946b9f;
+  transition: all 0.2s ease-in-out;
+}
+.confirm-btn:hover {
+  background-color: #caa2cb;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+/* Efecto de presionado */
+.confirm-btn:active {
+  box-shadow: 0 1px #946b9f; /* Reduce la sombra para simular que se presiona */
+  transform: translateY(3px); /* Desplaza el botón hacia abajo */
+}

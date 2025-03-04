@@ -1,0 +1,63 @@
+/* NotFoundPage.css */
+.not-found-container {
+    background-color: #ffeee7;
+    text-align: center;
+    padding: 2rem;
+    font-family: 'Bellota', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+.not-found-title {
+    color: #b380b5;
+    font-family: 'Outfit', sans-serif;
+    font-weight: bold;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.not-found-text {
+    color: #b380b5;
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+.image-container {
+    cursor: pointer;
+    margin-bottom: 1.5rem;
+    transition: transform 0.3s ease; 
+}
+
+.not-found-image {
+    max-width: 100%;
+    height: auto;
+    transition: transform 0.3s ease; 
+}
+
+.image-container:hover .not-found-image {
+    transform: scale(1.2);
+}
+
+.back-home-button {
+    margin: 1rem;
+    background-color: #d8e2dc;
+    border: solid 1px #b380b5;
+    color: #b380b5;
+    cursor: pointer;
+    border-radius: 3em;
+    font-size: 1.2em;
+    font-weight: bold;
+    padding: 0.1rem 2rem;
+    font-family: 'Outfit', sans-serif;
+}
+
+.back-home-button:hover {
+    background-color: #b380b5;
+    border: solid 1px #b380b5;
+    color: white;
+}

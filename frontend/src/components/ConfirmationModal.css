@@ -1,0 +1,49 @@
+/* Estilos para el modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Asegúrate de que esté por encima de otros elementos */
+}
+
+.modal-content {
+  background-color: #d8e2dc;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  width: 400px;
+  text-align: center;
+}
+
+.modal-actions {
+  margin-top: 20px;
+}
+
+.modal-overlay h1 {
+  font-family: Outfit;
+}
+
+.confirm-delete-btn,
+.cancel-delete-btn {
+  padding: 10px 20px;
+  margin: 5px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.confirm-delete-btn {
+  background-color: #d9534f; /* Color para el botón de eliminar */
+  color: white;
+}
+
+.cancel-delete-btn {
+  background-color: #797e80; /* Color para el botón de cancelar */
+  color: white;
+}

@@ -1,0 +1,142 @@
+.settings-content-historico {
+  margin-left: 3rem;
+  margin-top: 3rem;
+}
+.texto-seccion-historico {
+  font-family: Outfit;
+  color: #b380b5;
+  font-size: 20px;
+}
+.no-publication-message {
+  color: #b380b5;
+  font-size: 1.2rem;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.instagram-post-container {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  max-height: 540px;
+  overflow: auto;
+}
+.instagram-form-input {
+  text-align: left;
+}
+.instagram-form-button-submit {
+  margin-bottom: 1rem;
+  background-color: #b380b5;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  height: 2.3rem;
+  width: 8.5rem;
+  margin-top: 1rem;
+  font-family: Outfit;
+  box-shadow: 0px 4px #946b9f;
+  transition: all 0.2s ease-in-out;
+}
+.instagram-form-button-submit:active {
+  box-shadow: 0 1px #946b9f;
+  transform: translateY(3px);
+}
+
+.instagram-form-button-submit:hover {
+  background-color: #caa2cb;
+  color: white;
+}
+.instagram-form-button-delete {
+  background-color: #b14b4b;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  height: 2.3rem;
+  width: 8.5rem;
+  margin-top: 1rem;
+  margin-left: 1rem;
+  font-family: "Outfit", sans-serif;
+  box-shadow: 0px 4px #aa2828;
+  transition: all 0.2s ease-in-out;
+}
+.instagram-form-button-delete:active {
+  box-shadow: 0 1px #b14b4b;
+  transform: translateY(3px);
+}
+
+.instagram-form-button-delete:hover {
+  background-color: #ca5252;
+  color: white;
+}
+.instagram-post-container .instagram-post {
+  max-width: 400px;
+  width: 100%;
+  height: auto;
+  max-height: 100%;
+}
+
+.no-post-message {
+  font-family: outfit;
+  color: #b380b5;
+  font-size: 1.2rem;
+  text-align: center;
+  margin-top: 20px;
+}
+/* Ajustes generales para móviles */
+@media (max-width: 768px) {
+  .settings-content-historico {
+    margin: 0 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .texto-seccion-historico {
+    font-size: 18px;
+    text-align: left;
+  }
+
+  .no-publication-message {
+    font-size: 1rem;
+    margin-top: 1rem;
+  }
+
+  .instagram-post-container {
+    margin-top: 1rem;
+    flex-direction: column;
+    max-height: 350px;
+  }
+  .instagram-form-select {
+    width: 100%;
+  }
+  .instagram-form-input {
+    width: 100%;
+  }
+  .instagram-form-input::placeholder {
+    font-weight: 400;
+    font-size: 0.8rem;
+  }
+  .instagram-form-buttons {
+    flex-direction: column;
+    font-weight: 400;
+  }
+  .instagram-form-button-submit,
+  .instagram-form-button-delete {
+    width: 100%; /* Hacer que los botones ocupen el ancho completo en pantallas pequeñas */
+    margin: 0.5rem 0; /* Añadir espacio entre los botones */
+  }
+
+  .instagram-form-button-submit {
+    margin-top: 1rem;
+  }
+
+  .instagram-post-container .instagram-post {
+    max-width: 100%; /* Ajustar la imagen para que sea completamente responsiva */
+    height: auto;
+  }
+
+  .no-post-message {
+    font-size: 1rem;
+    margin-top: 1rem;
+  }
+}

@@ -1,0 +1,135 @@
+.contenedor-editor-formularios {
+  border: 1px solid #b380b5;
+  padding: 2rem;
+  margin: 2rem;
+}
+.input-editor-formularios {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #d8e2dc;
+  border-radius: 50px;
+  border: none;
+  padding: 0.5rem 0;
+  font-family: Outfit, sans-serif;
+  width: 20rem;
+}
+.select-editor-formularios {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #d8e2dc;
+  border-radius: 50px;
+  border: none;
+  padding: 0.5rem 0;
+  font-family: Outfit, sans-serif;
+  width: 8.5rem;
+}
+/*BOTÓN ELIMINAR*/
+
+.boton-eliminar-campo-editar-formulario {
+  background-color: #b14b4b;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  height: 2.3rem;
+  width: 8.5rem;
+  margin-top: 1rem;
+  font-family: "Outfit", sans-serif;
+  box-shadow: 0px 4px #aa2828;
+  transition: all 0.2s ease-in-out;
+}
+.boton-eliminar-campo-editar-formulario:active {
+  box-shadow: 0 1px #b14b4b;
+  transform: translateY(3px);
+}
+
+.boton-eliminar-campo-editar-formulario:hover {
+  background-color: #ca5252;
+  color: white;
+}
+/*BOTÓN AÑADIR CAMPO*/
+.boton-añadir-campo-editar-formulario {
+  background-color: #b380b5;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  height: 2.3rem;
+  width: 10rem;
+  margin-top: 1rem;
+  margin-right: 1rem;
+  font-family: "Outfit", sans-serif;
+  box-shadow: 0px 4px #946b9f;
+  transition: all 0.2s ease-in-out;
+}
+
+.boton-añadir-campo-editar-formulario:active {
+  box-shadow: 0 1px #946b9f;
+  transform: translateY(3px);
+}
+
+.boton-añadir-campo-editar-formulario:hover {
+  background-color: #caa2cb;
+  color: white;
+}
+/*BOTÓN ACTUALIZAR FORMULARIO*/
+
+.boton-actualizar-formulario {
+  margin-bottom: 1rem;
+  background-color: #b380b5;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  height: 2.3rem;
+  width: 10rem;
+  margin-top: 1rem;
+  font-family: Outfit;
+  /* Efecto 3D */
+  box-shadow: 0px 4px #946b9f; /* Sombra inferior para dar efecto de relieve */
+  transition: all 0.2s ease-in-out;
+}
+.boton-actualizar-formulario:hover {
+  margin-bottom: 1rem;
+  background-color: #caa2cb;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  height: 2.3rem;
+  width: 10rem;
+  margin-top: 1rem;
+  font-family: Outfit;
+  /* Efecto 3D */
+  box-shadow: 0px 4px #946b9f; /* Sombra inferior para dar efecto de relieve */
+  transition: all 0.2s ease-in-out;
+}
+
+/* Efecto de presionado */
+.boton-actualizar-formulario:active {
+  box-shadow: 0 1px #946b9f; /* Reduce la sombra para simular que se presiona */
+  transform: translateY(3px); /* Desplaza el botón hacia abajo */
+}
+
+/*BOTÓN CERRAR */
+
+.boton-cerrar-editor {
+  background-color: #797e80;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  height: 2.3rem;
+  width: 9rem;
+  margin-top: 2rem;
+  margin-right: 1rem;
+  font-family: "Outfit", sans-serif;
+  box-shadow: 0px 4px #b2b6b8;
+  transition: all 0.2s ease-in-out;
+}
+.boton-cerrar-editor:hover {
+  box-shadow: 0 1px #b2b6b8;
+  transform: translateY(3px);
+}

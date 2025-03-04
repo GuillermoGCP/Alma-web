@@ -1,0 +1,211 @@
+.dashboard-form label,
+input,
+textarea {
+  margin: 1rem 0;
+  width: 70%;
+}
+.dashboard-form input::placeholder {
+  padding-left: 1rem;
+}
+/* Estilos específicos form actividades */
+.dashboard-form input,
+textarea {
+  display: block;
+  font-family: outfit;
+  color: black;
+  width: 80%; /* Mantener el ancho al 80% en todas las pantallas */
+  padding: 0.5rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border: none;
+  border-radius: 1rem;
+  background-color: #d8e2dc;
+}
+
+.dashboard-form select {
+  display: block;
+  font-family: Outfit;
+  color: black;
+  border-radius: 20px;
+  background-color: #d8e2dc;
+  border: none;
+  padding: 8px;
+  text-align: center;
+}
+
+.datetime-input {
+  text-align: center;
+  width: auto;
+}
+
+.datetime-selector {
+  width: 70%;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 0 1rem;
+  margin: 1.5rem 0;
+}
+.label-acceso-formulario {
+  margin-bottom: 1rem;
+}
+#label-start {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+#input-start {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+#label-end {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+#input-end {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+/* Estilos específicos form colaboradores */
+
+.collaborator-form {
+  display: grid;
+  grid-template-columns: minmax(450px, 2fr) 1fr;
+  grid-gap: 0; /* Espacio entre los elementos */
+}
+.collaborator-form * {
+  margin: 0;
+}
+.image-preview {
+  grid-row: 1 / 5; /* La imagen ocupa 4 filas */
+  max-width: 300px; /* Ajusta según sea necesario */
+  margin-bottom: 1rem;
+}
+
+.image-name-description {
+  white-space: nowrap; /* Evita que el texto se rompa en varias líneas */
+  overflow: hidden; /* Oculta el texto que no cabe */
+  text-overflow: ellipsis; /* Muestra '...' cuando el texto es demasiado largo */
+  max-width: 100%; /* Asegura que no sobrepase el contenedor */
+  display: block; /* Asegura que el comportamiento de truncado funcione correctamente */
+}
+.new-image,
+.name,
+.surname,
+.role {
+  grid-column: 1/2; /* Los campos ocupan la segunda columna */
+}
+.new-image label,
+.name label,
+.surname label,
+.role label {
+  margin-bottom: 1rem;
+}
+.name {
+  grid-row: 2;
+}
+
+.surname {
+  grid-row: 3;
+}
+
+.role {
+  grid-row: 4;
+}
+
+/* Botones fuera del grid */
+.buttons-container {
+  margin-top: 20px;
+}
+
+/*Estilos para el selector de imágenes*/
+.new-image {
+  display: flex;
+  flex-direction: column;
+}
+
+.file-label {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background-color: #b380b5;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  margin-top: 10px;
+  width: fit-content;
+}
+
+.file-input {
+  display: none;
+}
+
+.file-label:hover {
+  background-color: #b380b5;
+}
+.boton-eliminar-actividad-dashboard {
+  background-color: #b14b4b;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  height: 2.3rem;
+  width: 10rem;
+  margin-top: 1rem;
+  margin-left: 1rem;
+  font-family: "Outfit", sans-serif;
+  box-shadow: 0px 4px #aa2828;
+  transition: all 0.2s ease-in-out;
+}
+
+.boton-eliminar-actividad-dashboard:active {
+  box-shadow: 0 1px #b14b4b;
+  transform: translateY(3px);
+}
+
+.boton-eliminar-actividad-dashboard:hover {
+  background-color: #ca5252;
+  color: white;
+}
+
+.boton-cancelar-dashboard {
+  background-color: #797e80;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  height: 2.3rem;
+  width: 10rem;
+  margin-top: 1rem;
+  margin-left: 1rem;
+  font-family: "Outfit", sans-serif;
+  box-shadow: 0px 4px #b2b6b8;
+  transition: all 0.2s ease-in-out;
+}
+
+.boton-cancelar-dashboard:active {
+  box-shadow: 0 1px #b2b6b8;
+  transform: translateY(3px);
+}
+
+.boton-cancelar-dashboard:hover {
+  background-color: #b2b6b8;
+  color: white;
+}
+/* Versión móvil */
+@media (max-width: 768px) {
+  .datetime-selector {
+    grid-template-columns: 1fr; /* Apila en una sola columna */
+    grid-template-rows: auto; /* Filas automáticas */
+    gap: 1rem; /* Añade espacio entre los elementos */
+    width: 100%; /* Puedes ajustar el ancho si es necesario */
+  }
+  .boton-eliminar-actividad-dashboard {
+    margin-right: 1rem;
+  }
+  .label-acceso-formulario {
+    margin-bottom: 1rem;
+  }
+}

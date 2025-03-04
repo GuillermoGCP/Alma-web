@@ -1,0 +1,409 @@
+html,
+body,
+#root {
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+.contact-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-width: 100vw;
+  padding-top: 170px;
+}
+
+.contact-content {
+  display: flex;
+  justify-content: space-between;
+}
+
+.contact-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffeee7;
+}
+.texto-redes-contacto {
+  font-family: Bellota;
+  color: #333;
+  font-size: 1rem;
+  line-height: 1.7;
+  font-weight: bold;
+}
+#contact {
+  flex: 1;
+  width: 100%; /* Ocupa el 100% del contenedor */
+  max-width: 800px; /* Limita el ancho máximo del formulario */
+  margin-left: auto; /* Centra el formulario */
+  margin-right: auto;
+}
+
+.contact-title {
+  font-family: outfit;
+  color: #b380b5;
+  margin-left: 4rem;
+  font-size: 2.5rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.name-fields {
+  display: flex;
+  margin-right: 1rem;
+  width: 100%;
+}
+
+.name-field {
+  display: flex;
+  flex-direction: column;
+  width: 44%;
+}
+
+.etiquetas-contacto {
+  display: block;
+  font-family: outfit;
+  font-size: 0.9rem;
+  color: #b380b5;
+  font-weight: bold;
+  text-align: left;
+  margin-left: 4rem;
+  width: 80%; /* Ajustamos el ancho */
+}
+
+.inputs-contacto,
+.area-texto-contacto {
+  display: block;
+  font-family: outfit;
+  color: black;
+  width: 80%; /* Mantener el ancho al 80% en todas las pantallas */
+  padding: 0.5rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  margin-left: 4rem;
+  border: none;
+  border-radius: 2rem;
+  background-color: #d8e2dc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.contact-page .captcha-img {
+  width: 100%;
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.contact-page .captcha-main {
+  display: flex;
+  flex-direction: column; /* Asegúrate de que los elementos se apilen verticalmente */
+  align-items: flex-start; /* Centra los elementos horizontalmente */
+  margin: 1rem 4rem;
+}
+
+.contact-page .captcha-input {
+  width: 100%; /* Ajusta el ancho como sea necesario */
+  margin-bottom: 1rem; /* Espacio entre el input y el botón */
+  width: 20rem;
+  height: 3rem;
+  font-family: outfit;
+  border: none;
+  border-radius: 2rem;
+  background-color: #d8e2dc;
+}
+
+.contact-page .captcha-button {
+  display: block;
+  font-family: outfit;
+  color: black;
+  width: 80%; /* Mantener el ancho al 80% en todas las pantallas */
+  padding: 0.5rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border: none;
+  border-radius: 2rem;
+  background-color: #d8e2dc;
+}
+
+.contact-page .captcha-main p {
+  font-family: outfit;
+  color: #333;
+  margin-top: 1.3rem;
+}
+
+.contact-button {
+  background-color: #b380b5;
+  border: none;
+  color: #ffeee7;
+  cursor: pointer;
+  border-radius: 3em;
+  font-size: 1.4em;
+  font-weight: bold;
+  width: auto; /* Cambiado para que se ajuste al contenido */
+  max-width: 100%; /* Asegura que no se desborde */
+  height: auto; /* Se ajusta al contenido */
+  font-family: outfit;
+  text-decoration: none;
+  padding: 0.7rem 2rem;
+  margin-top: 1rem;
+  display: inline-block; /* Asegura que no se superponga con el texto */
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+.contact-button:hover {
+  color: #b380b5;
+  background-color: transparent;
+  border: 1px solid #b380b5;
+  transform: translateY(-5px);
+}
+.contact-info {
+  flex: 0.4;
+  margin-right: 3rem;
+  font-family: outfit;
+  color: #b380b5;
+}
+
+.contact-info p {
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  line-height: 1.5rem;
+}
+
+.contact-info a {
+  margin-right: 0.5rem;
+  color: #b380b5;
+}
+
+.contact-info-icon {
+  text-decoration: none;
+  color: inherit;
+}
+
+.contact-info img {
+  width: 15vw;
+  height: 40vh;
+}
+
+#responseMessage {
+  margin-top: 20px;
+  padding: 10px;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.success {
+  background-color: #dff0d8;
+  color: #3c763d;
+}
+
+.error {
+  background-color: #f2dede;
+  color: #a94442;
+}
+
+/* Indicador para campos obligatorios */
+.required {
+  color: #b380b5;
+  font-weight: bold;
+  margin-left: 5px;
+}
+
+/* Tablet */
+
+@media (max-width: 1024px) and (min-width: 769px) {
+  .contact-page .navbar {
+    background-color: #b380b5;
+    height: 7.5rem;
+    position: relative;
+  }
+
+  .contact-page {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .contact-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .contact-content {
+    flex-direction: column;
+  }
+
+  .contact-title {
+    margin-top: 3rem;
+    margin-left: 4rem;
+    margin-bottom: 0;
+  }
+
+  label {
+    margin-left: 4rem;
+  }
+
+  .name-fields {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+  }
+
+  .name-field {
+    width: 100%;
+  }
+
+  input,
+  textarea {
+    margin-left: 4rem;
+    width: 75%; /* Ajustamos el ancho al 85% para móviles */
+  }
+
+  .contact-page .captcha-img {
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .contact-page .captcha-input {
+    width: 20rem;
+    height: 3rem;
+    font-family: outfit;
+    border: none;
+    border-radius: 2rem;
+    background-color: #d8e2dc;
+  }
+
+  .contact-button {
+    margin-bottom: 2rem;
+  }
+  .contact-info {
+    padding: 3rem;
+    margin-right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .contact-info p {
+    margin-bottom: 0;
+    font-size: 1.1rem;
+    text-align: center;
+    line-height: 1.5rem;
+  }
+  .contact-info img {
+    display: none;
+  }
+}
+
+/* Reglas para dispositivos móviles */
+@media (max-width: 768px) {
+  .contact-page .navbar {
+    background-color: #b380b5;
+    height: 7.5rem;
+    position: relative;
+  }
+
+  .contact-page {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .contact-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .contact-content {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    padding: 2.5rem;
+    width: 100%;
+  }
+
+  .contact-title {
+    margin-top: 2rem;
+  }
+
+  .name-fields {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .name-field {
+    width: 100%;
+    margin-left: 0;
+  }
+  .etiquetas-contacto {
+    margin-left: 0;
+  }
+  .inputs-contacto,
+  .area-texto-contacto {
+    margin-left: 0;
+  }
+  .contact-page .captcha-main {
+    display: flex;
+    flex-direction: column; /* Asegúrate de que los elementos se apilen verticalmente */
+    align-items: flex-start; /* Centra los elementos horizontalmente */
+    margin: 0;
+  }
+  .contact-page .captcha-img {
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .contact-page .captcha-input {
+    width: 14rem;
+    font-family: outfit;
+    height: 3rem;
+    font-family: outfit;
+    border: none;
+    border-radius: 2rem;
+    background-color: #d8e2dc;
+  }
+
+  .contact-button {
+    display: flex;
+    justify-content: center;
+    width: 7rem;
+    padding: 0.3rem;
+    background-color: #b380b5;
+    color: white;
+    border: none;
+    border-radius: 2rem;
+    cursor: pointer;
+    font-family: outfit;
+    margin-top: 2rem;
+    margin-bottom: 3rem;
+    font-size: 1rem;
+  }
+  .contact-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-right: 0;
+    overflow-x: 0;
+    max-width: 200px;
+  }
+  .contact-info p {
+    margin-bottom: 0;
+    text-align: left;
+    font-size: 1rem;
+    width: 200px;
+  }
+  .contact-info img {
+    display: none;
+  }
+}
+@media (min-width: 1600px) {
+  .contact-page .navbar {
+    background-color: #b380b5;
+    height: 9rem;
+    position: relative;
+  }
+}

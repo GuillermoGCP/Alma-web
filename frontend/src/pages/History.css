@@ -1,0 +1,196 @@
+.history-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%; /* Cambiar min-width a width */
+  padding-top: 170px;
+}
+.history-page .navbar {
+  background-color: #b380b5;
+  width: 100%; /* Asegura que el navbar ocupe todo el ancho */
+  position: relative;
+  padding: 40px 100px 10px 20px;
+}
+.history-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffeee7;
+  position: relative;
+}
+.history-header {
+  padding-bottom: 20px;
+}
+.history-title {
+  font-family: outfit;
+  color: #b380b5;
+  margin-left: 5rem;
+  font-size: 2.5rem;
+  margin-bottom: 0;
+}
+
+.history-text {
+  margin-top: 2rem;
+  font-family: outfit;
+  color: #b380b5;
+  margin-left: 5rem;
+  font-size: 1.1rem;
+  width: 100%;
+  margin-bottom: 0;
+}
+
+.history-description {
+  font-family: bellota;
+  margin-left: 5rem;
+  margin-right: 6rem;
+  color: #333;
+  font-size: 1rem;
+  line-height: 1.7;
+  font-weight: bold;
+}
+
+.upcoming-activities {
+  position: absolute;
+  right: 6rem;
+  top: 2.9rem;
+  background-color: #b380b5;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 3em;
+  font-size: 1.4em;
+  font-weight: bold;
+  width: auto; /* Cambiado para que se ajuste al contenido */
+  max-width: 100%; /* Asegura que no se desborde */
+  height: auto;
+  font-family: outfit;
+  text-decoration: none;
+  padding: 1rem 2rem;
+  margin: 0rem 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.upcoming-activities:hover {
+  color: #b380b5;
+  background-color: transparent;
+  border: 1px solid #b380b5;
+  transform: translateY(-5px);
+}
+
+.history-subtitle {
+  text-align: center;
+  font-family: Outfit;
+  margin-top: 3rem;
+  margin-left: 5rem;
+  margin-right: 6rem;
+  color: #b380b5;
+  font-weight: bold;
+}
+
+.instagram-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  list-style-type: none;
+  padding: 0 5vw;
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+.instagram-cards {
+  width: 100%;
+}
+/*BANNER REDES SOCIALES*/
+
+.banner-redes-historico {
+  background-color: #b380b5; /* Color de fondo del banner */
+  padding: 20px;
+  color: white;
+  margin-top: 20px; /* Espacio entre el contenido de Instagram y el banner */
+}
+.texto-banner-historico {
+  color: white;
+  text-align: center;
+  font-family: Outfit, sans-serif;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  line-height: 2rem;
+}
+/* Redes sociales */
+.social-media-history {
+  display: flex;
+  justify-content: center;
+  align-self: flex-end;
+  font-size: 2rem;
+}
+
+/* Estilo de los iconos de redes sociales */
+.social-media-item {
+  color: white;
+  margin: 0 0.5em;
+}
+.social-media-item i {
+  width: 1.5rem; /* Ajustar el ancho del icono */
+  height: 1.5rem; /* Ajustar la altura del icono */
+}
+
+.social-media-item i:hover {
+  color: #e0bb8e;
+}
+
+/* Versión tablet */
+@media (max-width: 1024px) {
+  .instagram-container {
+    grid-template-columns: repeat(2, 1fr); /* 2 columnas en tablet */
+  }
+}
+
+/* Versión mobile */
+@media (max-width: 768px) {
+  .history-page .navbar {
+    background-color: #b380b5;
+    height: 6.5rem;
+    position: relative;
+  }
+
+  .history-title {
+    margin-bottom: 2rem;
+    margin-left: 6.5rem;
+    justify-content: center;
+    text-align: center;
+    margin-left: 0;
+  }
+
+  .history-text {
+    /* display: none; */
+    text-align: center;
+    margin-left: 0;
+  }
+
+  .history-description {
+    margin-left: 2rem;
+    margin-right: 2rem;
+    text-align: center;
+  }
+
+  .upcoming-activities {
+    display: none;
+  }
+  .instagram-container {
+    grid-template-columns: 1fr; /* 1 columna en móvil */
+    padding: 0;
+  }
+  .instagram-cards {
+    margin-left: 0;
+  }
+}
+
+@media (min-width: 1600px) {
+  .history-page .navbar {
+    background-color: #b380b5;
+    height: 9rem;
+    position: relative;
+  }
+}

@@ -1,0 +1,158 @@
+.admin-library-form {
+  padding: 20px;
+  overflow-x: hidden;
+}
+.admin-library-form h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  font-family: Outfit;
+  color: #b380b5;
+}
+.admin-library-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+  font-family: Outfit;
+  color: #b380b5;
+}
+
+/* Estilo para cada sección del acordeón en AdminLibrary */
+.admin-library-accordion-section {
+  margin-bottom: 20px;
+  overflow-x: hidden;
+  width: 100%;
+  background-color: #d8e2dc;
+  border: 1px solid #b380b5;
+  border-radius: 5px;
+}
+
+.admin-library-accordion-title {
+  cursor: pointer;
+  padding: 10px;
+  border-bottom: 1px solid #b380b5;
+  font-family: Outfit;
+  color: #b380b5;
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.admin-library-accordion-content {
+  padding: 10px 20px 40px 20px;
+  border-top: none;
+  border-radius: 10px;
+  background-color: #d8e2dc;
+}
+
+/* Estilo para inputs alineados en una fila */
+.admin-library-resource-inputs {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.contenedor-titulo-library,
+.contenedor-enlace-library {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  width: 80%;
+}
+
+.contenedor-titulo-library p,
+.contenedor-enlace-library p {
+  font-family: Outfit, sans-serif;
+  color: black;
+}
+
+.admin-library-input {
+  width: 90%;
+  padding: 5px;
+  border: 1px solid #b380b5;
+  border-radius: 0.5rem;
+  background-color: #d8abd99b;
+  font-family: Outfit, sans-serif;
+  color: black;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.contenedor-seccion-libros {
+  margin: 1rem 0;
+}
+
+/* Estilo para los textareas */
+.admin-library-textarea {
+  width: 95%;
+  height: 100px;
+  resize: none;
+  margin-top: 10px;
+  max-width: 100%;
+  border: 1px solid #b380b5;
+  background-color: #d8abd99b;
+  border-radius: 0.5rem;
+}
+
+/* Estilo para botones */
+.admin-library-button {
+  background-color: #b380b5;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  height: 2.3rem;
+  width: 8.5rem;
+  margin-top: 1rem;
+  font-family: "Outfit", sans-serif;
+  box-shadow: 0px 4px #946b9f;
+  transition: all 0.2s ease-in-out;
+}
+.admin-library-button:active {
+  box-shadow: 0 1px #946b9f;
+  transform: translateY(3px);
+}
+.admin-library-button:hover {
+  background-color: #caa2cb;
+  color: white;
+}
+
+.admin-library-button-delete {
+  background-color: #b14b4b;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  height: 2.3rem;
+  width: 9rem;
+  margin-top: 2rem;
+  margin-left: 1rem;
+  font-family: "Outfit", sans-serif;
+  box-shadow: 0px 4px #aa2828;
+  transition: all 0.2s ease-in-out;
+}
+.admin-library-button-delete:hover {
+  box-shadow: 0 1px #b14b4b;
+  transform: translateY(3px);
+}
+.admin-library-button-delete:hover {
+  background-color: #ca5252;
+  color: white;
+}
+
+.archiveBlogsBtn {
+  margin-right: 10px;
+}
+
+
+@media (max-width: 768px) {
+  .admin-library-button-delete{
+    width: 4rem;
+    margin-left: 0;
+  }
+
+  .admin-library-accordion-content{
+    padding: 10px 5px 10px 5px;
+  }
+
+}

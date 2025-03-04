@@ -1,0 +1,178 @@
+.contenedor-creador-formularios {
+  border: 1px solid #b380b5;
+  padding: 2rem;
+  margin: 2rem;
+}
+.contenedor-creador-formularios h2 {
+  margin: 0;
+}
+.input-creador-formularios {
+  display: block;
+  font-family: outfit;
+  color: black;
+  width: 80%;
+  padding: 0.5rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border: none;
+  border-radius: 2rem;
+  background-color: #d8e2dc;
+}
+.input-creador-formularios::placeholder {
+  padding-left: 1rem;
+}
+
+.select-creador-formularios {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #d8e2dc;
+  border-radius: 50px;
+  border: none;
+  padding: 0.5rem 0;
+  margin-top: 0.7rem;
+  font-family: Outfit, sans-serif;
+  width: 8.5rem;
+}
+.boton-eliminar-campo-formulario {
+  background-color: #b14b4b;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  height: 2.3rem;
+  width: 8.5rem;
+  margin-top: 1rem;
+  margin-left: auto;
+  font-family: "Outfit", sans-serif;
+  box-shadow: 0px 4px #aa2828;
+  transition: all 0.2s ease-in-out;
+}
+
+.boton-eliminar-campo-formulario:active {
+  box-shadow: 0 1px #b14b4b;
+  transform: translateY(3px);
+}
+
+.boton-eliminar-campo-formulario:hover {
+  background-color: #ca5252;
+  color: white;
+}
+
+.contenedor-botones-añadir-generar-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.boton-generar-formulario {
+  background-color: #b380b5;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  height: 2.3rem;
+  width: 10rem;
+  margin-right: 1rem;
+  font-family: "Outfit", sans-serif;
+  box-shadow: 0px 4px #946b9f;
+  transition: all 0.2s ease-in-out;
+}
+
+.boton-añadir-campo-formulario {
+  background-color: #b380b5;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  height: 2.3rem;
+  width: 10rem;
+  margin-right: 1rem;
+  font-family: "Outfit", sans-serif;
+  box-shadow: 0px 4px #946b9f;
+  transition: all 0.2s ease-in-out;
+}
+.boton-generar-formulario:active,
+.boton-añadir-campo-formulario:active {
+  box-shadow: 0 1px #946b9f;
+  transform: translateY(3px);
+}
+
+.boton-generar-formulario:hover,
+.boton-añadir-campo-formulario:hover {
+  background-color: #caa2cb;
+  color: white;
+}
+.contenedor-añadir-campo {
+  display: flex; /* Usar flexbox */
+  flex-direction: column; /* Direccionar los elementos verticalmente */
+  justify-content: flex-start; /* Alinear los elementos al principio */
+  align-items: flex-start; /* Alinear los elementos al inicio del contenedor */
+  border: 1px solid #b380b5; /* Borde del contenedor */
+  background-color: #ffeee7; /* Color de fondo */
+  border-radius: 8px; /* Esquinas redondeadas */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2),
+    inset 0 1px 2px rgba(255, 255, 255, 0.7),
+    inset 0 -2px 5px rgba(0, 0, 0, 0.1); /* Sombra general y efecto hundido */
+  padding: 20px; /* Espaciado interno (elige uno solo) */
+  margin-bottom: 20px; /* Espaciado entre contenedores */
+  transition: box-shadow 0.3s ease; /* Transición suave al cambiar el estado */
+}
+
+.contenedor-añadir-campo:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Sombra más pronunciada al pasar el mouse */
+}
+.contenedor-añadir-campo .texto-descriptivo-accion-modal {
+  color: rgb(126, 126, 126);
+  font-style: italic;
+  font-size: 0.7rem;
+  margin-left: 0;
+  margin-top: 1rem;
+  padding: 0;
+}
+p.texto-descriptivo-accion-modal {
+  padding-left: 0;
+}
+.titulo-descriptivo-accion .fa-arrow-down {
+  font-size: 1rem;
+}
+/*MODAL INFORMATIVO DE LOS TIPOS DE CAMPOS DEL FORMULARIO*/
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modal-contenido {
+  background-color: #b380b5;
+  padding: 20px;
+  border-radius: 8px;
+  width: 80%;
+  max-width: 800px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+  text-align: left;
+}
+
+.modal-contenido h3 {
+  margin-top: 0;
+  color: white;
+  font-size: 1.5rem;
+}
+
+.modal-contenido button {
+  margin-top: 10px;
+  padding: 8px 12px;
+  background-color: white;
+  color: #b380b5;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-family: Outfit, sans-serif;
+  font-weight: 700;
+}

@@ -1,0 +1,24 @@
+/* LogoutButton.css */
+.logout-btn {
+  display: inline-flex;
+  align-items: center;
+  font-family: Outfit;
+  padding: 10px 20px;
+  margin: 20px 0px;
+  background-color: #b380b5;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: background-color 0.3s ease;
+}
+
+.logout-btn svg {
+  margin-right: 8px; /* Añadir espacio entre el ícono y el texto */
+}
+
+.logout-btn:hover {
+  background-color: white;
+  color: #b380b5;
+}

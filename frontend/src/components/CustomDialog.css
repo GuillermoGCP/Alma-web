@@ -1,0 +1,37 @@
+.dialog p{
+margin-top: 10px;
+}
+
+.btnDialog{
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  height: 1.7rem;
+  width: 5rem;
+  margin-top: 0.7rem;
+  margin-right: 0.5rem;
+  font-family: "Outfit", sans-serif;
+  font-size: bold;
+  transition: all 0.2s ease-in-out;
+}
+
+.btnDialog:hover{
+    box-shadow: 0 1px #b2b6b8;
+    transform: translateY(3px);
+}
+
+.yes{
+    background-color: #5aac46;
+    box-shadow: 0px 4px #468536;
+}
+
+.no{
+    background-color: #b14b4b;
+    box-shadow: 0px 4px #aa2828;
+}
+
+.cancel{
+    background-color: #797e80;
+    box-shadow: 0px 4px #b2b6b8;
+}

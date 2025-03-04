@@ -1,0 +1,555 @@
+:root {
+  --primary-color: #b380b5;
+  --secondary-color: #d8e2dc;
+  --background-color: #fdeee7;
+  --white: #f5f5f5;
+  --dark-text: #333;
+  --font-main: "Outfit", sans-serif;
+  --font-secondary: "Bellota", sans-serif;
+  --btn-radius: 3em;
+  --card-radius: 1.5rem;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Contenedor de carga y spinner */
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.spinner {
+  color: var(--primary-color);
+}
+
+/* Estructura general de la página */
+.home-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+.header {
+  top: 0;
+  left: 0;
+  width: 100%;
+  position: absolute;
+  z-index: 1;
+  background: transparent;
+}
+
+.main-home {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Sección de la imagen principal */
+.img-section {
+  position: relative;
+  height: 90vh;
+  width: 100%;
+  overflow: hidden;
+}
+
+.background-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  filter: brightness(70%);
+}
+
+.background-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Botón de soporte */
+.support-button {
+  position: absolute;
+  bottom: 3em;
+  left: 3em;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.texto-cta {
+  font-size: 3rem;
+  font-weight: bold;
+  color: var(--white);
+  font-family: var(--font-main);
+  max-width: 40rem;
+  word-wrap: break-word;
+  margin-bottom: 0.8rem;
+  margin-top: 0;
+
+  /* Configuración inicial para la animación */
+  opacity: 0; /* Inicialmente invisible */
+  transform: translateY(-20px); /* Desplazamiento hacia arriba */
+
+  /* Aplicación de la animación */
+  animation: fadeIn 1s ease-out forwards; /* La animación se ejecutará una vez al cargar */
+}
+
+/* Definición de la animación */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-60px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Botón de actividades */
+.activities-button {
+  background-color: #b380b5;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 3em;
+  font-size: 1.4em;
+  font-weight: bold;
+  width: auto; /* Cambiado para que se ajuste al contenido */
+  max-width: 100%; /* Asegura que no se desborde */
+  height: auto; /* Se ajusta al contenido */
+  font-family: outfit;
+  text-decoration: none;
+  padding: 1rem 2rem;
+  margin-top: 1rem;
+  display: inline-block; /* Asegura que no se superponga con el texto */
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.activities-button:hover {
+  color: #b380b5;
+  background-color: #d8e2dc;
+  transform: translateY(-5px);
+}
+
+/* Contenedor de contenido */
+.content {
+  background-color: var(--background-color);
+  position: relative;
+  padding: 0 4rem;
+}
+
+.section-title {
+  color: var(--primary-color);
+  font-weight: bold;
+  font-size: 2.5rem;
+  margin-bottom: 0.2em;
+  font-family: var(--font-main);
+}
+
+/* Contenedor centrado */
+.centered-container {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  flex-direction: column;
+}
+
+/* Texto de la sección "Nosotras" */
+.sectionText-nosotras {
+  max-width: 60rem;
+  line-height: 1.7;
+  font-family: var(--font-secondary);
+  color: #333;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+/* Imagen de silueta */
+.img-silueta {
+  display: flex;
+  position: relative;
+  margin-left: 64rem;
+  margin-top: -18rem;
+  width: 17vw;
+  height: 45vh;
+}
+
+/* Sección de experiencias */
+.experience-section {
+  background-color: #fff;
+  padding: 2rem;
+  margin-bottom: 3rem;
+}
+
+.experience-title {
+  font-family: var(--font-main);
+  color: var(--primary-color);
+  font-size: 2.5rem;
+  margin-bottom: 3rem;
+  margin-left: 2em;
+}
+
+.experience-carousel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.experience-cards {
+  display: flex;
+  overflow: hidden;
+}
+.experience-card {
+  width: 300px; /* Establece un tamaño fijo */
+  height: 150px; /* Puedes ajustar la altura según sea necesario */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: left;
+  background-color: #f5f5f5;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.experience-card img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 1.5rem;
+}
+
+.experience-card h3,
+.experience-card p {
+  margin: 0;
+  text-align: left;
+  word-wrap: break-word;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.experience-card p {
+  font-size: 14px;
+  line-height: 1.5;
+  max-height: 100px;
+  overflow: hidden;
+}
+
+/* Controles del carrusel */
+.carousel-control {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  font-size: 1.5rem; /* Tamaño del icono */
+  color: var(--primary-color); /* Cambia el color según tus variables */
+}
+
+.carousel-control:hover {
+  color: var(--hover-color); /* Cambia el color al pasar el ratón */
+}
+
+.carousel-control.prev {
+  left: 0rem;
+}
+
+.carousel-control.next {
+  right: 0rem;
+}
+
+/* Estilos responsive */
+@media (max-width: 768px) {
+  .img-section {
+    height: 50vh;
+  }
+
+  .content {
+    padding: 2rem;
+  }
+
+  .background-image img {
+    height: 50vh;
+  }
+
+  .support-button {
+    bottom: 1em;
+    left: 1em;
+    right: 1em;
+  }
+
+  .support-button p {
+    font-size: 2.5rem;
+    max-width: 30rem;
+  }
+
+  .activities-button {
+    width: 100%;
+    max-width: 14rem;
+    font-size: 1rem;
+  }
+
+  .section-title {
+    text-align: center;
+    font-size: 2rem;
+  }
+
+  .sectionText-nosotras {
+    font-size: 1rem;
+    text-align: center;
+    max-width: 100%;
+  }
+
+  .img-silueta {
+    display: none;
+  }
+  .calendar {
+    height: 18rem;
+  }
+  .section-title-calendar {
+    font-size: 2rem;
+    margin-top: 2rem;
+    font-family: Outfit, sans-serif;
+  }
+  .calendar-section {
+    padding-bottom: 1rem;
+  }
+  .calendar-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .event-details {
+    margin-top: 1rem;
+    border-radius: 10px;
+  }
+  .calendar-wrapper {
+    order: 1;
+    border-radius: 10px;
+  }
+  .event-details {
+    order: 2;
+    padding: 2rem;
+  }
+  .custom-toolbar-label {
+    text-align: center;
+    font-size: 0.8rem;
+  }
+  .experience-title {
+    margin-left: 0;
+    text-align: center;
+    font-size: 2rem;
+  }
+  .experience-cards {
+    display: flex;
+    flex-direction: column; /* Cambia a columna para una mejor disposición en móviles */
+    overflow: hidden;
+  }
+
+  .experience-card {
+    display: flex;
+    align-items: center;
+    background-color: var(
+      --secondary-color
+    ); /* Fondo con color personalizado */
+    border-radius: 10px; /* Bordes redondeados */
+    padding: 1.4rem;
+    box-shadow: 0 1px 2px rgba(179, 128, 181, 0.5); /* Sombra más suave */
+    max-width: 300px; /* Ancho máximo de 400px */
+    width: 100%; /* Asegura que ocupe todo el ancho disponible */
+  }
+
+  .experience-card img {
+    width: 80px; /* Tamaño de la imagen ajustado para móviles */
+    height: 80px; /* Asegura que la imagen sea cuadrada */
+    border-radius: 50%; /* Imagen completamente redonda */
+    object-fit: cover; /* Mantiene la relación de aspecto */
+    margin-right: 1rem; /* Separación entre la imagen y el texto */
+  }
+
+  .experience-card p {
+    font-family: var(--font-secondary); /* Fuente secundaria */
+    color: var(--dark-text); /* Color del texto */
+    font-size: 0.8rem; /* Tamaño de fuente reducido para móviles */
+    margin: 0; /* Eliminar márgenes adicionales en el texto */
+    flex: 1; /* Asegura que el texto ocupe el espacio restante */
+  }
+
+  /* Controles del carrusel */
+  .carousel-control {
+    background-color: transparent;
+    color: var(--primary-color);
+    border: none;
+    font-size: 2rem; /* Tamaño de fuente ajustado para móviles */
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+  }
+
+  .carousel-control.prev {
+    left: -1rem;
+  }
+
+  .carousel-control.next {
+    right: -1rem;
+  }
+}
+
+/* Tablet */
+@media (min-width: 769px) and (max-width: 1600px) {
+  .img-section {
+    height: 100vh;
+  }
+
+  .support-button {
+    bottom: 5em;
+    left: 4em;
+  }
+
+  .activities-button {
+    width: 26rem;
+    font-size: 1.5em;
+  }
+
+  .section-title {
+    font-size: 2.5rem;
+  }
+  .calendar-content {
+    max-width: 100%;
+  }
+  .custom-toolbar-label {
+    text-align: center;
+    font-size: 1rem;
+  }
+  .event-description {
+    text-align: center;
+  }
+  .centered-container {
+    align-items: center;
+  }
+
+  .sectionText-nosotras {
+    max-width: 100%;
+    font-size: 1rem;
+  }
+  .img-silueta {
+    display: none;
+  }
+  .experience-cards {
+    display: flex;
+    overflow: hidden;
+  }
+  .experience-card {
+    display: flex;
+    align-items: center;
+    background-color: var(
+      --secondary-color
+    ); /* Fondo con color personalizado */
+    border-radius: 10px; /* Bordes redondeados */
+    padding: 1.4rem;
+    margin: 1rem; /* Márgenes */
+    box-shadow: 4px 4px 10px rgba(179, 128, 181, 0.5); /* Sombra para darle un efecto de elevación */
+    max-width: 450px; /* Ancho máximo de 400px */
+    width: 100%;
+  }
+
+  .experience-card img {
+    width: 100px; /* Tamaño de la imagen */
+    height: 100px;
+    border-radius: 50%; /* Imagen completamente redonda */
+    object-fit: cover;
+    margin-right: 1.5rem; /* Separación entre la imagen y el texto */
+  }
+
+  .experience-card p {
+    font-family: var(--font-secondary); /* Fuente secundaria */
+    color: var(--dark-text); /* Color del texto */
+    font-size: 0.9rem;
+    margin: 0; /* Eliminar márgenes adicionales en el texto */
+    flex: 1; /* Asegura que el texto ocupe el espacio restante */
+  }
+
+  /* Controles del carrusel */
+  .carousel-control {
+    background-color: transparent;
+    color: var(--primary-color);
+    border: none;
+    font-size: 2.5rem;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+  }
+}
+
+/* Pantallas grandes */
+@media (min-width: 1601px) {
+  .support-button p {
+    font-size: 4.3rem;
+    max-width: 60rem;
+  }
+
+  .activities-button {
+    width: 36rem;
+    height: 5rem;
+    font-size: 2em;
+  }
+  .img-silueta {
+    display: none;
+  }
+  .section-title {
+    font-size: 4rem;
+  }
+
+  .sectionText-nosotras {
+    max-width: 90%;
+    font-size: 1.6rem;
+    text-align: left;
+  }
+
+  /* Sección de experiencias */
+  .experience-card {
+    width: 600px;
+    height: 200px;
+    padding: 2rem;
+    margin: 1rem;
+    background-color: var(--secondary-color);
+    box-shadow: 4px 4px 10px rgba(179, 128, 181, 0.5);
+    font-family: Outfit, sans-serif;
+    display: flex;
+    align-items: center;
+    border-radius: 10px; /* Bordes redondeados */
+  }
+
+  .experience-card img {
+    width: 150px;
+    height: 150px;
+  }
+
+  .experience-card p {
+    font-size: 1.3rem;
+  }
+}

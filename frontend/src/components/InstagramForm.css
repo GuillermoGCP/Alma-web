@@ -1,0 +1,111 @@
+.instagram-form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border-top: solid 1px #b380b5;
+  padding-top: 1rem;
+}
+
+.instagram-form-input-select {
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+.instagram-form-input,
+.instagram-form-select {
+  padding: 10px;
+  font-size: 1rem;
+  text-align: center;
+  color: #b380b5;
+  font-family: outfit;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  margin: 0;
+}
+.instagram-form-input::placeholder {
+  padding-left: 1rem;
+  color: #b380b5;
+}
+.instagram-form-input:focus,
+.instagram-form-select:focus {
+  outline: none;
+  border-color: #b380b5;
+  box-shadow: 0 0 5px #752677;
+}
+
+.instagram-form-select {
+  width: 40%;
+}
+
+.instagram-form-input {
+  width: 700%;
+}
+.contenedor-info-popup-historico {
+  display: flex;
+  align-items: center;
+  background-color: #b380b5;
+  padding: 0.6rem;
+  cursor: pointer;
+  max-width: 300px; /* Define un ancho máximo */
+  width: 100%; /* Asegura que ocupe el 100% de su contenedor padre hasta el max-width */
+  box-sizing: border-box; /* Incluye el padding en el ancho total */
+  overflow: hidden;
+  margin-top: 1rem;
+  border-radius: 5px;
+}
+.help-btn-insta {
+  font-family: Outfit, sans-serif;
+  color: white;
+  display: flex;
+  align-items: center; /* Alinea el ícono y el texto verticalmente */
+  flex-wrap: wrap; /* Permite que el texto se ajuste en varias líneas si es necesario */
+  text-align: left; /* Alinea el texto a la izquierda */
+  width: 100%;
+  cursor: pointer;
+}
+.info-icon-historico {
+  color: white;
+  font-size: 24px;
+  margin-right: 0.6rem;
+}
+.instagram-form-buttons {
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px;
+}
+.texto-descriptivo-accion {
+  font-size: 1rem;
+  font-family: "Outfit", sans-serif;
+  color: black;
+}
+
+.instagram-form-button-submit,
+.instagram-form-button-delete {
+  padding: 5px;
+  font-size: 0.9rem;
+  font-family: outfit;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.instagram-form-button-submit {
+  background-color: #000000;
+  color: #fff;
+}
+
+.instagram-form-button-submit:hover {
+  background-color: #b380b5;
+  color: #ffffff;
+}
+
+.instagram-form-button-delete {
+  background-color: #ff5733;
+}
+
+.instagram-form-button-delete:hover {
+  background-color: #ff0400;
+  color: #fff;
+}

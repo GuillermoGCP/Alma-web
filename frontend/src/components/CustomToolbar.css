@@ -1,0 +1,62 @@
+.custom-toolbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.custom-toolbar-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1rem;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid #b380b5;
+  color: #333;
+  background-color: white;
+}
+
+.custom-toolbar-arrow:hover {
+  color: #b380b5;
+}
+
+.custom-toolbar-arrow:active {
+  background-color: #b380b5;
+  color: white; 
+}
+
+.custom-toolbar-arrow:first-of-type {
+  left: 4rem; 
+}
+
+.custom-toolbar-arrow:last-of-type {
+  right: 4rem; 
+}
+
+.custom-toolbar-label {
+  font-size: 1rem;
+  color: #333;
+  padding: 0 3rem;
+  text-align: center;
+}
+
+@media (min-width: 768px) and (max-width: 900px) {
+  .custom-toolbar-label {
+    padding: 0 4rem; /* Aumenta el espacio entre las flechas y el texto */
+  }
+  
+  .custom-toolbar-arrow:first-of-type {
+    left: 2rem; /* Reduce el margen izquierdo */
+  }
+
+  .custom-toolbar-arrow:last-of-type {
+    right: 2rem; /* Reduce el margen derecho */
+  }
+}

@@ -1,0 +1,31 @@
+.confirmation-page {
+  text-align: center;
+  margin-top: 50px;
+  padding: 20px;
+}
+
+.confirmation-title {
+  font-size: 2.5em;
+  color: #2ecc71;
+  margin-bottom: 20px;
+}
+
+.confirmation-text {
+  font-size: 1.2em;
+  color: #555;
+  margin-bottom: 30px;
+}
+
+.confirmation-button {
+  padding: 10px 20px;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+.confirmation-button:hover {
+  background-color: #2980b9;
+}

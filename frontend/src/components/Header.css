@@ -1,0 +1,437 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* Contenedor de la barra de navegación */
+.navbar {
+  display: flex;
+  align-items: center;
+  z-index: 999;
+  background: transparent;
+  position: fixed; /* Fijo al hacer scroll */
+  top: 0; /* Pegado a la parte superior */
+  left: 0;
+  right: 0;
+  flex-direction: column;
+  font-family: outfit;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 70px;
+  font-size: 1.1rem;
+}
+
+header {
+  transition: background-color 0.3s ease;
+  height: 100px; /* Cambia a tu color deseado */
+}
+
+header.scrolled {
+  background-color: #b380b5;
+  height: 100px; /* Cambia a tu color deseado */
+}
+
+/* Estilo del logo */
+.logo {
+  height: 5em;
+  z-index: 1;
+  position: absolute;
+  align-self: flex-start;
+  margin-left: 1rem;
+}
+
+/* Toggle del menú (icono hamburguesa) */
+.menu-toggle {
+  display: none;
+}
+
+/* Redes sociales */
+.social-media {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: flex-end;
+  margin-right: 1rem;
+}
+
+/* Estilo de los iconos de redes sociales */
+.social-media a {
+  color: white;
+  margin: 0 0.5em;
+  margin-top: -1em;
+}
+.social-media a svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.social-media a svg:hover {
+  color: #e0bb8e;
+}
+/* Estilo para el ícono de usuario */
+
+.social-media .user-icon {
+  color: white;
+  margin: 0 0.5em;
+  cursor: pointer;
+}
+
+.social-media .user-icon svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.social-media .user-icon:hover svg {
+  color: #e0bb8e;
+}
+
+/* Estilo de la lista de menú principal */
+.menu {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-self: flex-end;
+  margin-top: 1em;
+}
+
+/* Estilo de los elementos del menú */
+.menu-item {
+  position: relative;
+  font-weight: bold;
+}
+
+/* Estilo de los enlaces del menú principal */
+.menu-item > a {
+  color: white; /* Color del texto del menú */
+  text-decoration: none;
+  padding: 10px 15px;
+  display: block;
+  position: relative;
+  z-index: 999;
+}
+.menu-item > a.active {
+  color: #dcbf95; /* Color del texto activo */
+}
+/* Subrayado en los enlaces del menú principal */
+.menu-item > a::after {
+  content: "";
+  position: absolute;
+  width: 100%; /* Ajusta el subrayado al ancho del texto */
+  height: 2px; /* Grosor del subrayado */
+  left: 0;
+  bottom: -2px; /* Posiciona el subrayado justo debajo del texto */
+  background-color: transparent; /* Sin color de fondo para el subrayado */
+  transition: background-color 0.3s ease;
+}
+
+/* Cambia el color del texto y subrayado en hover */
+.menu-item > a:hover::after {
+  background-color: white; /* Color de subrayado al hacer hover */
+}
+
+/* Estilo de la lista de submenú */
+.submenu {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: none;
+  position: absolute;
+  top: 100%;
+  min-width: 200px;
+  z-index: 1000;
+  background-color: white;
+}
+
+/* Estilo de los enlaces dentro del submenú */
+.submenu li a {
+  color: #9c6fa0; /* Color del texto del submenú */
+  text-decoration: none;
+  padding: 10px;
+  display: block;
+  position: relative;
+  z-index: 1001;
+}
+
+/* Cambia el color del texto en el submenú al pasar el mouse */
+.submenu li a:hover {
+  color: #9c6fa0;
+  background-color: #f2f2f2;
+}
+
+/* Mostrar el submenú cuando se hace hover sobre el elemento del menú */
+.menu-item:hover > .submenu {
+  display: block; /* Muestra el submenú en hover */
+}
+
+/* Estilos responsivos para dispositivos móviles */
+@media (max-width: 768px) {
+  .navbar {
+    font-family: outfit;
+    width: 100vw;
+    position: relative;
+    background-color: #9c6fa0;
+    padding: 0;
+  }
+
+  .logo {
+    height: 4rem;
+    margin-top: 0.5em;
+  }
+
+  .social-media {
+    margin: 10px;
+  }
+
+  .social-media-item {
+    visibility: visible;
+    font-size: 0.9rem;
+  }
+
+  .social-media a {
+    color: white;
+    margin: 0.1em;
+  }
+
+  .social-media a svg {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .menu-toggle {
+    display: flex;
+    cursor: pointer;
+    color: white;
+    font-size: 2rem;
+    align-self: flex-end;
+    margin-top: 0.8rem;
+    margin-right: 0.7rem;
+    z-index: 12;
+  }
+
+  .menu {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    position: relative;
+    transition: all 0.3s ease;
+  }
+
+  .menu.active {
+    display: flex;
+    background-color: #9c6fa0;
+    z-index: 11;
+    text-align: center;
+    width: 100%;
+    height: auto;
+    margin-top: 0;
+  }
+
+  .menu-item > a {
+    color: white;
+    padding: 1.5rem 0;
+    width: 100%;
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    box-sizing: border-box;
+  }
+
+  .menu-item > a:hover {
+    background-color: #b380b5;
+    color: white;
+  }
+
+  /* Submenú */
+  .submenu {
+    display: none;
+    background-color: #9c6fa0;
+    width: 100%;
+    color: white;
+    transition: all 0.3s ease; /* Transición suave para apertura */
+  }
+
+  /* Submenú activo */
+  .submenu.active {
+    display: block;
+  }
+
+  .submenu li a {
+    color: #9c6fa0;
+    padding: 10px;
+    display: block;
+    background-color: white;
+    box-sizing: border-box;
+  }
+
+  .submenu li a:hover {
+    color: white;
+    background-color: #e0bb8e;
+  }
+
+  .menu-item {
+    position: relative;
+  }
+
+  /* Mostrar submenú al hacer hover */
+  .menu-item:hover .submenu {
+    display: block;
+  }
+
+  /* Eliminar el absolute y permitir que el submenú expanda el menú principal */
+  .menu-item .submenu {
+    position: relative;
+    top: 0;
+    left: 0;
+  }
+
+  /* Icono de cierre del menú */
+  .menu-toggle-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    color: white;
+    cursor: pointer;
+    font-size: 2rem;
+    z-index: 13;
+  }
+}
+
+/* Estilos para pantallas entre 769px y 1000px */
+@media (min-width: 769px) and (max-width: 1000px) {
+  .navbar {
+    font-family: outfit;
+    width: 100vw;
+    position: relative;
+    background-color: #9c6fa0;
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-right: 10%;
+  }
+
+  .logo {
+    height: 4rem;
+    margin-top: 0.5em;
+  }
+
+  .social-media {
+    margin: 10px;
+  }
+
+  .social-media-item {
+    visibility: visible;
+    font-size: 0.9rem;
+  }
+
+  .social-media a {
+    color: white;
+    margin: 0.1em;
+  }
+
+  .social-media a svg {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .menu-toggle {
+    display: flex;
+    cursor: pointer;
+    color: white;
+    font-size: 2rem;
+    align-self: flex-end;
+    margin-top: 0.8rem;
+    margin-right: 0.7rem;
+    z-index: 12;
+  }
+
+  .menu {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    position: relative;
+    transition: all 0.3s ease;
+  }
+
+  .menu.active {
+    display: flex;
+    background-color: #9c6fa0;
+    z-index: 11;
+    text-align: center;
+    width: 100%;
+    height: auto;
+    margin-top: 0;
+  }
+
+  .menu-item > a {
+    color: white;
+    padding: 1.5rem 0;
+    width: 100%;
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    box-sizing: border-box;
+  }
+
+  .menu-item > a:hover {
+    background-color: #b380b5;
+    color: white;
+  }
+
+  /* Submenú */
+  .submenu {
+    display: none;
+    background-color: #9c6fa0;
+    width: 100%;
+    color: white;
+    transition: all 0.3s ease; /* Transición suave para apertura */
+  }
+
+  /* Submenú activo */
+  .submenu.active {
+    display: block;
+  }
+
+  .submenu li a {
+    color: #9c6fa0;
+    padding: 10px;
+    display: block;
+    background-color: white;
+    box-sizing: border-box;
+  }
+
+  .submenu li a:hover {
+    color: white;
+    background-color: #e0bb8e;
+  }
+
+  .menu-item {
+    position: relative;
+  }
+
+  /* Mostrar submenú al hacer hover */
+  .menu-item:hover .submenu {
+    display: block;
+  }
+
+  /* Icono de cierre del menú */
+  .menu-toggle-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    color: white;
+    cursor: pointer;
+    font-size: 2rem;
+    z-index: 13;
+  }
+}
+
+@media (min-width: 1600px) {
+  .navbar {
+    font-size: 1.6rem;
+  }
+  .social-media a svg {
+    width: 2.5rem; /* Ajustar el ancho del icono */
+    height: 2.5rem; /* Ajustar la altura del icono */
+  }
+}

@@ -1,0 +1,328 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: #d8e2dc;
+  color: #b380b5;
+  padding: 2rem;
+  border-radius: 8px;
+  position: relative;
+  width: 80%;
+  max-width: 600px;
+  height: auto; /* Eliminamos altura fija */
+  max-height: 90vh; /* Evitamos que se salga de la pantalla */
+  overflow-y: auto; /* Agregamos scroll si el contenido excede el máximo permitido */
+  font-family: "Outfit", sans-serif;
+}
+
+.modal-content h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.modal-options p {
+  color: #333;
+  font-size: 1.1rem;
+}
+
+.modal-options button:disabled {
+  background-color: #c3a0b6;
+  cursor: not-allowed;
+}
+
+.close-btn-modal-usuario {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: transparent;
+  border: none;
+  font-size: 2rem;
+  color: #b380b5;
+  cursor: pointer;
+}
+
+.close-btn-modal-usuario:hover {
+  color: #7e5097;
+}
+
+.close-btn-modal-usuario:focus {
+  outline: none;
+}
+
+.my-subscription-modal input[type="text"],
+.my-subscription-modal input[type="email"] {
+  padding: 0.8rem;
+  margin: 1rem 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  background-color: #fff;
+  color: #333;
+  font-family: "Outfit", sans-serif;
+}
+
+.my-subscription-modal input[type="text"]:focus,
+.my-subscription-modal input[type="email"]:focus {
+  border-color: #b380b5;
+  outline: none;
+}
+.my-subscription-modal input[type="text"]::placeholder,
+.my-subscription-modal input[type="email"]::placeholder {
+  font-family: "Outfit", sans-serif;
+  color: #aaa;
+}
+
+label {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.modal-options {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.boton-acceder-suscripcion {
+  background-color: #b380b5;
+  border: none;
+  color: #d8e2dc;
+  cursor: pointer;
+  border-radius: 3em;
+  font-size: 1.4em;
+  font-weight: bold;
+  width: auto; /* Cambiado para que se ajuste al contenido */
+  max-width: 100%; /* Asegura que no se desborde */
+  height: auto; /* Se ajusta al contenido */
+  font-family: outfit;
+  text-decoration: none;
+  padding: 1rem 2rem;
+  margin-top: 1rem;
+  display: inline-block; /* Asegura que no se superponga con el texto */
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+.boton-acceder-suscripcion:hover {
+  color: #b380b5;
+  background-color: transparent;
+  border: 1px solid #b380b5;
+  transform: translateY(-5px);
+}
+.boton-acceder-suscripcion:disabled {
+  background-color: #c3a0b6; /* Gris cuando está deshabilitado */
+  color: #f1f1f1; /* Color gris claro para el texto */
+  cursor: not-allowed; /* Cambiar el cursor para indicar que está deshabilitado */
+  border: 1px solid #c3a0b6; /* Gris para el borde */
+}
+
+.boton-acceder-suscripcion:disabled:hover {
+  /* Eliminamos el efecto de hover cuando el botón está deshabilitado */
+  background-color: #c3a0b6;
+  color: #f1f1f1;
+  border: 1px solid #c3a0b6;
+  transform: none; /* Eliminamos el cambio de posición al hacer hover */
+}
+
+.confirmation-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.confirmation-modal {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.confirmation-modal button {
+  margin: 0 10px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.confirmation-modal button:first-child {
+  background-color: #f44336; /* Botón rojo */
+  color: #fff;
+}
+
+.confirmation-modal button:last-child {
+  background-color: #9c9c9c; /* Botón gris */
+  color: #fff;
+}
+
+/* Botón renovar */
+.boton-renovar-suscripcion {
+  background-color: #b380b5;
+  border: none;
+  color: #fdeee7;
+  cursor: pointer;
+  border-radius: 3em;
+  font-size: 1em;
+  width: auto; /* Cambiado para que se ajuste al contenido */
+  max-width: 100%; /* Asegura que no se desborde */
+  height: auto; /* Se ajusta al contenido */
+  font-family: outfit;
+  text-decoration: none;
+  padding: 1rem 2rem;
+  margin: 2rem 0;
+  display: inline-block; /* Asegura que no se superponga con el texto */
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+/* Botón baja */
+.boton-baja-suscripcion {
+  background-color: transparent;
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  border: none;
+  color: #333;
+  cursor: pointer;
+  border-radius: 3em;
+  font-size: 0.8em;
+  width: auto; /* Cambiado para que se ajuste al contenido */
+  max-width: 100%; /* Asegura que no se desborde */
+  height: auto; /* Se ajusta al contenido */
+  font-family: outfit;
+  text-decoration: none;
+  padding: 0.8rem 2rem;
+  margin-top: 1rem;
+  display: inline-block; /* Asegura que no se superponga con el texto */
+  text-align: center;
+}
+.boton-renovar-suscripcion:hover {
+  color: #b380b5;
+  background-color: transparent;
+  border: 1px solid #b380b5;
+  transform: translateY(-5px);
+}
+.boton-baja-suscripcion:hover {
+  font-weight: bold;
+}
+.confirmacion-baja-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.confirmacion-baja-modal {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+.confirmacion-baja-modal p {
+  color: #333;
+  font-family: outfit;
+  line-height: 1.5rem;
+}
+.confirmacion-baja-modal-boton {
+  margin: 0 10px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  background-color: #b380b5;
+  color: white;
+  font-family: outfit;
+}
+
+.confirmacion-baja-modal-boton:hover {
+  background-color: #871f1f;
+  color: white;
+  border: 1px solid white;
+}
+.confirmacion-cancelar-modal {
+  margin: 0 10px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  background-color: transparent;
+  color: #b380b5;
+  font-family: outfit;
+  border: 1px solid #b380b5;
+}
+.confirmacion-cancelar-modal:hover {
+  background-color: #b380b5;
+  color: white;
+}
+.mensaje-accion-baja {
+  font-weight: bold;
+  color: #871f1f;
+}
+/* Media query para teléfono (max-width: 768px) */
+@media (max-width: 768px) {
+  .modal-content {
+    width: 95%;
+    max-width: 400px;
+    height: auto; /* Ajuste de altura */
+    padding: 1rem;
+  }
+
+  .modal-content h2 {
+    font-size: 1.5rem;
+  }
+
+  .modal-options p {
+    font-size: 0.9rem;
+  }
+
+  .boton-acceder-suscripcion,
+  .boton-renovar-suscripcion {
+    font-size: 1em;
+    padding: 0.7rem 1.2rem;
+    margin: 0.5rem 0;
+  }
+
+  .boton-baja-suscripcion {
+    position: static; /* Elimina la posición absoluta */
+    margin-top: 0; /* Ajusta márgenes si es necesario */
+    width: 100%; /* Asegura que el botón ocupe todo el ancho */
+    text-align: center; /* Centra el contenido */
+  }
+
+  .confirmacion-baja-modal-boton,
+  .confirmacion-cancelar-modal {
+    font-size: 0.8em;
+    padding: 6px 12px;
+  }
+  .confirmacion-baja-modal {
+    margin: 0 2rem;
+  }
+  .modal-options {
+    flex-direction: column;
+  }
+}

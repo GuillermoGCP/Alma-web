@@ -1,0 +1,400 @@
+.settings-content-inicio {
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  width: 70vw;
+}
+.contenedor-secciones-dinamicas-dashboard {
+  padding: 0 2rem;
+}
+.section {
+  display: none;
+}
+
+.section.visible {
+  display: block;
+  max-width: 100%;
+  height: 100vh;
+  padding: 0;
+  margin: 0;
+}
+
+.adminHome-btn.active {
+  background-color: #b380b5;
+  color: white;
+}
+
+.titulo-escoger-seccion {
+  font-family: "Outfit", sans-serif;
+  color: #b380b5;
+  font-size: 20px;
+  margin-bottom: 2rem;
+}
+
+.panel-nav-btn {
+  display: flex;
+  gap: 15px;
+}
+
+.title-edit-home {
+  font-size: 1rem;
+  font-family: "Outfit", sans-serif;
+  border-top: 1px solid #b380b5;
+  padding: 1rem 0;
+}
+
+.adminHome-btn {
+  background-color: white;
+  border: none;
+  color: #b380b5;
+  padding: 5px;
+  width: 25%;
+  margin-bottom: 10px;
+  text-align: center;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 10px;
+  font-family: "Outfit", sans-serif;
+  font-weight: bold;
+}
+
+.adminHome-btn:hover {
+  background-color: #b380b5;
+  color: white;
+}
+
+.hero-image {
+  width: 300px;
+  height: 200px;
+  object-fit: cover;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+.image-buttons {
+  margin-bottom: 20px;
+}
+
+.image-buttons button,
+.boton-guardar-dashboard,
+.experience-buttons,
+.boton-publicar-experiencias {
+  background-color: #b380b5;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  height: 2.3rem;
+  width: 8.5rem;
+  margin-top: 1rem;
+  font-family: "Outfit", sans-serif;
+  box-shadow: 0px 4px #946b9f;
+  transition: all 0.2s ease-in-out;
+}
+
+.image-buttons button:active,
+.boton-guardar-dashboard:active,
+.experience-buttons:active,
+.boton-publicar-experiencias:active {
+  box-shadow: 0 1px #946b9f;
+  transform: translateY(3px);
+}
+
+.image-buttons button:hover,
+.boton-guardar-dashboard:hover,
+.experience-buttons:hover,
+.boton-publicar-experiencias:hover {
+  background-color: #caa2cb;
+  color: white;
+}
+
+.title-input {
+  margin-bottom: 20px;
+}
+
+.editTitle-input {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  margin: 0 0 20px 0;
+}
+
+.section label {
+  font-size: 1rem;
+  border-top: 1px solid #b380b5;
+  padding-top: 1rem;
+  color: #b380b5;
+  margin-top: 1rem;
+  margin-left: 0;
+  display: block;
+}
+
+textarea {
+  min-height: 200px;
+  width: 85%;
+  padding: 10px;
+  font-family: "Outfit", sans-serif;
+  border-radius: 1rem;
+  margin-left: 0;
+  resize: vertical;
+}
+
+.editNosotras-textarea {
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 16px;
+  margin: 0;
+  resize: none;
+}
+
+p {
+  font-size: 14px;
+  color: #6c757d;
+}
+
+h2 {
+  font-size: 1.2rem;
+  font-family: "Outfit", sans-serif;
+  margin-left: 0;
+}
+
+label[for="experienceText"],
+label[for="experienceImage"] {
+  margin-left: 0;
+}
+
+#experienceText,
+#experienceImage {
+  border-radius: 0.5rem;
+}
+
+.charactersRemaining {
+  margin-left: 0;
+}
+
+.experience-buttons {
+  margin-left: 0;
+  margin-top: 1rem;
+}
+
+.admin-btn-exp {
+  background-color: #e0bb8e;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  height: 2.3rem;
+  width: 10rem;
+  margin-top: 1rem;
+  font-family: "Outfit", sans-serif;
+  box-shadow: 0px 4px #dbb17d;
+  transition: all 0.2s ease-in-out;
+}
+
+.admin-btn-exp:active {
+  box-shadow: 0 1px #e0bb8e;
+  transform: translateY(3px);
+}
+
+.admin-btn-exp:hover {
+  background-color: #e0bb8e;
+  color: white;
+}
+
+.list-exp {
+  margin-left: 0;
+  padding-left: 0;
+  width: 80%;
+}
+
+.list-exp img {
+  height: 10rem;
+  margin: 0.5rem;
+}
+
+.list-exp p {
+  margin: 0.5rem;
+  overflow-x: hidden;
+}
+
+.no-hay-experiencias-mensaje,
+.texto-experiencias-dashboard {
+  font-family: "Outfit", sans-serif;
+}
+.contenedor-experiencia {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px;
+  min-width: 0;
+}
+.imagen-experiencias-dashboard {
+  width: 100px;
+  min-width: 100px;
+  object-fit: cover;
+}
+
+.fondo-lista-experiencias {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: flex-start;
+  border: 1px solid #946b9f;
+  margin-top: 1rem;
+  min-height: 200px;
+  padding: 1rem;
+  font-family: Outfit, sans-serif;
+}
+.fondo-lista-experiencias h3 {
+  margin-top: 0;
+  font-size: 1.6rem;
+}
+
+.fondo-lista-experiencias p,
+.texto-descriptivo-experiencias {
+  color: black;
+  font-style: italic;
+  margin: 0;
+  line-height: 1.5rem;
+}
+.texto-descriptivo-experiencias {
+  margin-top: 2rem;
+}
+/*CHECKBOX EXPERIENCIAS PUBLICADAS*/
+.contenedor-checkbox-experiencias {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #b380b5;
+  margin-left: 1rem;
+}
+.checkbox-experiencias-publicadas {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.checkbox-experiencias-publicadas + label {
+  display: inline-block;
+  width: 20px;
+  height: 5px;
+  border: 2px solid #9c6fa0;
+  border-radius: 4px;
+  cursor: pointer;
+  position: relative;
+}
+
+.checkbox-experiencias-publicadas + label i {
+  position: absolute;
+  left: 2px;
+  top: 1px;
+  font-size: 16px;
+  color: white;
+  opacity: 0;
+}
+
+.checkbox-experiencias-publicadas:checked + label {
+  background-color: #9c6fa0;
+  border-color: #9c6fa0;
+}
+
+.checkbox-experiencias-publicadas:checked + label i {
+  opacity: 1;
+}
+
+/*BOTON PUBLICAR EXPERIENCIAS*/
+.boton-publicar-experiencias {
+  background-color: #b380b5;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  height: 2.3rem;
+  width: 20rem;
+  margin-top: 1rem;
+  font-family: "Outfit", sans-serif;
+  box-shadow: 0px 4px #946b9f;
+  transition: all 0.2s ease-in-out;
+}
+
+.boton-publicar-experiencias:active {
+  box-shadow: 0 1px #946b9f;
+  transform: translateY(3px);
+}
+
+.boton-publicar-experiencias:hover {
+  background-color: #caa2cb;
+  color: white;
+}
+
+/*VERSION MOBILE*/
+
+@media (max-width: 768px) {
+  .settings-content-inicio {
+    width: fit-content;
+    padding: 1rem;
+    overflow-x: hidden;
+  }
+  .contenedor-secciones-dinamicas-dashboard {
+    padding: 0.2rem;
+  }
+  /*BOTONES DE LAS SECCIONES*/
+  .panel-nav-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .panel-nav-btn button {
+    font-size: 0.8rem;
+    width: 15rem;
+    height: 1.9rem;
+  }
+  .boton-cancelar-dashboard {
+    margin: 0;
+  }
+  .title-input {
+    padding: 1.5rem 0;
+  }
+  .editTitle-input {
+    font-size: 0.8rem;
+    width: 95%;
+  }
+  /*LISTADO EXPERIENCIAS PUBLICADAS*/
+  .fondo-lista-experiencias {
+    padding: 1rem; /* Aumenta el padding para mejorar la apariencia */
+    overflow: hidden;
+  }
+
+  .list-exp {
+    padding: 0; /* Elimina padding en la lista */
+    list-style-type: none; /* Elimina los puntos de la lista */
+  }
+
+  .contenedor-experiencia {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    min-width: auto;
+  }
+
+  .imagen-experiencias-dashboard {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    margin-right: 10px;
+  }
+
+  .texto-experiencias-dashboard {
+    font-size: 0.6rem;
+    line-height: 0.5rem;
+  }
+  .texto-descriptivo-experiencias {
+    line-height: 1.5rem;
+  }
+  .boton-publicar-experiencias {
+    width: 100%; /* Hace que el botón ocupe todo el ancho */
+    padding: 10px; /* Aumenta el padding del botón */
+    font-size: 0.7rem; /* Aumenta el tamaño de la fuente del botón */
+  }
+}

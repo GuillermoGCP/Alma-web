@@ -1,0 +1,189 @@
+/* Estilo para la página de colaboración */
+.collaborate-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-width: 100vw;
+  padding-top: 170px;
+}
+
+/* Evitamos que el contenido se solape con el Header */
+.collaborate-content {
+  display: flex;
+  justify-content: space-between;
+  padding: 0rem 2rem;
+  background-color: #ffeee7;
+  display: flex;
+  gap: 2rem;
+}
+.columna-1 {
+  flex: 1.5; /* Columna 1 será el doble de ancha que la columna 2 */
+  padding: 1rem;
+}
+
+.columna-2 {
+  flex: 1; /* Columna 2 ocupa la mitad del espacio de la columna 1 */
+  display: flex;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center;
+  padding: 1rem;
+}
+.alma-text-colab {
+  margin-top: 2rem;
+  font-family: outfit;
+  color: #b380b5;
+  font-size: 1.1rem;
+  width: 100%;
+  margin-bottom: 0;
+}
+/* Título */
+.colabora-title {
+  font-family: outfit;
+  color: #b380b5;
+  font-size: 2.5rem;
+  margin-bottom: 0;
+}
+/* Estilos del texto debajo del título */
+
+.texto-inscripcion-socios {
+  font-family: Bellota;
+  color: #333;
+  font-size: 1rem;
+  line-height: 1rem;
+}
+
+.texto-inscripcion-socios-destacada {
+  font-family: Bellota;
+  color: #333;
+  font-size: 1rem;
+  line-height: 1rem;
+  font-weight: bold;
+}
+/* Estilos de la letra pequeña inscripción */
+
+.letra-pequena-inscripcion-socios {
+  font-family: Bellota;
+  color: #333;
+  font-size: 0.8rem;
+  line-height: 1.7;
+  font-weight: bold;
+}
+/* Estilos para la tarjeta informativa */
+.info-box {
+  background-color: #d8e2dc;
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  max-width: 100%;
+  width: 70%;
+  height: auto; /* La altura se adapta al contenido */
+}
+
+.info-box h2 {
+  font-family: outfit;
+  font-size: 2rem;
+  color: #b380b5;
+  margin-bottom: 1rem;
+}
+
+.texto-socios {
+  font-family: Outfit, sans-serif;
+  color: black;
+  font-size: 0.8rem;
+}
+.texto-letra-pequeña {
+  font-family: Outfit, sans-serif;
+  color: black;
+  font-size: 0.6rem;
+}
+.cta-colaboraciones {
+  font-family: outfit;
+  font-size: 1.2rem;
+  color: #b380b5;
+  margin-top: 3rem;
+}
+.boton-escribenos {
+  background-color: #b380b5;
+  border: none;
+  color: #d8e2dc;
+  cursor: pointer;
+  border-radius: 3em;
+  font-size: 1.4em;
+  font-weight: bold;
+  width: auto; /* Cambiado para que se ajuste al contenido */
+  max-width: 100%; /* Asegura que no se desborde */
+  height: auto; /* Se ajusta al contenido */
+  font-family: outfit;
+  text-decoration: none;
+  padding: 1rem 2rem;
+  margin-top: 1rem;
+  display: inline-block; /* Asegura que no se superponga con el texto */
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+.boton-escribenos:hover {
+  color: #b380b5;
+  background-color: transparent;
+  border: 1px solid #b380b5;
+  transform: translateY(-5px);
+}
+
+/*Estilos botón para ver la suscripción*/
+
+.boton-suscripcion {
+  background-color: transparent;
+  border: 1px solid #b380b5;
+  color: #b380b5;
+  cursor: pointer;
+  border-radius: 2em;
+  font-size: 1em;
+  width: auto; /* Cambiado para que se ajuste al contenido */
+  max-width: 100%; /* Asegura que no se desborde */
+  height: auto; /* Se ajusta al contenido */
+  font-family: outfit;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  display: inline-block; /* Asegura que no se superponga con el texto */
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+.boton-suscripcion:hover {
+  color: #b380b5;
+  background-color: transparent;
+  border: 1px solid #b380b5;
+  transform: translateY(-5px);
+}
+.texto-ya-socio {
+  margin-top: 2rem;
+}
+/* Media Query para pantallas móviles */
+@media (max-width: 768px) {
+  .collaborate-content {
+    flex-direction: column; /* Cambiar a columna en pantallas pequeñas */
+    padding: 2rem 2rem;
+  }
+
+  .form-column,
+  .info-column {
+    max-width: 100%; /* Las columnas ocuparán el 100% del ancho en móviles */
+  }
+
+  .colabora-title {
+    font-size: 2rem; /* Reducir el tamaño del título para móviles */
+  }
+
+  .info-box {
+    padding: 1.5rem; /* Reducir el padding de la caja informativa */
+  }
+
+  .info-box h2 {
+    font-size: 1.5rem; /* Reducir el tamaño del título dentro de la caja */
+  }
+
+  .info-box p {
+    font-size: 0.9rem; /* Reducir el tamaño de la fuente en la caja informativa */
+  }
+}

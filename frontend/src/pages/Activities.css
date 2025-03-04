@@ -1,0 +1,250 @@
+.activity-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-width: 100vw;
+  padding-top: 170px;
+}
+
+.activity-page .navbar {
+  background-color: #b380b5;
+  width: 100%; /* Asegura que el navbar ocupe todo el ancho */
+  position: relative;
+  padding: 40px 100px 10px 20px;
+}
+
+.activity-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffeee7;
+  position: relative;
+  padding-bottom: 3%;
+}
+
+.activity-header {
+  padding-bottom: 20px;
+}
+
+.activity-title {
+  font-family: outfit;
+  color: #b380b5;
+  margin-left: 5rem;
+  font-size: 2.5rem;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+.activity-text {
+  font-family: outfit;
+  color: #b380b5;
+  margin-left: 5rem;
+  font-size: 1.1rem;
+  width: 100%;
+  margin-bottom: 0;
+  margin-top: 2rem;
+}
+
+.activity-description {
+  margin-left: 5rem;
+  margin-right: 6rem;
+  font-family: Bellota;
+  color: #333;
+  font-size: 1rem;
+  line-height: 1.7;
+  font-weight: bold;
+}
+
+.upcoming-history {
+  position: absolute;
+  right: 6rem;
+  top: 2.9rem;
+  background-color: #d8e2dc;
+  border: none;
+  color: #b380b5;
+  cursor: pointer;
+  border-radius: 3em;
+  font-size: 1.4em;
+  font-weight: bold;
+  width: 18rem;
+  height: 2.5rem;
+  font-family: outfit;
+}
+
+.upcoming-history:hover {
+  background-color: #b380b5;
+  color: white;
+}
+
+.activity-container {
+  display: flex;
+  flex-wrap: wrap;
+  list-style-type: none;
+  margin-bottom: 30px;
+  padding: 0;
+  margin: 0 auto;
+  justify-content: center;
+  max-width: 1200px;
+}
+
+.activity-cards {
+  flex: 1 1 30%;
+  margin: 1rem;
+  max-width: 20rem;
+  height: auto;
+  overflow: hidden;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #d8e2dc;
+  border-radius: 1.5rem;
+  box-sizing: border-box;
+}
+
+.activity-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+}
+
+.activity-image {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow: hidden;
+}
+
+.activity-image img {
+  width: 100%;
+  height: 200px; /* Ajusta la altura según sea necesario */
+  object-fit: cover;
+  display: block; /* Asegura que la imagen no tenga espacios alrededor */
+}
+
+.activities-title {
+  font-size: 1.3rem;
+  margin: 0;
+  padding: 1rem 0.8rem 0rem 0.8rem;
+  text-align: center;
+  font-family: outfit;
+  color: #b380b5;
+}
+
+.activities-date {
+  padding: 0 1rem;
+  text-align: center;
+  font-family: bellota;
+  font-size: 0.8rem;
+  font-weight: bold;
+  margin: 1;
+}
+.activities-location {
+  font-family: Outfit;
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: bold;
+  margin: 1;
+  color: #333;
+  padding-left: 4rem;
+  padding-right: 4rem;
+}
+.activities-decription {
+  flex-grow: 1; /* Permite que el contenido crezca */
+  text-align: center;
+  font-family: bellota;
+  font-weight: bold;
+  color: #b380b5;
+  padding: 0 1rem;
+  overflow-y: auto; /* Habilita el scroll vertical si es necesario */
+  max-height: 100px; /* Ajusta según la cantidad de contenido que desees mostrar sin scroll */
+}
+.activities-access {
+  font-weight: bold;
+  color: #b380b5;
+  font-family: Outfit;
+  text-align: center;
+}
+.activities-inscription {
+  margin: 1rem;
+  background-color: #d8e2dc;
+  border: solid 1px;
+  color: #b380b5;
+  cursor: pointer;
+  border-radius: 3em;
+  font-size: 1.2em;
+  font-weight: bold;
+  padding: 0.1rem 2rem;
+  font-family: outfit;
+}
+
+.activities-inscription:hover {
+  background-color: #b380b5;
+  border: solid 1px #b380b5;
+  color: white;
+}
+
+.no-activities-found {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: outfit;
+  height: 25vh;
+  text-align: center;
+  font-size: 24px;
+  color: #b380b5;
+  margin: 0;
+}
+
+/* Estilos responsive */
+@media (max-width: 768px) {
+  .activity-page .navbar {
+    background-color: #b380b5;
+    height: 6.5rem;
+  }
+  .activity-page {
+    padding-top: 0px;
+  }
+  .activity-title {
+    margin-bottom: 2rem;
+    justify-content: center;
+    text-align: center;
+    margin-left: 0;
+  }
+
+  .activity-text {
+    text-align: center;
+    margin-left: 0;
+  }
+
+  .activity-description {
+    margin-left: 2rem;
+    margin-right: 2rem;
+    text-align: center;
+  }
+
+  .upcoming-history {
+    display: none;
+  }
+
+  .activity-cards {
+    flex: 0 1 100%;
+    margin: 0.5rem;
+  }
+
+  .activity-container {
+    justify-content: center;
+    align-items: center;
+  }
+}
+@media (min-width: 768px) and (max-width: 1000px) {
+  .activity-page {
+    padding-top: 0px;
+  }
+}
+@media (min-width: 1600px) {
+  .activity-page .navbar {
+    background-color: #b380b5;
+    height: 9rem;
+    position: relative;
+  }
+}

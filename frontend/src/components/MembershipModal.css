@@ -1,0 +1,57 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Asegúrate de que esté por encima de otros elementos */
+}
+
+.modal-content {
+  background-color: #d8e2dc;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  width: 800px;
+  text-align: center;
+}
+.modal-actions {
+  margin-top: 20px;
+}
+.confirm-verificar-btn,
+.cancel-delete-btn {
+  padding: 10px 20px;
+  margin: 5px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  border-radius: 2rem;
+  font-family: Outfit;
+}
+.confirm-verificar-btn {
+  background-color: #b380b5;
+  color: white;
+}
+
+.confirm-verificar-btn:hover,
+.cancel-delete-btn:hover {
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  transform: translateY(-3px);
+}
+.input-id-socio,
+.input-email-socio {
+  background-color: white;
+  padding: 10px 20px;
+  margin: 5px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  border-radius: 2rem;
+  font-family: Outfit;
+  text-align: center;
+}

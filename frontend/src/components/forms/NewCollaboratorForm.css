@@ -1,0 +1,78 @@
+.boton-inscribirme {
+  background-color: #b380b5;
+  border: none;
+  color: #ffeee7;
+  cursor: pointer;
+  border-radius: 3em;
+  font-size: 1.4em;
+  font-weight: bold;
+  width: auto; /* Cambiado para que se ajuste al contenido */
+  max-width: 100%; /* Asegura que no se desborde */
+  height: auto; /* Se ajusta al contenido */
+  font-family: outfit;
+  text-decoration: none;
+  padding: 1rem 2rem;
+  margin-top: 1rem;
+  display: inline-block; /* Asegura que no se superponga con el texto */
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.boton-inscribirme:hover {
+  color: #b380b5;
+  background-color: transparent;
+  border: 1px solid #b380b5;
+  transform: translateY(-5px);
+}
+.contenedor-formulario {
+  display: flex;
+  flex-direction: column; /* Para alinear los campos en una columna */
+  width: 100%;
+  max-width: 600px;
+}
+
+.contenedor-campos-form {
+  width: 100%; /* Asegúrate de que los divs internos ocupen todo el ancho */
+  margin-bottom: 0.5rem; /* Espaciado entre los campos */
+}
+.etiquetas-form-inscripcion {
+  display: block;
+  font-family: outfit;
+  font-size: 1.1rem;
+  color: #b380b5;
+  font-weight: bold;
+  text-align: left;
+  width: 80%; /* Ajustamos el ancho */
+}
+
+.inputs-form-inscripcion {
+  display: block;
+  font-family: outfit;
+  color: black;
+  width: 100%; /* Mantener el ancho al 80% en todas las pantallas */
+  padding: 0.5rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border: none;
+  border-radius: 2rem;
+  background-color: #d8e2dc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+/* Media Query para dispositivos móviles */
+@media (max-width: 768px) {
+  .boton-inscribirme {
+    font-size: 1rem; /* Ajustar el tamaño de la fuente */
+    padding: 1rem; /* Ajustar el padding para que no quede tan pequeño */
+    margin-top: 1rem; /* Asegurarse de que hay suficiente espacio */
+  }
+}
+
+/* Media Query para pantallas de tablet */
+@media (max-width: 1024px) {
+  .boton-inscribirme {
+    font-size: 1.1rem; /* Ajustar tamaño de la fuente */
+    padding: 1rem 2rem; /* Asegurarse de que el padding sea adecuado */
+    margin-top: 1rem;
+  }
+}

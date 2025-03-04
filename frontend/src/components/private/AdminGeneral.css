@@ -1,0 +1,219 @@
+.settings-content-general {
+  width: 75vw;
+  background-color: #fdeee7;
+  border-radius: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+.settings-content h2 {
+  margin-bottom: 0;
+}
+
+.margin-left-box {
+  margin-left: 3rem;
+}
+
+.logo-section {
+  display: flex;
+  flex-direction: column;
+  margin-left: 3rem;
+  margin-bottom: 0.5rem;
+}
+
+.logo-section h3 {
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  margin-left: 0;
+}
+
+.logo-image {
+  max-width: 15rem;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border: 1px solid #946b9f;
+  background-color: #caa2cb6a;
+}
+
+.logo-buttons {
+  display: flex;
+  gap: 2rem;
+}
+.actualizar-logo-boton button {
+  margin-bottom: 1rem;
+  background-color: #b380b5;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  height: 2.3rem;
+  width: 12rem;
+  margin-top: 1rem;
+  font-family: Outfit;
+  /* Efecto 3D */
+  box-shadow: 0px 4px #946b9f; /* Sombra inferior para dar efecto de relieve */
+  transition: all 0.2s ease-in-out;
+}
+.actualizar-logo-boton button:hover {
+  margin-bottom: 1rem;
+  background-color: #caa2cb;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  height: 2.3rem;
+  margin-top: 1rem;
+  font-family: Outfit;
+  /* Efecto 3D */
+  box-shadow: 0px 4px #946b9f; /* Sombra inferior para dar efecto de relieve */
+  transition: all 0.2s ease-in-out;
+}
+
+/* Efecto de presionado */
+.actualizar-logo-boton button:active {
+  box-shadow: 0 1px #946b9f; /* Reduce la sombra para simular que se presiona */
+  transform: translateY(3px); /* Desplaza el botón hacia abajo */
+}
+.editTitle-input,
+.logo-buttons input {
+  display: block;
+  font-family: outfit;
+  color: black;
+  width: 80%; /* Mantener el ancho al 80% en todas las pantallas */
+  padding: 0.5rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border: none;
+  border-radius: 2rem;
+  background-color: #d8e2dc;
+}
+
+.logo-buttons button {
+  background-color: #b380b5;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  height: 2.3rem;
+  width: 8.5rem;
+  margin-top: 1rem;
+  font-family: Outfit;
+  /* Efecto 3D */
+  box-shadow: 0px 4px #946b9f; /* Sombra inferior para dar efecto de relieve */
+  transition: all 0.2s ease-in-out; /* Transición suave para cambios */
+}
+/* Efecto de presionado */
+.logo-buttons button:active {
+  box-shadow: 0 1px #946b9f; /* Reduce la sombra para simular que se presiona */
+  transform: translateY(3px); /* Desplaza el botón hacia abajo */
+}
+.logo-buttons button:hover {
+  background-color: #caa2cb;
+  color: white;
+}
+
+.social-links-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.social-links-form label {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  margin-left: 3rem;
+  font-family: Outfit;
+  color: #b380b5;
+  font-weight: 700;
+}
+
+.social-links-form input {
+  display: block;
+  font-family: outfit;
+  color: black;
+  width: 80%; /* Mantener el ancho al 80% en todas las pantallas */
+  padding: 0.5rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border: none;
+  border-radius: 2rem;
+  background-color: #d8e2dc;
+}
+
+.social-links-form button {
+  background-color: #b380b5;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  height: 2.3rem;
+  width: 12rem;
+  margin-top: 1rem;
+  font-family: Outfit;
+  /* Efecto 3D */
+  box-shadow: 0px 4px #946b9f; /* Sombra inferior para dar efecto de relieve */
+  transition: all 0.2s ease-in-out; /* Transición suave para cambios */
+}
+/* Efecto de presionado */
+.social-links-form button:active {
+  box-shadow: 0 1px #946b9f; /* Reduce la sombra para simular que se presiona */
+  transform: translateY(3px); /* Desplaza el botón hacia abajo */
+}
+.social-links-form button:hover {
+  background-color: #caa2cb;
+  color: white;
+}
+
+.popup-message {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  z-index: 1000;
+}
+
+.popup-message.error {
+  background-color: #f44336;
+}
+
+.popup-message.success {
+  background-color: #4caf50;
+}
+
+/*VERSION MOBILE*/
+
+@media (max-width: 768px) {
+  .settings-content-general {
+    width: 90vw; /* Ocupar el 90% del ancho de la pantalla */
+    margin: 0 auto; /* Centrar el contenido */
+    background-color: #fdeee7;
+    border-radius: 0;
+    padding: 2rem 1rem; /* Agregar algo de padding interno */
+  }
+
+  .margin-left-box,
+  .logo-section,
+  .social-links-form label {
+    margin-left: 0; /* Eliminar márgenes a la izquierda en móviles */
+    padding: 0 1rem; /* Agregar un padding interno para espacio */
+  }
+
+  .editTitle-input,
+  .logo-buttons input,
+  .social-links-form input {
+    width: 100%; /* Ocupar el 100% del ancho disponible */
+  }
+
+  .logo-buttons,
+  .social-links-form {
+    gap: 1rem; /* Ajustar el espacio entre botones en móviles */
+  }
+
+  .popup-message {
+    width: 90vw; /* Ajustar el ancho del popup en móviles */
+    left: 5vw; /* Centrar el popup */
+  }
+}

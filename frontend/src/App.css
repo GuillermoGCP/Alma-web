@@ -1,0 +1,82 @@
+.App {
+  overflow-y: scroll;
+  overflow-x: hidden;
+  height: 100vh;
+}
+
+.scrolled-indicator {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #b380b5;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-family: Outfit, sans-serif;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.alert-div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed; /* Fijo al hacer scroll */
+  top: 0; /* Pegado a la parte superior */
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  margin-top: 0;
+  background-color: #b380b5;
+  width: 100vw;
+}
+.alert-text {
+  font-family: Outfit;
+  text-align: center;
+  color: white;
+  letter-spacing: 0.05rem;
+}
+.alert-text-link {
+  font-weight: 900;
+  text-decoration: none;
+}
+.alert-text-link:hover {
+  color: white;
+}
+
+/* Evitar el espacio entre el alert y el header en pantallas entre 618px y 768px */
+@media (max-width: 768px) and (min-width: 618px) {
+  .App {
+    padding-top: 40px; /* Elimina el espacio superior */
+  }
+
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+  }
+
+  .alert-div {
+    top: 0; /* Asegura que el alert se mantenga arriba */
+  }
+}
+
+/* Asegurar que en pantallas más pequeñas o iguales a 618px también se mantenga */
+@media (max-width: 618px) {
+  .App {
+    padding-top: 60px; /* Sin espacio superior */
+  }
+
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+  }
+
+  .alert-div {
+    top: 0; /* Asegura que el alert no se desplace */
+  }
+}

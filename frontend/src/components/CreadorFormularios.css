@@ -1,0 +1,11 @@
+.contenedor-opciones-formularios {
+  background-color: #ffeee7;
+  margin: 0;
+  font-family: Outfit, sans-serif;
+  padding-bottom: 2rem;
+}
+.contenedor-opciones-formularios h1 {
+  margin: 0;
+  padding: 1rem 2rem;
+  color: #b380b5;
+}

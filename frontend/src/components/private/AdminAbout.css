@@ -1,0 +1,143 @@
+#edit-collaborator-div {
+  height: 100vh;
+  width: 90%;
+}
+.settings-content-equipo {
+  width: 60vw;
+}
+.texto-editando-nosotras {
+  font-family: Outfit;
+  padding-top: 1rem;
+  color: #b380b5;
+  font-size: 1rem;
+  font-weight: 700;
+  border-top: 1px solid #b380b5;
+}
+
+.texto-rango-nosotras {
+  font-family: Outfit;
+  padding-bottom: 1rem;
+  color: #b380b5;
+  font-size: 1rem;
+  font-weight: 700;
+  border-bottom: 1px solid #b380b5;
+}
+.boton-volver-atras {
+  background-color: #b380b5;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  height: 2.3rem;
+  width: 14rem;
+  margin: 1rem 0;
+  font-family: "Outfit", sans-serif;
+  box-shadow: 0px 4px #946b9f;
+  transition: all 0.2s ease-in-out;
+}
+.boton-volver-atras:hover {
+  background-color: #caa2cb;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+/* Efecto de presionado */
+.boton-volver-atras:active {
+  box-shadow: 0 1px #946b9f; /* Reduce la sombra para simular que se presiona */
+  transform: translateY(3px); /* Desplaza el botón hacia abajo */
+}
+
+.titulo-gestion-miembros {
+  font-family: "Outfit", sans-serif;
+  color: #b380b5;
+  font-size: 20px;
+  margin-bottom: 2rem;
+}
+
+.name input,
+.surname input,
+.role input,
+.description input {
+  display: block;
+  font-family: outfit;
+  color: black;
+  width: 80%; /* Mantener el ancho al 80% en todas las pantallas */
+  padding: 0.5rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border: none;
+  border-radius: 2rem;
+  background-color: #d8e2dc;
+}
+label {
+  font-family: outfit;
+  margin-left: 0;
+}
+.list-btn-equipo {
+  background-color: white;
+  border: none;
+  color: black;
+  padding: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+  width: 300px;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 5px;
+  font-family: outfit;
+  font-weight: bold;
+}
+
+.list-btn-equipo:hover {
+  background-color: #b380b5;
+  color: white;
+}
+
+/* Estilo general para la versión móvil */
+@media (max-width: 768px) {
+  .settings-content-equipo {
+    width: 95%;
+    padding: 0;
+    overflow-x: hidden;
+    margin: 0 auto; /* Centramos el contenedor horizontalmente */
+    display: flex; /* Para usar flexbox */
+    flex-direction: column; /* Alineamos elementos en columna */
+    align-items: center; /* Centramos elementos horizontalmente */
+  }
+
+  #edit-collaborator-div {
+    height: auto; /* Cambiamos la altura a auto para ajustar el contenido */
+    width: 90%; /* Cambiamos el ancho al 90% para que sea más responsivo */
+    display: flex;
+    flex-direction: column; /* Alineamos el contenido en columna */
+    align-items: center; /* Centramos el contenido horizontalmente */
+    justify-content: center; /* Centra el contenido verticalmente */
+  }
+
+  .margin-left-box {
+    margin-left: 0; /* Elimina el margen izquierdo para centrar */
+  }
+
+  .description {
+    width: 90%; /* Ajustamos el ancho de la descripción */
+  }
+
+  .name input,
+  .surname input,
+  .role input,
+  .description input {
+    width: 90%; /* Ajustamos el ancho de los campos de entrada */
+  }
+
+  .texto-editando-nosotras,
+  .texto-rango-nosotras {
+    width: 90%; /* Ajustamos el ancho de los textos */
+  }
+
+  .titulo-gestion-miembros {
+    font-family: "Outfit", sans-serif;
+    color: #b380b5;
+    font-size: 1.5rem;
+    text-align: left; /* Alineamos el título al centro */
+  }
+}

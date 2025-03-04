@@ -1,0 +1,82 @@
+.settings-content {
+  margin-top: 3rem;
+  border-radius: 0;
+  width: 70vw;
+}
+
+.titulo-actividades-principal,
+.titulo-creador-actividades {
+  font-family: "Outfit", sans-serif;
+  color: #b380b5;
+  font-size: 20px;
+  margin-bottom: 1rem;
+}
+ol {
+  max-width: 80%;
+}
+.admin-list {
+  list-style-type: none;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr 1fr 1fr 100px 100px;
+}
+
+.dateTime-settings {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hidden {
+  display: none;
+}
+/*VERSION MOBILE*/
+
+@media (max-width: 768px) {
+  /* VERSION MOBILE */
+  @media (max-width: 768px) {
+    .settings-content {
+      width: 100vw; /* Hacerlo más ancho en móvil */
+      margin: 0; /* Sin margen adicional */
+    }
+
+    #edit-collaborator-div {
+      padding: 1rem; /* Espaciado interno */
+      margin: 0; /* Sin margen adicional */
+      border-radius: 8px; /* Redondear esquinas */
+    }
+
+    /* Ajustar el contenedor editando */
+    .contenedor-editando-rango {
+      display: flex;
+      flex-direction: column; /* Colocar en columna */
+      align-items: center; /* Centrarlos horizontalmente */
+      text-align: center; /* Centrarlos en texto */
+      width: 100%; /* Ancho completo */
+    }
+
+    /* Estilo para la lista de colaboradores y miembros */
+    ol {
+      display: flex; /* Usar flexbox para la lista */
+      flex-direction: column; /* Una sola columna */
+      width: 100%; /* Ancho completo */
+      padding: 0; /* Sin padding */
+      list-style-type: none; /* Sin estilo de lista */
+      margin: 0; /* Sin margen */
+    }
+
+    .list-btn-equipo, /* Ajustar los botones para que ocupen toda la fila */
+  .confirm-btn,
+  .boton-volver-atras {
+      width: 100%; /* Hacer el botón más ancho */
+      margin: 0.5rem 0; /* Espaciado vertical entre botones */
+      font-size: 0.8rem; /* Ajustar tamaño de fuente */
+    }
+
+    .texto-editando-nosotras,
+    .texto-rango-nosotras {
+      font-size: 1rem; /* Tamaño de fuente ajustado para móvil */
+      margin: 0.5rem 0; /* Espaciado vertical entre textos */
+    }
+  }
+}

@@ -1,0 +1,92 @@
+.contenedor-formulario-display {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 60%;
+  margin: 0;
+  margin-top: 15%;
+}
+.texto-anterior-titulo-formulario {
+  font-family: Outfit, sans-serif;
+  color: black;
+  font-size: 1rem;
+}
+.texto-despues-titulo-formulario {
+  font-family: Outfit, sans-serif;
+  color: black;
+  font-size: 1rem;
+  margin-bottom: 20px;
+}
+.titulo-formulario-inscripcion {
+  font-size: 2rem;
+  color: #b380b5;
+  margin-top: 0;
+}
+
+.contenedor-formulario-display form {
+  margin: 0;
+}
+
+.formulario-inscripcion-label {
+  display: block;
+  margin: 0;
+}
+
+.formulario-inscripcion-input {
+  padding: 10px;
+  margin: 0;
+  display: block;
+  font-family: outfit;
+  color: black;
+  width: 80%; /* Mantener el ancho al 80% en todas las pantallas */
+  padding: 0.5rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border: none;
+  border-radius: 2rem;
+  background-color: #d8e2dc;
+}
+.formulario-inscripcion-input::placeholder {
+  padding-left: 1rem;
+}
+.formulario-inscripcion-select {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #d8e2dc;
+  border-radius: 50px;
+  border: none;
+  padding: 1rem 0;
+  font-family: Outfit, sans-serif;
+  width: 130px;
+}
+.boton-enviar-formulario-inscripcion {
+  display: flex;
+  justify-content: center;
+  width: 7rem;
+  padding: 0.3rem;
+  background-color: #b380b5;
+  color: white;
+  border: none;
+  border-radius: 2rem;
+  cursor: pointer;
+  font-family: outfit;
+  font-size: 1rem;
+}
+.boton-enviar-formulario-inscripcion:hover {
+  color: #b380b5;
+  background-color: white;
+}
+.captcha-input-formulario {
+  width: 100%; /* Ajusta el ancho como sea necesario */
+  margin-bottom: 1rem; /* Espacio entre el input y el botón */
+  width: 20rem;
+  height: 3rem;
+  font-family: outfit;
+  border: none;
+  border-radius: 2rem;
+  background-color: #d8e2dc;
+}
+.captcha-input-formulario::placeholder {
+  padding-left: 1rem;
+}
