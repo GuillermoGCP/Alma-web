@@ -27,7 +27,7 @@ Página web donde consultar recursos, eventos y actividades sobre lactancia orga
   </li>
 </ol>
 
-## 👩‍💻 Desarrolladores
+## 👩‍💻 Desarrolladores y mantenimiento
 
 <div style="display: flex; gap: 35px;">
   <a href="https://github.com/GuillermoGCP"><img src="https://i.postimg.cc/c6dt3Zgn/temp-Imagey2jor-L.png" width="150" height="155" /></a>
