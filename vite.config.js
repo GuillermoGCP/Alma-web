@@ -9,6 +9,7 @@ export default defineConfig({
   },
   server: {
     open: true,
+    historyApiFallback: true, // Asegura que las rutas funcionan con React Router
   },
   resolve: {
     alias: {
