@@ -60,5 +60,11 @@
   "overrides": {
     "esbuild": "0.25.9",
     "debug": "4.3.4"
+  },
+  "engines": {
+    "node": ">=20 <21"
+  },
+  "optionalDependencies": {
+    "@rollup/rollup-linux-x64-gnu": "4.50.1"
   }
 }
