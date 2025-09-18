@@ -2,15 +2,16 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  min-width: 100vw;
+  width: 100%;
+  overflow-x: hidden;
   padding-top: 170px;
 }
 
 .activity-page .navbar {
   background-color: #b380b5;
-  width: 100%; /* Asegura que el navbar ocupe todo el ancho */
-  position: relative;
-  padding: 40px 100px 10px 20px;
+  width: 100%;
+  box-sizing: border-box; /* Evita que el padding provoque overflow */
+  padding: 0 24px;
 }
 
 .activity-main {
@@ -24,6 +25,10 @@
 
 .activity-header {
   padding-bottom: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
 }
 
 .activity-title {
@@ -33,6 +38,8 @@
   font-size: 2.5rem;
   margin-bottom: 0;
   margin-top: 0;
+  word-break: break-word;
+  overflow-wrap: anywhere;
 }
 
 .activity-text {
@@ -43,6 +50,8 @@
   width: 100%;
   margin-bottom: 0;
   margin-top: 2rem;
+  word-break: break-word;
+  overflow-wrap: anywhere;
 }
 
 .activity-description {
@@ -53,6 +62,33 @@
   font-size: 1rem;
   line-height: 1.7;
   font-weight: bold;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
+/* Tabs en cabecera de Actividades */
+.activities-tabs {
+  display: flex;
+  gap: 12px;
+  margin: 10px 0 0 0;
+}
+
+.tab-button {
+  background: #d8e2dc;
+  border: none;
+  color: #b380b5;
+  cursor: pointer;
+  border-radius: 999px;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 0.4rem 1.2rem;
+  font-family: outfit;
+}
+
+.tab-button.active,
+.tab-button:hover {
+  background: #b380b5;
+  color: #fff;
 }
 
 .upcoming-history {
@@ -195,6 +231,42 @@
   margin: 0;
 }
 
+/* Paginación Histórico */
+.pagination {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  align-items: center;
+  margin: 16px 0 8px 0;
+}
+
+.page-btn {
+  background: #d8e2dc;
+  border: none;
+  color: #b380b5;
+  cursor: pointer;
+  border-radius: 999px;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 0.4rem 1rem;
+  font-family: outfit;
+}
+
+.page-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.page-btn:hover:not(:disabled) {
+  background: #b380b5;
+  color: #fff;
+}
+
+.page-info {
+  font-family: outfit;
+  color: #b380b5;
+}
+
 /* Estilos responsive */
 @media (max-width: 768px) {
   .activity-page .navbar {
@@ -220,6 +292,11 @@
     margin-left: 2rem;
     margin-right: 2rem;
     text-align: center;
+  }
+
+  .activities-tabs {
+    justify-content: center;
+    margin: 10px 0 0 0;
   }
 
   .upcoming-history {
