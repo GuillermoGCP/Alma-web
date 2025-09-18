@@ -1,0 +1,6 @@
+Comandos para conectar al hosting (SSH): 
+ssh almalactancia@hl1499.dinaserver.com -p 22
+
+
+ (Ctrl+Shift+P) → “SFTP: Sync Local → Remote” 
+ Ya sube el contenido de dist a remoto. En la config está activado sync para que actualice y no borre. ver: SFTP: config

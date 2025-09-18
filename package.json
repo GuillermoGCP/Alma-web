@@ -1,5 +1,6 @@
 {
   "name": "almalactancia",
+  "type": "module",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -62,7 +63,7 @@
     "debug": "4.3.4"
   },
   "engines": {
-    "node": ">=20 <21"
+    "node": ">=20 <23"
   },
   "optionalDependencies": {
     "@rollup/rollup-linux-x64-gnu": "4.50.1"
