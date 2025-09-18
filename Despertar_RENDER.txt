@@ -1,0 +1,3 @@
+# 1–2 golpes para forzar wake-up
+curl -I https://alma-server-translatev-docker.onrender.com/
+curl -I https://alma-server-translatev-docker.onrender.com/health

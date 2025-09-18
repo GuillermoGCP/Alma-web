@@ -5,46 +5,54 @@ import MembershipModal from "../components/MembershipModal";
 import "./Activities.css";
 
 import silueta from "../images/Alma_Lactancia_-_Foto_hero.jpg";
-import { getCalendarEvents } from "../services/api";
+import { getCalendarEvents, getPastCalendarEvents } from "../services/api";
 import formatDate from "../utils/formatDate";
 import { useTranslation } from "react-i18next";
 
 const Activities = ({ activities, setActivities }) => {
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const currentLang = i18n.language;
   const navigate = useNavigate();
 
   const [showModal, setShowModal] = useState(false);
   const [selectedActivity, setSelectedActivity] = useState(null);
   const [selectedActivityNumber, setSelectedActivityNumber] = useState(null);
+  const [activeTab, setActiveTab] = useState("upcoming"); // upcoming | past
+  const [pastActivities, setPastActivities] = useState([]);
+  const [pastPage, setPastPage] = useState(1);
+  const pageSize = 12;
 
   useEffect(() => {
-    async function fetchCalendar(setActivities) {
+    async function fetchUpcoming(setActivities) {
       const calendarEvents = await getCalendarEvents();
       if (calendarEvents) {
         setActivities(calendarEvents);
       }
     }
 
-    fetchCalendar(setActivities);
+    async function fetchPast() {
+      const past = await getPastCalendarEvents(50);
+      if (past) setPastActivities(past);
+    }
+
+    fetchUpcoming(setActivities);
+    fetchPast();
   }, []);
 
-  const handleEnrollClick = (activity, activityNumber) => {
-    console.log("Estado del modal:", showModal);
+  useEffect(() => {
+    if (activeTab === "past") setPastPage(1);
+  }, [activeTab]);
 
+  const handleEnrollClick = (activity, activityNumber) => {
     if (activity.summary.includes("EVENTO CANCELADO")) return;
 
     const access = activity.extendedProperties?.private?.access?.trim();
-    console.log("Acceso requerido:", access); // Verifica qué valor se obtiene
-
     const exclusiveAccess = ["solo_socios", "partners"];
     if (exclusiveAccess.includes(access)) {
-      console.log("Actividad exclusiva para socios. Abriendo modal...");
       setShowModal(true);
       setSelectedActivity(activity);
       setSelectedActivityNumber(activityNumber);
     } else {
-      console.log("Actividad abierta a todos. Redirigiendo a inscripción...");
       enrollUser(activity, activityNumber);
     }
   };
@@ -79,23 +87,42 @@ const Activities = ({ activities, setActivities }) => {
     );
   };
 
+  const totalPastPages = Math.max(1, Math.ceil(pastActivities.length / pageSize));
+  const pagedPast = pastActivities.slice((pastPage - 1) * pageSize, pastPage * pageSize);
+  const list = activeTab === "upcoming" ? activities : pagedPast;
+
   return (
     <div className="activity-page">
       <main className="activity-main">
         <div className="activity-header">
           <p className="activity-text">Alma Lactancia</p>
-          <h1 className="activity-title">Próximas actividades</h1>
+          <h1 className="activity-title">
+            {activeTab === "upcoming" ? t("nextActivities") : t("eventsHistory")}
+          </h1>
+          <div className="activities-tabs">
+            <button
+              className={`tab-button ${activeTab === "upcoming" ? "active" : ""}`}
+              onClick={() => setActiveTab("upcoming")}
+            >
+              {t("nextActivities")}
+            </button>
+            <button
+              className={`tab-button ${activeTab === "past" ? "active" : ""}`}
+              onClick={() => setActiveTab("past")}
+            >
+              {t("eventsHistory")}
+            </button>
+          </div>
           <p className="activity-description">
-            Aquí podrás encontrar información sobre las próximas reuniones,
-            charlas y talleres que organizamos. Únete a nosotros en estos
-            eventos donde compartimos conocimientos, experiencias y apoyo en un
-            ambiente acogedor y enriquecedor.
+            {activeTab === "upcoming"
+              ? t("activitiesUpcomingDesc")
+              : t("activitiesPastDesc")}
           </p>
         </div>
 
         <ol className="activity-container">
-          {activities.length > 0 ? (
-            activities.map((activity, index) => {
+          {list && list.length > 0 ? (
+            list.map((activity, index) => {
               const start = new Date(activity.start.dateTime);
               const end = new Date(activity.end.dateTime);
               const durationInMinutes = Math.floor((end - start) / (1000 * 60));
@@ -104,8 +131,7 @@ const Activities = ({ activities, setActivities }) => {
               const durationString =
                 hours > 0 ? `${hours} h ${minutes} m` : `${minutes} minutos`;
 
-              const access =
-                activity.extendedProperties?.private?.access?.trim();
+              const access = activity.extendedProperties?.private?.access?.trim();
               const exclusiveAccess = ["solo_socios", "partners"];
               const accessMessage = exclusiveAccess.includes(access)
                 ? "Exclusivo para socios"
@@ -115,9 +141,8 @@ const Activities = ({ activities, setActivities }) => {
                 <li key={index} className="activity-cards">
                   <div className="activity-content">
                     <div className="activity-image">
-                      {activity.extendedProperties.private.image &&
-                      activity.extendedProperties.private.image !==
-                        "sin imagen" ? (
+                      {activity?.extendedProperties?.private?.image &&
+                      activity.extendedProperties.private.image !== "sin imagen" ? (
                         <img
                           src={activity.extendedProperties.private.image}
                           alt={activity.summary}
@@ -127,38 +152,65 @@ const Activities = ({ activities, setActivities }) => {
                       )}
                     </div>
                     <h1 className="activities-title">{activity.summary}</h1>
-                    <p className="activities-decription">
-                      {activity.description}
-                    </p>
-                    <p className="activities-location">
-                      {activity.location || "Lugar"}
-                    </p>
+                    <p className="activities-decription">{activity.description}</p>
+                    <p className="activities-location">{activity.location || "Lugar"}</p>
 
                     <h2 className="activities-date">
-                      {formatDate(activity.start.dateTime, null, "es") ||
-                        "Fecha"}
+                      {formatDate(activity.start.dateTime, null, "es") || "Fecha"}
                     </h2>
-                    <h2 className="activities-date">
-                      Duración estimada: {durationString || "Duración"}
-                    </h2>
-                    <p className="activities-access">{accessMessage}</p>
-
-                    <button
-                      className="activities-inscription"
-                      onClick={() => handleEnrollClick(activity, index + 1)}
-                    >
-                      {activity.summary.includes("EVENTO CANCELADO")
-                        ? "Inscripciones cerradas"
-                        : "Inscribirse"}
-                    </button>
+                    {activeTab === "upcoming" ? (
+                      <>
+                        <h2 className="activities-date">
+                          Duración estimada: {durationString || "Duración"}
+                        </h2>
+                        <p className="activities-access">{accessMessage}</p>
+                        <button
+                          className="activities-inscription"
+                          onClick={() => handleEnrollClick(activity, index + 1)}
+                        >
+                          {activity.summary.includes("EVENTO CANCELADO")
+                            ? t("inscriptionsClosed")
+                            : t("enroll")}
+                        </button>
+                      </>
+                    ) : (
+                      <>
+                        <h2 className="activities-date">{t("eventFinished")}</h2>
+                      </>
+                    )}
                   </div>
                 </li>
               );
             })
           ) : (
-            <p>No se han podido cargar las actividades pasadas</p>
+            <p className="no-activities-found">
+              {activeTab === "upcoming"
+                ? t("noUpcomingActivities")
+                : t("noPastEvents")}
+            </p>
           )}
         </ol>
+        {activeTab === "past" && pastActivities.length > pageSize && (
+          <div className="pagination">
+            <button
+              className="page-btn"
+              disabled={pastPage === 1}
+              onClick={() => setPastPage((p) => Math.max(1, p - 1))}
+            >
+              Anterior
+            </button>
+            <span className="page-info">
+              {pastPage} / {totalPastPages}
+            </span>
+            <button
+              className="page-btn"
+              disabled={pastPage === totalPastPages}
+              onClick={() => setPastPage((p) => Math.min(totalPastPages, p + 1))}
+            >
+              Siguiente
+            </button>
+          </div>
+        )}
       </main>
 
       {/* Modal de validación de ID */}

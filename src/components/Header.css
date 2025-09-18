@@ -426,12 +426,3 @@ header.scrolled {
   }
 }
 
-@media (min-width: 1600px) {
-  .navbar {
-    font-size: 1.6rem;
-  }
-  .social-media a svg {
-    width: 2.5rem; /* Ajustar el ancho del icono */
-    height: 2.5rem; /* Ajustar la altura del icono */
-  }
-}

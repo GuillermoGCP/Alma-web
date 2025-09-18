@@ -381,6 +381,50 @@ export async function getCalendarEvents(numberOfEvents = 20) {
 
 // Función para comparar las fechas en formato ISO
 
+// Eventos pasados (Histórico)
+export async function getPastCalendarEvents(numberOfEvents = 50) {
+  const apiUrl = import.meta.env.VITE_API_URL
+  const fullUrl = `${apiUrl}/list-calendar-events`
+  const requestBody = {
+    maxResults: numberOfEvents,
+    orderBy: 'startTime',
+    singleEvents: true,
+    timeMax: new Date().toISOString(), // Traer eventos ya pasados hasta ahora
+  }
+
+  try {
+    const response = await fetch(fullUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(requestBody),
+    })
+
+    const data = await response.json()
+    const calendarEvents = Array.isArray(data.response) ? data.response : []
+
+    calendarEvents.forEach((calendarEvent) => {
+      const startISO = calendarEvent?.start?.dateTime || calendarEvent?.start?.date
+      if (startISO) {
+        calendarEvent.dateISO = formatDate(startISO)
+      }
+    })
+
+    // Orden descendente por fecha de inicio (más recientes primero)
+    const sorted = calendarEvents.sort((a, b) => {
+      const aTime = new Date(a?.start?.dateTime || a?.start?.date || 0).getTime()
+      const bTime = new Date(b?.start?.dateTime || b?.start?.date || 0).getTime()
+      return bTime - aTime
+    })
+
+    return sorted
+  } catch (error) {
+    console.error('Error fetching past calendar events:', error)
+    return null
+  }
+}
+
 export function compareISO(date1, date2) {
   const d1 = new Date(date1)
   const d2 = new Date(date2)

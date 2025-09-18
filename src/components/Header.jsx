@@ -32,6 +32,11 @@ const Header = ({ scrolled }) => {
     setMenuOpen(!menuOpen);
   };
 
+  const closeMenu = () => {
+    setMenuOpen(false);
+    setActiveIndex(null);
+  };
+
   const handleUserProfileClick = () => {
     setIsModalOpen(true);
   };
@@ -100,12 +105,12 @@ const Header = ({ scrolled }) => {
 
         <ul className={`menu ${menuOpen ? "active" : ""}`}>
           <li className="menu-item">
-            <NavLink to="/" activeClassName="active">
+            <NavLink to="/" activeClassName="active" onClick={closeMenu}>
               {t("homeTitle")}
             </NavLink>
           </li>
           <li className="menu-item">
-            <NavLink to="/quienes-somos" activeClassName="active">
+            <NavLink to="/quienes-somos" activeClassName="active" onClick={closeMenu}>
               {t("aboutUs")}
             </NavLink>
           </li>
@@ -113,13 +118,13 @@ const Header = ({ scrolled }) => {
             <a onClick={() => toggleSubMenu(1)}>{t("activities")}</a>
             <ul className={`submenu ${activeIndex === 1 ? "active" : ""}`}>
               <li>
-                <NavLink to="/actividades" activeClassName="active">
+                <NavLink to="/actividades" activeClassName="active" onClick={closeMenu}>
                   {t("nextActivities")}
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/historico" activeClassName="active">
-                  {t("history")}
+                <NavLink to="/historico" activeClassName="active" onClick={closeMenu}>
+                  {t("instagramFeed")}
                 </NavLink>
               </li>
             </ul>
@@ -128,7 +133,7 @@ const Header = ({ scrolled }) => {
             <NavLink
               to="/biblioteca"
               activeClassName="active"
-              onClick={toggleMenu}
+              onClick={closeMenu}
             >
               {t("library")}
             </NavLink>
@@ -137,7 +142,7 @@ const Header = ({ scrolled }) => {
             <NavLink
               to="/colabora"
               activeClassName="active"
-              onClick={toggleMenu}
+              onClick={closeMenu}
             >
               {t("colab")}
             </NavLink>
@@ -146,7 +151,7 @@ const Header = ({ scrolled }) => {
             <NavLink
               to="/contacto"
               activeClassName="active"
-              onClick={toggleMenu}
+              onClick={closeMenu}
             >
               {t("contact")}
             </NavLink>

@@ -18,20 +18,20 @@
   padding: 0.8rem 0.8rem 1rem 2rem;
 }
 .pregunta-footer {
-  font-size: 1rem;
+  font-size: 0.9rem;
   color: #9c6fa0;
   font-weight: bold;
   margin-bottom: 0;
 }
 .email-footer a {
-  font-size: 1.5rem;
+  font-size: 1.1rem;
   color: #333;
   margin-top: 0;
   text-decoration: none;
   z-index: 999;
 }
 .email-footer a:hover {
-  font-size: 1.5rem;
+  font-size: 1.1rem;
   color: #9c6fa0;
   margin-top: 0;
   text-decoration: none;
@@ -47,8 +47,8 @@
   color: #e0bb8e;
   padding: 0;
   margin: 0;
-  width: 1.5rem; /* Ajustar el ancho del icono */
-  height: 1.5rem;
+  width: 1rem; /* Ajustar el ancho del icono */
+  height: 1rem;
 }
 .social-media-footer svg:hover {
   color: #9c6fa0;
@@ -60,20 +60,20 @@
   list-style-type: none;
   gap: 1rem;
   padding: 0;
-  margin-top: 5rem;
+  margin-top: 3rem;
 }
 .footer-menu li a {
   color: #333;
   text-decoration: none;
   font-weight: light;
-  font-size: 1.1rem;
+  font-size: 0.9rem;
 }
 .footer-menu li a:hover {
   color: white;
   background-color: #9c6fa0;
   text-decoration: none;
   font-weight: light;
-  font-size: 1.1rem;
+  font-size: 0.9rem;
 }
 .admin-links-footer {
   display: flex;
@@ -87,7 +87,7 @@
   color: #333;
   text-decoration: none;
   font-weight: light;
-  font-size: 0.8rem;
+  font-size: 0.7rem;
 }
 .admin-links-footer a:hover {
   color: white;
@@ -115,11 +115,11 @@
   padding: 0 1rem 1rem 2rem;
 }
 .copyright-footer {
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   color: #333;
 }
 .footer-logo img {
-  height: 4em;
+  height: 3em;
   margin: 0;
 }
 
@@ -206,7 +206,7 @@
   }
 
   .logo-mascara {
-    max-width: 100px;
+    max-width: 80px;
     height: auto;
     margin-top: 0;
     padding-top: 0;
@@ -232,10 +232,10 @@
     justify-content: center;
   }
   .email-footer a {
-    font-size: 1.3rem;
+    font-size: 1rem;
   }
   .email-footer a:hover {
-    font-size: 1.3rem;
+    font-size: 1rem;
     color: #9c6fa0;
     margin-top: 0;
     text-decoration: none;
@@ -252,15 +252,12 @@
 }
 
 /* Pantallas muy grandes (mínimo 1600px) */
-@media (min-width: 1601px) {
-  .pregunta-footer {
-    font-size: 2rem;
-  }
+
   .email-footer a {
-    font-size: 2.5rem;
+    font-size: 1.1rem;
   }
   .email-footer a:hover {
-    font-size: 2.5rem;
+    font-size: 1.1rem;
     color: #9c6fa0;
     margin-top: 0;
     text-decoration: none;
@@ -269,19 +266,20 @@
     color: #e0bb8e;
     padding: 0;
     margin: 0;
-    width: 2.5rem; /* Ajustar el ancho del icono */
-    height: 2.5rem;
+    width: 1rem; /* Ajustar el ancho del icono */
+    height: 1rem;
   }
   .footer-menu li a {
-    font-size: 1.4rem;
+    font-size: 0.9rem;
   }
   .footer-menu li a:hover {
-    font-size: 1.4rem;
+    font-size: 0.9rem;
   }
   .admin-links-footer a {
-    font-size: 1.2rem;
+    font-size: 0.7rem;
   }
   .copyright-footer {
-    font-size: 1.2rem;
+    font-size: 0.75rem;
   }
 }
+
