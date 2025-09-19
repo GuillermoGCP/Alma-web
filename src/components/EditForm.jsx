@@ -27,13 +27,12 @@ const EditForm = ({
     : -1
 
   const handleFormSubmit = (data) => {
-    console.log('data', data)
     const modifiedData = {
       ...data,
       formName: data.formName.es,
       fields: data.fields.map((field) => ({ ...field, label: field.label.es })),
     }
-    console.log('modifiedData', modifiedData)
+
     onSubmit(modifiedData, publishFormIndex)
   }
   return (

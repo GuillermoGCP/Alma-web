@@ -14,10 +14,7 @@ const handleResponse = async (response) => {
 
 // Activities
 export const createActivityService = async (formData) => {
-  console.log('APIIIIIIIII')
-
   for (const [key, value] of formData.entries()) {
-    console.log(`${key}:`, value)
   }
   try {
     const response = await fetch(`${API_BASE_URL}/create-activity`, {
@@ -113,7 +110,6 @@ export const getCalendarEventService = async (eventId) => {
 }
 
 export const deleteCalendarEventService = async (eventId) => {
-  // console.log(eventId);
   try {
     const response = await fetch(
       `${API_BASE_URL}/delete-calendar-event/${eventId}/true`,
@@ -405,7 +401,8 @@ export async function getPastCalendarEvents(numberOfEvents = 50) {
     const calendarEvents = Array.isArray(data.response) ? data.response : []
 
     calendarEvents.forEach((calendarEvent) => {
-      const startISO = calendarEvent?.start?.dateTime || calendarEvent?.start?.date
+      const startISO =
+        calendarEvent?.start?.dateTime || calendarEvent?.start?.date
       if (startISO) {
         calendarEvent.dateISO = formatDate(startISO)
       }
@@ -413,8 +410,12 @@ export async function getPastCalendarEvents(numberOfEvents = 50) {
 
     // Orden descendente por fecha de inicio (más recientes primero)
     const sorted = calendarEvents.sort((a, b) => {
-      const aTime = new Date(a?.start?.dateTime || a?.start?.date || 0).getTime()
-      const bTime = new Date(b?.start?.dateTime || b?.start?.date || 0).getTime()
+      const aTime = new Date(
+        a?.start?.dateTime || a?.start?.date || 0
+      ).getTime()
+      const bTime = new Date(
+        b?.start?.dateTime || b?.start?.date || 0
+      ).getTime()
       return bTime - aTime
     })
 

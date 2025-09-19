@@ -1,4 +1,3 @@
-// src/components/Header.jsx
 import React, { useState, useEffect } from 'react'
 import { NavLink, Link, useLocation } from 'react-router-dom'
 import './Header.css'
@@ -47,22 +46,21 @@ const Header = ({ scrolled }) => {
   const facebookLink = generalSettings?.linkFacebook || ''
   const logoSrc = generalSettings?.logo || logoAlma
 
-  // Fondo según ruta
-  const headerBackground =
-    {
-      '/': 'transparent',
-      '/biblioteca': '#b380b5',
-    }[pathname] || '#b380b5'
+  // Fondo/clases según ruta y scroll
+  const isHome = pathname === '/'
+  const purpleBg = scrolled || !isHome // morado si no es home o ya hizo scroll
+  const isHero = isHome && !scrolled // sobre la imagen de portada
 
   // helper para NavLink v6
   const navClass = ({ isActive }) => (isActive ? 'active' : undefined)
 
   return (
     <header
-      className={`navbar ${scrolled ? 'scrolled' : ''}`}
-      style={{ backgroundColor: scrolled ? '#b380b5' : headerBackground }}
+      className={`navbar ${purpleBg ? 'purple' : ''} ${
+        isHero ? 'on-hero' : ''
+      }`}
     >
-      <nav className='navbar' aria-label='Principal'>
+      <nav className='navbar ' aria-label='Principal'>
         <Link to='/' className='logo-link' onClick={closeMenu}>
           <img src={logoSrc} alt='Logo de Alma' className='logo' />
         </Link>

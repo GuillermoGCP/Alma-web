@@ -1,53 +1,48 @@
 //* Fetch para borrar eventos
-export async function deleteEvent(requestBody) {
-    console.log(requestBody)
-}
+export async function deleteEvent(requestBody) {}
 
 //* Fetch para crear eventos
 export async function createEvent(formData) {
-
-    const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/create-activity`,
-        {
-            method: 'POST',
-            body: formData
-        }
-    )
-
-    if (!response.ok) {
-        const error = await response.json()
-        return error
+  const response = await fetch(
+    `${import.meta.env.VITE_API_URL}/create-activity`,
+    {
+      method: 'POST',
+      body: formData,
     }
+  )
 
-    const data = await response.json()
-    return data
+  if (!response.ok) {
+    const error = await response.json()
+    return error
+  }
+
+  const data = await response.json()
+  return data
 }
 
 export async function modifyEvent(newEventData) {
-    console.warn('Error en api')
+  console.warn('Error en api')
 
-    const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/update-calendar-event/${
-            newEventData.id
-        }`,
-        {
-            method: 'PATCH',
-            credentials: 'include',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(newEventData),
-        }
-    )
-
-    if (!response.ok) {
-        console.warn('Error en el fetch:', response)
-        return
+  const response = await fetch(
+    `${import.meta.env.VITE_API_URL}/update-calendar-event/${newEventData.id}`,
+    {
+      method: 'PATCH',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(newEventData),
     }
+  )
 
-    const data = await response.json()
+  if (!response.ok) {
+    console.warn('Error en el fetch:', response)
+    return
+  }
 
-    return data
+  const data = await response.json()
+
+  return data
 }
 
 // PETICIÓN DE PRUEBA, CREAR O MODIFICAR UN EVENTO

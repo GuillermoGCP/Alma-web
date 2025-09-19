@@ -59,7 +59,6 @@ const Home = ({ homeData, scrolled }) => {
         })
 
         if (!res.ok) {
-          // intenta leer texto/json para log, pero no rompas
           let detail = ''
           try {
             detail = await res.text()
@@ -95,8 +94,7 @@ const Home = ({ homeData, scrolled }) => {
     })()
 
     return () => ac.abort()
-    // si quieres refrescar cuando cambie el idioma o props, añade deps
-  }, [homeData]) // o [] si no depende de homeData
+  }, [homeData])
 
   const total = experiences.length
 

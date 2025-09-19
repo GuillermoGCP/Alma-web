@@ -7,6 +7,8 @@ const Nosotras = ({
   visibleSection,
   charactersRemaining,
 }) => {
+  const sectionTextEs = homeData?.sectionText?.es ?? ''
+
   return (
     <div className={`section ${visibleSection === 'text' ? 'visible' : ''}`}>
       <h2>Estás editando sección nosotras</h2>
@@ -14,19 +16,24 @@ const Nosotras = ({
       <label htmlFor='sectionText'>
         Edita el texto de la sección nosotras:
       </label>
+
       <textarea
         id='sectionText'
-        value={homeData.sectionText.es}
+        value={sectionTextEs}
         onChange={handleTextChange}
         placeholder='Escribe el texto para la sección Nosotras'
         maxLength={MAX_CHARACTERS}
       />
+
       <p>{charactersRemaining} caracteres restantes (Máximo 1800 caracteres)</p>
 
       <button
         className='boton-guardar-dashboard'
         onClick={() =>
-          validateAndUpdateField('sectionText', homeData.sectionText)
+          validateAndUpdateField(
+            'sectionText',
+            homeData?.sectionText ?? { es: '', gl: '' }
+          )
         }
       >
         <i className='fas fa-save'></i> Guardar
@@ -38,4 +45,5 @@ const Nosotras = ({
     </div>
   )
 }
+
 export default Nosotras

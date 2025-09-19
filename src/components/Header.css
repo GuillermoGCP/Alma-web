@@ -3,32 +3,58 @@ body {
   padding: 0;
 }
 
-/* Contenedor de la barra de navegación */
+/* Contenedor de la barra de navegación (etiqueta <header> con clase .navbar) */
 .navbar {
   display: flex;
   align-items: center;
   z-index: 999;
-  background: transparent;
-  position: fixed; /* Fijo al hacer scroll */
-  top: 0; /* Pegado a la parte superior */
+  position: fixed;
+  top: 0;
   left: 0;
   right: 0;
+
   flex-direction: column;
-  font-family: outfit;
+  font-family: outfit, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu,
+    Cantarell, 'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans',
+    sans-serif;
+
   padding-left: 20px;
   padding-right: 20px;
   padding-top: 70px;
   font-size: 1.1rem;
-}
 
-header {
-  transition: background-color 0.3s ease;
-  height: 100px; /* Cambia a tu color deseado */
-}
-
-header.scrolled {
+  /* por defecto transparente: el color real lo dan .purple u .on-hero */
   background-color: #b380b5;
-  height: 100px; /* Cambia a tu color deseado */
+  height: 100px;
+
+  /* Vars para botones toggle */
+  --toggle-color: #fff;
+  --toggle-hover: #e0bb8e;
+}
+
+/* Morado sólido cuando no es home o ya hay scroll */
+.navbar.purple {
+  background-color: #b380b5;
+  --toggle-color: #fff;
+  --toggle-hover: #e0bb8e;
+}
+
+/* Sobre la imagen de portada (home sin scroll): tinte + blur para legibilidad */
+.navbar.on-hero {
+  background-color: rgba(179, 128, 181, 0.28);
+  -webkit-backdrop-filter: saturate(120%) blur(6px);
+  backdrop-filter: saturate(120%) blur(6px);
+  --toggle-color: #fff;
+  --toggle-hover: #e0bb8e;
+}
+
+/* Asegura contraste de iconos/enlaces cuando va sobre imagen */
+.navbar.on-hero .menu-item > a,
+.navbar.on-hero .menu-item > .submenu-toggle,
+.navbar.on-hero .social-media a,
+.navbar.on-hero .social-media .user-icon {
+  color: #fff;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
 }
 
 /* Estilo del logo */
@@ -40,9 +66,18 @@ header.scrolled {
   margin-left: 1rem;
 }
 
-/* Toggle del menú (icono hamburguesa) */
-.menu-toggle {
+/* Toggle del menú (icono hamburguesa y X) */
+.menu-toggle,
+.menu-toggle-close {
   display: none;
+  cursor: pointer;
+  color: var(--toggle-color);
+  font-size: 2rem;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+}
+.menu-toggle:hover,
+.menu-toggle-close:hover {
+  color: var(--toggle-hover);
 }
 
 /* Redes sociales */
@@ -53,8 +88,6 @@ header.scrolled {
   align-self: flex-end;
   margin-right: 1rem;
 }
-
-/* Estilo de los iconos de redes sociales */
 .social-media a {
   color: white;
   margin: 0 0.5em;
@@ -64,28 +97,27 @@ header.scrolled {
   width: 1.5rem;
   height: 1.5rem;
 }
-
 .social-media a svg:hover {
   color: #e0bb8e;
 }
-/* Estilo para el ícono de usuario */
 
+/* Ícono usuario */
 .social-media .user-icon {
   color: white;
   margin: 0 0.5em;
   cursor: pointer;
+  background: none;
+  border: 0;
 }
-
 .social-media .user-icon svg {
   width: 1.5rem;
   height: 1.5rem;
 }
-
 .social-media .user-icon:hover svg {
   color: #e0bb8e;
 }
 
-/* Estilo de la lista de menú principal */
+/* Lista menú principal */
 .menu {
   list-style-type: none;
   margin: 0;
@@ -96,42 +128,51 @@ header.scrolled {
   margin-top: 1em;
 }
 
-/* Estilo de los elementos del menú */
+/* Item */
 .menu-item {
   position: relative;
   font-weight: bold;
 }
 
-/* Estilo de los enlaces del menú principal */
-.menu-item > a {
-  color: white; /* Color del texto del menú */
+/* Enlaces del menú + botón de “Actividades” (mismo aspecto) */
+.menu-item > a,
+.menu-item > .submenu-toggle {
+  color: white;
   text-decoration: none;
   padding: 10px 15px;
   display: block;
   position: relative;
   z-index: 999;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  font: inherit;
 }
-.menu-item > a.active {
-  color: #dcbf95; /* Color del texto activo */
+
+/* activo (NavLink) */
+.menu-item > a.active,
+.menu-item > .submenu-toggle.active {
+  color: #dcbf95;
 }
-/* Subrayado en los enlaces del menú principal */
-.menu-item > a::after {
-  content: "";
+
+/* Subrayado en hover (a y button) */
+.menu-item > a::after,
+.menu-item > .submenu-toggle::after {
+  content: '';
   position: absolute;
-  width: 100%; /* Ajusta el subrayado al ancho del texto */
-  height: 2px; /* Grosor del subrayado */
+  width: 100%;
+  height: 2px;
   left: 0;
-  bottom: -2px; /* Posiciona el subrayado justo debajo del texto */
-  background-color: transparent; /* Sin color de fondo para el subrayado */
+  bottom: -2px;
+  background-color: transparent;
   transition: background-color 0.3s ease;
 }
-
-/* Cambia el color del texto y subrayado en hover */
-.menu-item > a:hover::after {
-  background-color: white; /* Color de subrayado al hacer hover */
+.menu-item > a:hover::after,
+.menu-item > .submenu-toggle:hover::after {
+  background-color: white;
 }
 
-/* Estilo de la lista de submenú */
+/* Submenú (desktop) */
 .submenu {
   list-style-type: none;
   margin: 0;
@@ -143,35 +184,29 @@ header.scrolled {
   z-index: 1000;
   background-color: white;
 }
-
-/* Estilo de los enlaces dentro del submenú */
 .submenu li a {
-  color: #9c6fa0; /* Color del texto del submenú */
+  color: #9c6fa0;
   text-decoration: none;
   padding: 10px;
   display: block;
   position: relative;
   z-index: 1001;
 }
-
-/* Cambia el color del texto en el submenú al pasar el mouse */
 .submenu li a:hover {
   color: #9c6fa0;
   background-color: #f2f2f2;
 }
-
-/* Mostrar el submenú cuando se hace hover sobre el elemento del menú */
+/* Mostrar el submenú en hover (desktop) */
 .menu-item:hover > .submenu {
-  display: block; /* Muestra el submenú en hover */
+  display: block;
 }
 
-/* Estilos responsivos para dispositivos móviles */
+/* ====== Responsive: móviles ====== */
 @media (max-width: 768px) {
   .navbar {
-    font-family: outfit;
     width: 100vw;
     position: relative;
-    background-color: #9c6fa0;
+    background-color: #9c6fa0; /* fijo en móvil */
     padding: 0;
   }
 
@@ -183,17 +218,10 @@ header.scrolled {
   .social-media {
     margin: 10px;
   }
-
-  .social-media-item {
-    visibility: visible;
-    font-size: 0.9rem;
-  }
-
   .social-media a {
     color: white;
     margin: 0.1em;
   }
-
   .social-media a svg {
     width: 1.5rem;
     height: 1.5rem;
@@ -201,9 +229,6 @@ header.scrolled {
 
   .menu-toggle {
     display: flex;
-    cursor: pointer;
-    color: white;
-    font-size: 2rem;
     align-self: flex-end;
     margin-top: 0.8rem;
     margin-right: 0.7rem;
@@ -217,7 +242,6 @@ header.scrolled {
     position: relative;
     transition: all 0.3s ease;
   }
-
   .menu.active {
     display: flex;
     background-color: #9c6fa0;
@@ -228,7 +252,8 @@ header.scrolled {
     margin-top: 0;
   }
 
-  .menu-item > a {
+  .menu-item > a,
+  .menu-item > .submenu-toggle {
     color: white;
     padding: 1.5rem 0;
     width: 100%;
@@ -236,23 +261,26 @@ header.scrolled {
     display: block;
     transition: background-color 0.3s ease, color 0.3s ease;
     box-sizing: border-box;
+    text-align: center; /* centrado en móvil */
   }
-
-  .menu-item > a:hover {
+  .menu-item > a:hover,
+  .menu-item > .submenu-toggle:hover {
     background-color: #b380b5;
     color: white;
   }
 
-  /* Submenú */
+  /* Submenú móvil */
   .submenu {
     display: none;
     background-color: #9c6fa0;
     width: 100%;
     color: white;
-    transition: all 0.3s ease; /* Transición suave para apertura */
+    transition: all 0.3s ease;
+    position: relative;
+    top: 0;
+    left: 0;
+    text-align: center; /* centrado en móvil */
   }
-
-  /* Submenú activo */
   .submenu.active {
     display: block;
   }
@@ -263,8 +291,8 @@ header.scrolled {
     display: block;
     background-color: white;
     box-sizing: border-box;
+    text-align: center; /* centrado en móvil */
   }
-
   .submenu li a:hover {
     color: white;
     background-color: #e0bb8e;
@@ -274,34 +302,18 @@ header.scrolled {
     position: relative;
   }
 
-  /* Mostrar submenú al hacer hover */
-  .menu-item:hover .submenu {
-    display: block;
-  }
-
-  /* Eliminar el absolute y permitir que el submenú expanda el menú principal */
-  .menu-item .submenu {
-    position: relative;
-    top: 0;
-    left: 0;
-  }
-
   /* Icono de cierre del menú */
   .menu-toggle-close {
     position: absolute;
     top: 1rem;
     right: 1rem;
-    color: white;
-    cursor: pointer;
-    font-size: 2rem;
     z-index: 13;
   }
 }
 
-/* Estilos para pantallas entre 769px y 1000px */
+/* ====== Responsive: 769px–1000px ====== */
 @media (min-width: 769px) and (max-width: 1000px) {
   .navbar {
-    font-family: outfit;
     width: 100vw;
     position: relative;
     background-color: #9c6fa0;
@@ -318,17 +330,10 @@ header.scrolled {
   .social-media {
     margin: 10px;
   }
-
-  .social-media-item {
-    visibility: visible;
-    font-size: 0.9rem;
-  }
-
   .social-media a {
     color: white;
     margin: 0.1em;
   }
-
   .social-media a svg {
     width: 1.5rem;
     height: 1.5rem;
@@ -336,9 +341,6 @@ header.scrolled {
 
   .menu-toggle {
     display: flex;
-    cursor: pointer;
-    color: white;
-    font-size: 2rem;
     align-self: flex-end;
     margin-top: 0.8rem;
     margin-right: 0.7rem;
@@ -363,7 +365,8 @@ header.scrolled {
     margin-top: 0;
   }
 
-  .menu-item > a {
+  .menu-item > a,
+  .menu-item > .submenu-toggle {
     color: white;
     padding: 1.5rem 0;
     width: 100%;
@@ -371,9 +374,10 @@ header.scrolled {
     display: block;
     transition: background-color 0.3s ease, color 0.3s ease;
     box-sizing: border-box;
+    text-align: center;
   }
-
-  .menu-item > a:hover {
+  .menu-item > a:hover,
+  .menu-item > .submenu-toggle:hover {
     background-color: #b380b5;
     color: white;
   }
@@ -384,22 +388,20 @@ header.scrolled {
     background-color: #9c6fa0;
     width: 100%;
     color: white;
-    transition: all 0.3s ease; /* Transición suave para apertura */
+    transition: all 0.3s ease;
+    text-align: center;
   }
-
-  /* Submenú activo */
   .submenu.active {
     display: block;
   }
-
   .submenu li a {
     color: #9c6fa0;
     padding: 10px;
     display: block;
     background-color: white;
     box-sizing: border-box;
+    text-align: center;
   }
-
   .submenu li a:hover {
     color: white;
     background-color: #e0bb8e;
@@ -409,20 +411,113 @@ header.scrolled {
     position: relative;
   }
 
-  /* Mostrar submenú al hacer hover */
-  .menu-item:hover .submenu {
-    display: block;
-  }
-
-  /* Icono de cierre del menú */
   .menu-toggle-close {
     position: absolute;
     top: 1rem;
     right: 1rem;
-    color: white;
-    cursor: pointer;
-    font-size: 2rem;
     z-index: 13;
   }
 }
 
+/* ========= SOLO DESKTOP (≥1001px) ========= */
+@media (min-width: 1001px) {
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1280px;
+    height: 100px;
+    padding: 0 20px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .logo {
+    position: static;
+    margin-left: 0;
+    height: 56px;
+    z-index: 1;
+  }
+
+  .social-media {
+    align-self: auto;
+    margin: 0 1rem 0 0;
+  }
+  .social-media a {
+    margin-top: 0;
+  }
+
+  .menu {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.25rem;
+    margin: 0;
+    padding: 0;
+  }
+
+  .menu-item {
+    font-weight: bold;
+    position: relative;
+  }
+
+  .menu-item > a,
+  .menu-item > .submenu-toggle {
+    background: none;
+    border: 0;
+    cursor: pointer;
+    font: inherit;
+    padding: 10px 15px;
+    display: block;
+  }
+
+  .menu-item > a.active,
+  .menu-item > .submenu-toggle.active {
+    color: #dcbf95;
+  }
+
+  .menu-item > a::after,
+  .menu-item > .submenu-toggle::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 100%;
+    height: 2px;
+    background-color: transparent;
+    transition: background-color 0.3s ease;
+  }
+  .menu-item > a:hover::after,
+  .menu-item > .submenu-toggle:hover::after {
+    background-color: #fff;
+  }
+
+  .menu-toggle {
+    display: none;
+  }
+
+  .submenu {
+    position: absolute;
+    top: 100%;
+    display: none;
+    min-width: 200px;
+    background: #fff;
+    z-index: 1000;
+    left: 50%; /* centrado */
+    transform: translateX(-50%);
+  }
+  .submenu li a {
+    color: #9c6fa0;
+    padding: 10px;
+    display: block;
+  }
+  .submenu li a:hover {
+    background: #f2f2f2;
+    color: #9c6fa0;
+  }
+  .menu-item:hover > .submenu {
+    display: block;
+  }
+}

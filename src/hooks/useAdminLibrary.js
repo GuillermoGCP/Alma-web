@@ -19,23 +19,45 @@ const useAdminLibrary = () => {
   })
 
   useEffect(() => {
+    const ac = new AbortController()
     const toastId = toast.loading('Cargando datos...')
 
-    fetch(`${API_BASE_URL}/get-home-data`)
-      .then((response) => response.json())
+    fetch(`${API_BASE_URL}/get-home-data`, {
+      credentials: 'include',
+      signal: ac.signal,
+      headers: { Accept: 'application/json' },
+    })
+      .then((r) => r.json())
       .then((data) => {
-        const { library } = data.form
-        setLibraryData(library)
-        isSuccessToast(true, 'Datos cargados correctamente', toastId)
+        // Soporta { form } o { data: { form } }; si no hay form, no pisa tu estado.
+        const form = data?.form ?? data?.data?.form ?? null
+        const lib =
+          form && typeof form === 'object' ? form.library ?? null : null
+
+        if (lib && typeof lib === 'object') {
+          setLibraryData(lib)
+          isSuccessToast(true, 'Datos cargados correctamente', toastId)
+        } else {
+          // No sobreescribimos el estado inicial si no hay datos válidos
+          isSuccessToast(
+            false,
+            'No hay datos de biblioteca en el backend',
+            toastId
+          )
+        }
       })
-      .catch((error) => {
-        console.error('Error al obtener los datos:', error)
+      .catch((err) => {
+        if (err.name === 'AbortError') return
+        console.error('Error al obtener los datos:', err)
         isSuccessToast(false, 'Error al cargar los datos', toastId)
       })
+
+    return () => ac.abort()
   }, [])
 
   const handleChange = (field, value) => {
-    if (value.length > MAX_CHARACTERS) {
+    // Solo limitamos longitud para strings
+    if (typeof value === 'string' && value.length > MAX_CHARACTERS) {
       toast.warn(`El campo no puede superar los ${MAX_CHARACTERS} caracteres.`)
       return
     }
@@ -50,10 +72,11 @@ const useAdminLibrary = () => {
       const value = libraryData[field]
 
       if (Array.isArray(value)) {
-        return value.every((resource) => {
-          console.log('datos', resource.title)
-          return resource.title.es.trim() !== '' && resource.link.trim() !== ''
-        })
+        // Evita reventar si falta algo en algún item
+        return value.every(
+          (resource) =>
+            resource?.title?.es?.trim?.() && resource?.link?.trim?.()
+        )
       }
 
       if (typeof value === 'string') {
@@ -78,18 +101,14 @@ const useAdminLibrary = () => {
 
       const response = await fetch(`${API_BASE_URL}/update-home-data`, {
         method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
         body: JSON.stringify(updateData),
       })
 
-      if (!response.ok) {
-        throw new Error('Error en la respuesta de la red')
-      }
+      if (!response.ok) throw new Error('Error en la respuesta de la red')
 
-      const data = await response.json()
-      console.log('Datos de la biblioteca actualizados exitosamente:', data)
+      await response.json()
       isSuccessToast(true, 'Los cambios se han guardado exitosamente.', toastId)
     } catch (error) {
       console.error('Error al actualizar datos:', error)

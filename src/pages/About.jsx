@@ -37,9 +37,6 @@ const About = () => {
         const externalData = await externalResponse.json()
         setTeamMembers(teamData.data)
         setExternalCollaborators(externalData.data)
-
-        console.log(teamMembers)
-        console.log(externalCollaborators)
       } catch (error) {
         console.error('Error al obtener los colaboradores:', error)
       }

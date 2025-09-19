@@ -28,7 +28,7 @@ const useSubmitPartnerForm = () => {
       }
 
       const data = await response.json()
-      console.log(data)
+
       return data // Devuelve la respuesta para que el componente pueda manejarla
     } catch (error) {
       console.error('Error en la solicitud:', error)

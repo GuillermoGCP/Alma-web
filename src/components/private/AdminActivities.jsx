@@ -19,7 +19,7 @@ const AdminActivities = () => {
 
   async function getEvents() {
     const calendarEvents = await getCalendarEvents()
-    // console.log(calendarEvents);
+
     setEventsList(calendarEvents)
   }
 

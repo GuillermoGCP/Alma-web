@@ -21,7 +21,6 @@ const EditCollaboratorForm = ({ collaboratorData, onSuccess }) => {
 
   useEffect(() => {
     setCollaborator(collaboratorData)
-    console.log(collaboratorData)
 
     // Si hay una imagen en el backend, cargar el nombre y la vista previa
     if (collaboratorData.image && collaboratorData.image !== 'Sin imagen') {
@@ -141,7 +140,6 @@ const EditCollaboratorForm = ({ collaboratorData, onSuccess }) => {
         }
 
         isSuccessToast(true, 'Nuevo colaborador creado con éxito', processToast)
-        console.log(responseMsg)
 
         onSuccess()
       }

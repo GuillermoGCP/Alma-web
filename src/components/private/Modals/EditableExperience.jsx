@@ -39,7 +39,6 @@ const EditableExperience = ({
   const handleImageChange = (e) => {
     const file = e.target.files[0]
     if (file) {
-      console.log('FILE:', file)
       setImage(file)
     }
   }

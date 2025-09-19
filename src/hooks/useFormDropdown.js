@@ -82,7 +82,6 @@ const useFormDropdown = (
       )
 
       if (response.ok) {
-        console.log('Formulario publicado exitosamente')
         const data = await response.json()
         setPublishedForm((prevData) => {
           const newData = [...prevData]
@@ -113,7 +112,6 @@ const useFormDropdown = (
           newData[jsonNumber] = {}
           return newData
         })
-        console.log(data.message)
       } else {
         console.error('Error al despublicar el formulario')
       }
@@ -172,7 +170,6 @@ const useFormDropdown = (
   }
 
   const handleCancel = () => {
-    console.log('Acción cancelada')
     closeModal()
   }
 
@@ -181,7 +178,6 @@ const useFormDropdown = (
     try {
       const response = await fetch(url, { method: 'DELETE' })
       if (response.ok) {
-        console.log('Formulario borrado')
         const data = await response.json()
         setSelectedForm(null)
 
