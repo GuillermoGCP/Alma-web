@@ -1,27 +1,54 @@
+// src/hooks/useContactInfo.js
 import { useState, useEffect } from 'react'
-import { toast } from 'react-toastify'
 import axios from 'axios'
 
-const useContactInfo = () => {
-  const [contactInfo, setContactInfo] = useState({
-    generalSettings: null,
-    home: null,
-  })
-  const API_BASE_URL = import.meta.env.VITE_API_URL
+const API_BASE_URL = import.meta.env.VITE_API_URL
 
-  useEffect(() => {
-    axios
-      .get(`${API_BASE_URL}/get-home-data`)
-      .then((response) => {
-        const { generalSettings, home } = response.data.form
-        setContactInfo({ generalSettings, home })
-      })
-      .catch((error) => {
-        console.error('Error al obtener datos:', error)
-      })
-  }, [API_BASE_URL])
-
-  return contactInfo
+const DEFAULT = {
+  generalSettings: { logo: '', linkInstagram: '', linkFacebook: '', email: '' },
+  home: {},
 }
 
-export default useContactInfo
+export default function useContactInfo() {
+  const [data, setData] = useState(DEFAULT)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
+
+  useEffect(() => {
+    let cancelled = false
+
+    ;(async () => {
+      try {
+        const res = await axios.get(`${API_BASE_URL}/get-home-data`, {
+          withCredentials: true, // <-- cookie
+          headers: { Accept: 'application/json' },
+        })
+
+        // Soporta {form} o {data:{form}} y casos con null
+        const form = res.data?.form ?? res.data?.data?.form ?? {}
+        const generalSettings = form?.generalSettings ?? {}
+        const home = form?.home ?? {}
+
+        if (!cancelled)
+          setData({
+            generalSettings: { ...DEFAULT.generalSettings, ...generalSettings },
+            home: { ...DEFAULT.home, ...home },
+          })
+      } catch (err) {
+        if (!cancelled) {
+          setError(err)
+          setData(DEFAULT) // no rompas la UI
+          console.error('Error al obtener datos:', err)
+        }
+      } finally {
+        if (!cancelled) setLoading(false)
+      }
+    })()
+
+    return () => {
+      cancelled = true
+    }
+  }, [])
+
+  return { ...data, loading, error }
+}

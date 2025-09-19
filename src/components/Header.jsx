@@ -1,82 +1,90 @@
-// Header.jsx
-import React, { useState } from "react";
-import { NavLink, Link, useLocation } from "react-router-dom";
-import "./Header.css";
-import useContactInfo from "../hooks/useContactInfo.js";
-import logoAlma from "../images/logo-alma.png";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faInstagram, faFacebookF } from "@fortawesome/free-brands-svg-icons";
-import { faUser } from "@fortawesome/free-solid-svg-icons";
-import MySubscriptionModal from "../components/forms/MySubscriptionModal";
-import LanguageSwitcher from "../components/LanguageSwitcher";
-import { useTranslation } from "react-i18next";
+// src/components/Header.jsx
+import React, { useState, useEffect } from 'react'
+import { NavLink, Link, useLocation } from 'react-router-dom'
+import './Header.css'
+import useContactInfo from '../hooks/useContactInfo.js'
+import logoAlma from '../images/logo-alma.png'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faInstagram, faFacebookF } from '@fortawesome/free-brands-svg-icons'
+import { faUser } from '@fortawesome/free-solid-svg-icons'
+import MySubscriptionModal from '../components/forms/MySubscriptionModal'
+import LanguageSwitcher from '../components/LanguageSwitcher'
+import { useTranslation } from 'react-i18next'
 
 const Header = ({ scrolled }) => {
-  const { t } = useTranslation();
-  const { pathname } = useLocation();
-  const { generalSettings } = useContactInfo();
+  const { t } = useTranslation()
+  const { pathname } = useLocation()
+  const { generalSettings } = useContactInfo()
 
-  const [activeIndex, setActiveIndex] = useState(null);
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(null)
+  const [menuOpen, setMenuOpen] = useState(false)
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
   // Ocultar el Header en rutas específicas (Dashboard o Admin)
-  if (pathname.startsWith("/admin") || pathname.startsWith("/dashboard"))
-    return null;
+  if (pathname.startsWith('/admin') || pathname.startsWith('/dashboard'))
+    return null
+
+  // Cerrar menú al navegar
+  useEffect(() => {
+    setMenuOpen(false)
+    setActiveIndex(null)
+  }, [pathname])
 
   const toggleSubMenu = (index) => {
-    setActiveIndex(activeIndex === index ? null : index);
-  };
+    setActiveIndex((prev) => (prev === index ? null : index))
+  }
 
-  const toggleMenu = () => {
-    setMenuOpen(!menuOpen);
-  };
-
+  const toggleMenu = () => setMenuOpen((v) => !v)
   const closeMenu = () => {
-    setMenuOpen(false);
-    setActiveIndex(null);
-  };
+    setMenuOpen(false)
+    setActiveIndex(null)
+  }
 
-  const handleUserProfileClick = () => {
-    setIsModalOpen(true);
-  };
+  const handleUserProfileClick = () => setIsModalOpen(true)
+  const closeModal = () => setIsModalOpen(false)
 
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
+  const instagramLink = generalSettings?.linkInstagram || ''
+  const facebookLink = generalSettings?.linkFacebook || ''
+  const logoSrc = generalSettings?.logo || logoAlma
 
-  const instagramLink = generalSettings?.linkInstagram || "";
-  const facebookLink = generalSettings?.linkFacebook || "";
-  const logoSrc = generalSettings?.logo ? `${generalSettings.logo}` : logoAlma;
-
-  // Determinamos el fondo según la ruta actual
+  // Fondo según ruta
   const headerBackground =
     {
-      "/": "transparent", // Inicio
-      "/biblioteca": "#b380b5", // Página de Biblioteca
-    }[pathname] || "#b380b5"; // Color predeterminado para otras páginas
+      '/': 'transparent',
+      '/biblioteca': '#b380b5',
+    }[pathname] || '#b380b5'
+
+  // helper para NavLink v6
+  const navClass = ({ isActive }) => (isActive ? 'active' : undefined)
 
   return (
     <header
-      className={`navbar ${scrolled ? "scrolled" : ""}`}
-      style={{ backgroundColor: scrolled ? "#b380b5" : headerBackground }}
+      className={`navbar ${scrolled ? 'scrolled' : ''}`}
+      style={{ backgroundColor: scrolled ? '#b380b5' : headerBackground }}
     >
-      <nav className="navbar">
-        <Link to="/" className="logo">
-          <img src={logoSrc} alt="Logo de Alma" className="logo" />
+      <nav className='navbar' aria-label='Principal'>
+        <Link to='/' className='logo-link' onClick={closeMenu}>
+          <img src={logoSrc} alt='Logo de Alma' className='logo' />
         </Link>
-        <div className="menu-toggle" onClick={toggleMenu}>
-          {menuOpen ? "✕" : "☰"}
-        </div>
 
-        <div className={`social-media ${menuOpen ? "active" : ""}`}>
+        <button
+          className='menu-toggle'
+          onClick={toggleMenu}
+          aria-expanded={menuOpen}
+          aria-label={menuOpen ? 'Cerrar menú' : 'Abrir menú'}
+          type='button'
+        >
+          {menuOpen ? '✕' : '☰'}
+        </button>
+
+        <div className={`social-media ${menuOpen ? 'active' : ''}`}>
           {instagramLink && (
             <a
               href={instagramLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="social-media-item"
-              aria-label="Ir a Instagram"
+              target='_blank'
+              rel='noopener noreferrer'
+              className='social-media-item'
+              aria-label='Ir a Instagram'
             >
               <FontAwesomeIcon icon={faInstagram} />
             </a>
@@ -84,76 +92,93 @@ const Header = ({ scrolled }) => {
           {facebookLink && (
             <a
               href={facebookLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="social-media-item"
-              aria-label="Ir a Facebook"
+              target='_blank'
+              rel='noopener noreferrer'
+              className='social-media-item'
+              aria-label='Ir a Facebook'
             >
               <FontAwesomeIcon icon={faFacebookF} />
             </a>
           )}
-          <div
-            className="social-media-item user-icon"
+          <button
+            className='social-media-item user-icon'
             onClick={handleUserProfileClick}
-            aria-label="Tu suscripción"
-            title="Tu suscripción"
+            aria-label='Tu suscripción'
+            title='Tu suscripción'
+            type='button'
           >
             <FontAwesomeIcon icon={faUser} />
-          </div>
+          </button>
           <LanguageSwitcher />
         </div>
 
-        <ul className={`menu ${menuOpen ? "active" : ""}`}>
-          <li className="menu-item">
-            <NavLink to="/" activeClassName="active" onClick={closeMenu}>
-              {t("homeTitle")}
+        <ul className={`menu ${menuOpen ? 'active' : ''}`}>
+          <li className='menu-item'>
+            <NavLink to='/' end className={navClass} onClick={closeMenu}>
+              {t('homeTitle')}
             </NavLink>
           </li>
-          <li className="menu-item">
-            <NavLink to="/quienes-somos" activeClassName="active" onClick={closeMenu}>
-              {t("aboutUs")}
+
+          <li className='menu-item'>
+            <NavLink
+              to='/quienes-somos'
+              className={navClass}
+              onClick={closeMenu}
+            >
+              {t('aboutUs')}
             </NavLink>
           </li>
-          <li className="menu-item">
-            <a onClick={() => toggleSubMenu(1)}>{t("activities")}</a>
-            <ul className={`submenu ${activeIndex === 1 ? "active" : ""}`}>
+
+          <li className='menu-item has-submenu'>
+            <button
+              type='button'
+              className='submenu-toggle'
+              onClick={() => toggleSubMenu(1)}
+              aria-expanded={activeIndex === 1}
+              aria-controls='submenu-1'
+            >
+              {t('activities')}
+            </button>
+            <ul
+              id='submenu-1'
+              className={`submenu ${activeIndex === 1 ? 'active' : ''}`}
+            >
               <li>
-                <NavLink to="/actividades" activeClassName="active" onClick={closeMenu}>
-                  {t("nextActivities")}
+                <NavLink
+                  to='/actividades'
+                  className={navClass}
+                  onClick={closeMenu}
+                >
+                  {t('nextActivities')}
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/historico" activeClassName="active" onClick={closeMenu}>
-                  {t("instagramFeed")}
+                <NavLink
+                  to='/historico'
+                  className={navClass}
+                  onClick={closeMenu}
+                >
+                  {t('instagramFeed')}
                 </NavLink>
               </li>
             </ul>
           </li>
-          <li className="menu-item">
-            <NavLink
-              to="/biblioteca"
-              activeClassName="active"
-              onClick={closeMenu}
-            >
-              {t("library")}
+
+          <li className='menu-item'>
+            <NavLink to='/biblioteca' className={navClass} onClick={closeMenu}>
+              {t('library')}
             </NavLink>
           </li>
-          <li className="menu-item">
-            <NavLink
-              to="/colabora"
-              activeClassName="active"
-              onClick={closeMenu}
-            >
-              {t("colab")}
+
+          <li className='menu-item'>
+            <NavLink to='/colabora' className={navClass} onClick={closeMenu}>
+              {t('colab')}
             </NavLink>
           </li>
-          <li className="menu-item">
-            <NavLink
-              to="/contacto"
-              activeClassName="active"
-              onClick={closeMenu}
-            >
-              {t("contact")}
+
+          <li className='menu-item'>
+            <NavLink to='/contacto' className={navClass} onClick={closeMenu}>
+              {t('contact')}
             </NavLink>
           </li>
         </ul>
@@ -161,7 +186,7 @@ const Header = ({ scrolled }) => {
 
       {isModalOpen && <MySubscriptionModal onClose={closeModal} />}
     </header>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

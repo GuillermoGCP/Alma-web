@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react'
-import Header from '../components/Header'
-import Calendar from '../components/Calendar'
+import { useState, useEffect, useMemo } from 'react'
 import Footer from '../components/Footer'
+import Calendar from '../components/Calendar'
 import silueta from '../images/IlustracionLactancia.png'
 import useContactInfo from '../hooks/useContactInfo.js'
 import { useNavigate } from 'react-router-dom'
@@ -10,105 +9,118 @@ import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 import './Home.css'
 import { useTranslation } from 'react-i18next'
 
-// URL de la imagen proporcionada (icono pecho)
+const API = import.meta.env.VITE_API_URL
 const DEFAULT_IMAGE_URL =
   'https://res.cloudinary.com/dqhemn1nv/image/upload/v1728065521/59e10e0a-c67b-46bc-a663-2f66f7316077.png'
 
 const Home = ({ homeData, scrolled }) => {
   const { t, i18n } = useTranslation()
-
-  //Esto es para el condicional de los datos dinámicos traducidos llegados desde el backend:
   const currentLang = i18n.language
-
-  const API_BASE_URL = import.meta.env.VITE_API_URL
   const { home } = useContactInfo()
-  const [cardsToShow, setCardsToShow] = useState(2)
+
+  const navigate = useNavigate()
+  const [cardsToShow, setCardsToShow] = useState(
+    window.innerWidth < 768 ? 1 : 2
+  )
   const [currentIndex, setCurrentIndex] = useState(0)
   const [experiences, setExperiences] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
 
-  const imageHomeSrc = home?.imageHome
-  const textsNosotras = home?.sectionText
-    ? currentLang === 'es'
-      ? home.sectionText.es.split('\n')
-      : home.sectionText.gl.split('\n')
-    : []
+  // Derivados seguros
+  const imageHomeSrc = home?.imageHome || DEFAULT_IMAGE_URL
+  const textsNosotras = useMemo(() => {
+    const s = home?.sectionText
+    if (!s) return []
+    return (currentLang === 'es' ? s.es : s.gl)?.split('\n') ?? []
+  }, [home, currentLang])
   const titleCTA =
-    currentLang === 'es' ? home?.titleHome.es || '' : home?.titleHome.gl || ''
+    currentLang === 'es' ? home?.titleHome?.es || '' : home?.titleHome?.gl || ''
 
-  const navigate = useNavigate()
-
+  // Responsive: nº de tarjetas
   useEffect(() => {
-    const updateCardsToShow = () => {
-      if (window.innerWidth < 768) {
-        setCardsToShow(1)
-      } else {
-        setCardsToShow(2)
-      }
-    }
-
-    window.addEventListener('resize', updateCardsToShow)
-    updateCardsToShow()
-
-    return () => window.removeEventListener('resize', updateCardsToShow)
+    const onResize = () => setCardsToShow(window.innerWidth < 768 ? 1 : 2)
+    window.addEventListener('resize', onResize)
+    return () => window.removeEventListener('resize', onResize)
   }, [])
 
+  // Cargar experiencias (tolerante a 500)
   useEffect(() => {
-    const fetchExperiences = async () => {
+    const ac = new AbortController()
+
+    ;(async () => {
       try {
         setLoading(true)
-        const response = await fetch(
-          `${import.meta.env.VITE_API_URL}/get-filtered-experiences`
-        )
-        if (!response.ok) {
-          const data = response.json()
-          console.log(data)
-          throw new Error(data, 'Error al obtener las experiencias')
-        }
-        const data = await response.json()
+        setError(null)
+        const res = await fetch(`${API}/get-filtered-experiences`, {
+          credentials: 'include',
+          signal: ac.signal,
+          headers: { Accept: 'application/json' },
+        })
 
-        setExperiences(data.data)
-      } catch (error) {
-        setError(error.message)
+        if (!res.ok) {
+          // intenta leer texto/json para log, pero no rompas
+          let detail = ''
+          try {
+            detail = await res.text()
+          } catch {}
+          console.error(`GET /get-filtered-experiences → ${res.status}`, detail)
+          setExperiences([])
+          setError(
+            t('errorCargandoExperiencias') ||
+              'No se pudieron cargar las experiencias.'
+          )
+          return
+        }
+
+        const body = await res.json()
+        const list = Array.isArray(body?.data)
+          ? body.data
+          : Array.isArray(body)
+          ? body
+          : []
+        setExperiences(list)
+      } catch (e) {
+        if (e.name !== 'AbortError') {
+          console.error(e)
+          setExperiences([])
+          setError(
+            t('errorCargandoExperiencias') ||
+              'No se pudieron cargar las experiencias.'
+          )
+        }
       } finally {
         setLoading(false)
       }
-    }
+    })()
 
-    fetchExperiences()
-  }, [homeData])
+    return () => ac.abort()
+    // si quieres refrescar cuando cambie el idioma o props, añade deps
+  }, [homeData]) // o [] si no depende de homeData
 
-  const totalExperiences = experiences.length
+  const total = experiences.length
 
   const nextSlide = () => {
-    if (currentIndex < totalExperiences - cardsToShow) {
-      setCurrentIndex(currentIndex + cardsToShow)
-    } else {
-      setCurrentIndex(0)
-    }
+    setCurrentIndex((idx) =>
+      idx < Math.max(total - cardsToShow, 0) ? idx + cardsToShow : 0
+    )
   }
 
   const prevSlide = () => {
-    if (currentIndex > 0) {
-      setCurrentIndex(currentIndex - cardsToShow)
-    } else {
-      setCurrentIndex(totalExperiences - cardsToShow)
-    }
+    setCurrentIndex((idx) =>
+      idx > 0 ? idx - cardsToShow : Math.max(total - cardsToShow, 0)
+    )
   }
 
-  const handleActivitiesClick = () => {
-    navigate('/actividades')
-  }
+  const handleActivitiesClick = () => navigate('/actividades')
 
-  if (loading)
+  if (loading) {
     return (
       <div className='loading-container'>
         <FontAwesomeIcon icon={faSpinner} className='spinner' spin size='2x' />
       </div>
     )
-
-  if (error) return <p>Error: {error}</p>
+  }
 
   return (
     <div className='home-page'>
@@ -119,6 +131,7 @@ const Home = ({ homeData, scrolled }) => {
               className='imageHome-img'
               src={imageHomeSrc}
               alt='imagen bebe'
+              onError={(e) => (e.currentTarget.src = DEFAULT_IMAGE_URL)}
             />
           </div>
           <div className='support-button'>
@@ -127,71 +140,76 @@ const Home = ({ homeData, scrolled }) => {
               className='activities-button'
               onClick={handleActivitiesClick}
             >
-              {/*TEXTO NUESTRAS ACTIVIDADES TRADUCIDO*/}
               {t('nuestrasActividades')}
             </button>
           </div>
         </div>
+
         <div className='content'>
-          <h2 className='section-title'>
-            {/*TEXTO NOSOTRAS TRADUCIDO*/}
-            {t('nosotras')}
-          </h2>
+          <h2 className='section-title'>{t('nosotras')}</h2>
           <div className='centered-container'>
-            {textsNosotras.map((parrafo, index) => (
-              <p key={index} className='sectionText-nosotras'>
-                {parrafo}
+            {textsNosotras.map((p, i) => (
+              <p key={i} className='sectionText-nosotras'>
+                {p}
               </p>
             ))}
           </div>
           <img src={silueta} className='img-silueta' alt='silueta lactancia' />
           <Calendar />
         </div>
+
         <div className='experience-section'>
-          <h2 className='experience-title'>
-            {' '}
-            {/*TEXTO EXPERIENCIAS REALES TRADUCIDO*/}
-            {t('experienciasReales')}
-          </h2>
-          <div className='experience-carousel'>
-            <div className='carousel-controls'>
+          <h2 className='experience-title'>{t('experienciasReales')}</h2>
+
+          {error ? (
+            <p className='experience-error'>{error}</p>
+          ) : (
+            <div className='experience-carousel'>
+              <div className='carousel-controls'>
+                <button
+                  className='carousel-control prev'
+                  onClick={prevSlide}
+                  aria-label='Anterior'
+                >
+                  <i className='fas fa-chevron-left'></i>
+                </button>
+              </div>
+
+              <div className='experience-cards'>
+                {experiences
+                  .slice(currentIndex, currentIndex + cardsToShow)
+                  .map((exp, i) => (
+                    <div
+                      key={exp.id || exp._id || `${currentIndex}-${i}`}
+                      className='experience-card'
+                    >
+                      <img
+                        src={
+                          exp.image && exp.image !== 'Sin imagen'
+                            ? exp.image
+                            : DEFAULT_IMAGE_URL
+                        }
+                        alt='experiencia'
+                        onError={(e) =>
+                          (e.currentTarget.src = DEFAULT_IMAGE_URL)
+                        }
+                      />
+                      <p>
+                        {currentLang === 'es' ? exp?.text?.es : exp?.text?.gl}
+                      </p>
+                    </div>
+                  ))}
+              </div>
+
               <button
-                className='carousel-control prev'
-                onClick={prevSlide}
-                aria-label='Anterior'
+                className='carousel-control next'
+                onClick={nextSlide}
+                aria-label='Siguiente'
               >
-                <i className='fas fa-chevron-left'></i>
+                <i className='fas fa-chevron-right'></i>
               </button>
             </div>
-            <div className='experience-cards'>
-              {experiences
-                .slice(currentIndex, currentIndex + cardsToShow)
-                .map((experience) => (
-                  <div key={experience.id} className='experience-card'>
-                    <img
-                      src={
-                        experience.image !== 'Sin imagen'
-                          ? experience.image
-                          : DEFAULT_IMAGE_URL
-                      }
-                      alt={experience.image}
-                    />
-                    <p>
-                      {currentLang === 'es'
-                        ? experience.text.es
-                        : experience.text.gl}
-                    </p>
-                  </div>
-                ))}
-            </div>
-            <button
-              className='carousel-control next'
-              onClick={nextSlide}
-              aria-label='Siguiente'
-            >
-              <i className='fas fa-chevron-right'></i>
-            </button>
-          </div>
+          )}
         </div>
       </main>
       <Footer />
