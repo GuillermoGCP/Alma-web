@@ -1,3 +1,4 @@
+// src/hooks/useLibraryData.js
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 
@@ -7,6 +8,7 @@ const useLibraryData = () => {
 
   useEffect(() => {
     const controller = new AbortController()
+    let ignore = false
 
     axios
       .get(`${API_BASE_URL}/get-home-data`, {
@@ -15,17 +17,22 @@ const useLibraryData = () => {
         headers: { Accept: 'application/json' },
       })
       .then((response) => {
+        if (ignore) return
         const form = response?.data?.form ?? response?.data?.data?.form ?? null
         const library =
           form && typeof form === 'object' ? form.library ?? null : null
         setLibraryData(library)
       })
       .catch((error) => {
+        if (axios.isCancel?.(error) || error?.code === 'ERR_CANCELED') return
         console.error('Error al obtener datos:', error)
-        setLibraryData(null)
+        if (!ignore) setLibraryData(null)
       })
 
-    return () => controller.abort()
+    return () => {
+      ignore = true
+      controller.abort()
+    }
   }, [API_BASE_URL])
 
   return libraryData

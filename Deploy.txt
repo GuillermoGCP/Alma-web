@@ -18,3 +18,5 @@ Panel Dinahosting → Otras aplicaciones → tu app Node → Reiniciar, o
 Por SSH (Passenger):
 cd ~/www/api
 mkdir -p tmp && touch tmp/restart.txt
+
+Salud de la api: curl -sS -i https://api.almalactancia.org/health
