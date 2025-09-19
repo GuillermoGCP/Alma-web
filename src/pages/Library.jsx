@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import Footer from '../components/Footer'
 import useLibraryData from '../hooks/useLibraryData'
 import './Library.css'
@@ -11,19 +11,49 @@ const Library = () => {
   const [openInfo, setOpenInfo] = useState(null)
   const libraryData = useLibraryData()
 
+  // Safeties: defaults cuando libraryData es null o viene con formas distintas
+  const lib = libraryData ?? {}
+
+  const lactationResources = Array.isArray(lib.lactationResources)
+    ? lib.lactationResources
+    : []
+  const lactationBooks =
+    typeof lib.lactationBooks === 'string' ? lib.lactationBooks : ''
+
+  const pregnancyResources = Array.isArray(lib.pregnancyResources)
+    ? lib.pregnancyResources
+    : []
+  const pregnancyBooks =
+    typeof lib.pregnancyBooks === 'string' ? lib.pregnancyBooks : ''
+
+  const parentingResources = Array.isArray(lib.parentingResources)
+    ? lib.parentingResources
+    : []
+  const parentingBooks =
+    typeof lib.parentingBooks === 'string' ? lib.parentingBooks : ''
+
+  const nutritionBlogs = Array.isArray(lib.nutritionBlogs)
+    ? lib.nutritionBlogs
+    : []
+  const nutritionBooks =
+    typeof lib.nutritionBooks === 'string' ? lib.nutritionBooks : ''
+
+  const archiveBlogs = Array.isArray(lib.archiveBlogs) ? lib.archiveBlogs : []
+
   const renderTextWithFormatting = (text) => {
+    if (typeof text !== 'string' || !text.trim()) return null
     return text.split('\n').map((item, index) => {
-      if (item.trim().endsWith(':')) {
-        return <h4 key={index}>{item.trim()}</h4>
-      } else {
-        return <li key={index}>{item.trim()}</li>
-      }
+      const line = item.trim()
+      if (!line) return null
+      return line.endsWith(':') ? (
+        <h4 key={index}>{line}</h4>
+      ) : (
+        <li key={index}>{line}</li>
+      )
     })
   }
 
-  const toggleInfo = (info) => {
-    setOpenInfo(info === openInfo ? null : info)
-  }
+  const toggleInfo = (info) => setOpenInfo(info === openInfo ? null : info)
 
   return (
     <div className='library-page'>
@@ -35,6 +65,7 @@ const Library = () => {
           <p className='library-text'>{t('textoInicialBiblioteca')}</p>
           <p className='library-text'>{t('textoInicialDosBiblioteca')}</p>
         </div>
+
         <div className='collapsible-main'>
           <div className='collapsible-container-library'>
             {/* Lactancia */}
@@ -57,22 +88,22 @@ const Library = () => {
               <div className='collapsible-content-library'>
                 <h3>RECURSOS ONLINE</h3>
                 <ul>
-                  {libraryData.lactationResources.map((resource, index) => (
-                    <li key={index}>
+                  {lactationResources.map((resource, index) => (
+                    <li key={resource?.id ?? index}>
                       <a
-                        href={resource.link}
+                        href={resource?.link}
                         target='_blank'
                         rel='noopener noreferrer'
                       >
                         {currentLang === 'es'
-                          ? resource.title.es
-                          : resource.title.gl}
+                          ? resource?.title?.es
+                          : resource?.title?.gl}
                       </a>
                     </li>
                   ))}
                 </ul>
                 <h3>LIBROS</h3>
-                <ul>{renderTextWithFormatting(libraryData.lactationBooks)}</ul>
+                <ul>{renderTextWithFormatting(lactationBooks)}</ul>
               </div>
             )}
           </div>
@@ -98,22 +129,22 @@ const Library = () => {
               <div className='collapsible-content-library'>
                 <h3>RECURSOS</h3>
                 <ul>
-                  {libraryData.pregnancyResources.map((resource, index) => (
-                    <li key={index}>
+                  {pregnancyResources.map((resource, index) => (
+                    <li key={resource?.id ?? index}>
                       <a
-                        href={resource.link}
+                        href={resource?.link}
                         target='_blank'
                         rel='noopener noreferrer'
                       >
                         {currentLang === 'es'
-                          ? resource.title.es
-                          : resource.title.gl}
+                          ? resource?.title?.es
+                          : resource?.title?.gl}
                       </a>
                     </li>
                   ))}
                 </ul>
                 <h3>LIBROS</h3>
-                <ul>{renderTextWithFormatting(libraryData.pregnancyBooks)}</ul>
+                <ul>{renderTextWithFormatting(pregnancyBooks)}</ul>
               </div>
             )}
           </div>
@@ -139,22 +170,22 @@ const Library = () => {
               <div className='collapsible-content-library'>
                 <h3>OTROS RECURSOS</h3>
                 <ul>
-                  {libraryData.parentingResources.map((resource, index) => (
-                    <li key={index}>
+                  {parentingResources.map((resource, index) => (
+                    <li key={resource?.id ?? index}>
                       <a
-                        href={resource.link}
+                        href={resource?.link}
                         target='_blank'
                         rel='noopener noreferrer'
                       >
                         {currentLang === 'es'
-                          ? resource.title.es
-                          : resource.title.gl}
+                          ? resource?.title?.es
+                          : resource?.title?.gl}
                       </a>
                     </li>
                   ))}
                 </ul>
                 <h3>LIBROS</h3>
-                <ul>{renderTextWithFormatting(libraryData.parentingBooks)}</ul>
+                <ul>{renderTextWithFormatting(parentingBooks)}</ul>
               </div>
             )}
           </div>
@@ -182,22 +213,22 @@ const Library = () => {
               <div className='collapsible-content-library'>
                 <h3>BLOGS</h3>
                 <ul>
-                  {libraryData.nutritionBlogs.map((resource, index) => (
-                    <li key={index}>
+                  {nutritionBlogs.map((resource, index) => (
+                    <li key={resource?.id ?? index}>
                       <a
-                        href={resource.link}
+                        href={resource?.link}
                         target='_blank'
                         rel='noopener noreferrer'
                       >
                         {currentLang === 'es'
-                          ? resource.title.es
-                          : resource.title.gl}
+                          ? resource?.title?.es
+                          : resource?.title?.gl}
                       </a>
                     </li>
                   ))}
                 </ul>
                 <h3>LIBROS</h3>
-                <ul>{renderTextWithFormatting(libraryData.nutritionBooks)}</ul>
+                <ul>{renderTextWithFormatting(nutritionBooks)}</ul>
               </div>
             )}
           </div>
@@ -221,16 +252,16 @@ const Library = () => {
             </div>
             {openInfo === 'hemeroteca' && (
               <div className='collapsible-content-library'>
-                {libraryData.archiveBlogs.map((resource, index) => (
-                  <p key={index}>
+                {archiveBlogs.map((resource, index) => (
+                  <p key={resource?.id ?? index}>
                     <a
-                      href={resource.link}
+                      href={resource?.link}
                       target='_blank'
                       rel='noopener noreferrer'
                     >
                       {currentLang === 'es'
-                        ? resource.title.es
-                        : resource.title.gl}
+                        ? resource?.title?.es
+                        : resource?.title?.gl}
                     </a>
                   </p>
                 ))}
