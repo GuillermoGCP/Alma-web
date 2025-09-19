@@ -10,3 +10,11 @@ ssh almalactancia@hl1499.dinaserver.com -p 22
  curl -i -X OPTIONS https://api.almalactancia.org/health \
   -H "Origin: https://almalactancia.org" \
   -H "Access-Control-Request-Method: GET"
+
+
+Reinicias la app:
+Panel Dinahosting → Otras aplicaciones → tu app Node → Reiniciar, o
+
+Por SSH (Passenger):
+cd ~/www/api
+mkdir -p tmp && touch tmp/restart.txt
