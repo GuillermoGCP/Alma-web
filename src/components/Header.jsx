@@ -19,15 +19,16 @@ const Header = ({ scrolled }) => {
   const [menuOpen, setMenuOpen] = useState(false)
   const [isModalOpen, setIsModalOpen] = useState(false)
 
-  // Ocultar el Header en rutas específicas (Dashboard o Admin)
-  if (pathname.startsWith('/admin') || pathname.startsWith('/dashboard'))
-    return null
+  // Rutas donde NO se muestra el header
+  const shouldHideHeader =
+    pathname.startsWith('/admin') || pathname.startsWith('/dashboard')
 
-  // Cerrar menú al navegar
+  // Cerrar menú al navegar (el hook se declara SIEMPRE)
   useEffect(() => {
+    if (shouldHideHeader) return
     setMenuOpen(false)
     setActiveIndex(null)
-  }, [pathname])
+  }, [pathname, shouldHideHeader])
 
   const toggleSubMenu = (index) => {
     setActiveIndex((prev) => (prev === index ? null : index))
@@ -54,20 +55,20 @@ const Header = ({ scrolled }) => {
   // helper para NavLink v6
   const navClass = ({ isActive }) => (isActive ? 'active' : undefined)
 
+  // Return condicional DESPUÉS de los hooks
+  if (shouldHideHeader) return null
+
   return (
     <header
       className={`navbar ${purpleBg ? 'purple' : ''} ${
         isHero ? 'on-hero' : ''
       }`}
     >
-      {/* Izquierda: Logo */}
       <Link to='/' className='logo-link' onClick={closeMenu}>
         <img src={logoSrc} alt='Logo de Alma' className='logo' />
       </Link>
 
-      {/* Derecha: columna con idioma/redes arriba y botón debajo */}
       <div className='nav-right'>
-        {/* Añadimos también la clase social-media para heredar estilos del usuario */}
         <div className='lang-and-social social-media'>
           {instagramLink && (
             <a

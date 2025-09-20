@@ -465,3 +465,45 @@ h3 {
     margin-top: 0;
   }
 }
+/* No escalar más allá de 1500px de ancho en pantallas grandes */
+@media (min-width: 1500px) {
+  .img-section-about {
+    background-color: #9c6fa0; /* color de fondo que “rellena” los laterales */
+  }
+
+  .background-image2 {
+    background-size: 1500px auto; /* ancho máximo 1500px */
+    background-repeat: no-repeat;
+    background-position: top center; /* suele evitar cortar cabezas */
+  }
+
+  /* Overlay: 1) oscurece para texto, 2) viñeta lateral que funde con el fondo */
+  .background-image2::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      /* oscurecido vertical para legibilidad */ linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.25) 0%,
+        rgba(0, 0, 0, 0.4) 60%,
+        rgba(0, 0, 0, 0.55) 100%
+      ),
+      /* viñeta lateral que mezcla con el fondo #9c6fa0 */
+        linear-gradient(
+          90deg,
+          #cfb5d1ff 0%,
+          rgba(156, 111, 160, 0) 12%,
+          rgba(164, 135, 167, 0) 88%,
+          #9c6fa0 100%
+        );
+    pointer-events: none;
+  }
+
+  .about-alma {
+    margin: 0 300px;
+  }
+  .about-title {
+    margin: 0 300px 100px;
+  }
+}

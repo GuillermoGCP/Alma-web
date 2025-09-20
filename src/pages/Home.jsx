@@ -29,9 +29,8 @@ const Home = ({ homeData, scrolled }) => {
 
   // Derivados seguros
   const imageHomeSrc =
-    home?.imageHome ||
-    'src/images/Alma_Lactancia_-_Foto_hero.jpg' ||
-    DEFAULT_IMAGE_URL
+    home?.imageHome ?? '/Alma_Lactancia_-_Foto_hero.jpg' ?? DEFAULT_IMAGE_URL
+
   const textsNosotras = useMemo(() => {
     const s = home?.sectionText
     if (!s) return []

@@ -62,7 +62,6 @@ const useAdminHome = (setHomeData) => {
         )
         setFile(imageHome ?? null)
       } catch (err) {
-        // Silencia aborts de desarrollo / navegación
         if (err?.name === 'AbortError') return
         console.error('Error al obtener los datos:', err)
         toast.error('Error al cargar los datos.')
