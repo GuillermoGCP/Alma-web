@@ -12,17 +12,18 @@ body,
   position: relative;
   min-height: 100vh;
   overflow-x: hidden;
+  margin-top: -45px;
 }
 
 .about-main {
   flex: 1;
   display: flex;
   flex-direction: column;
-  padding-top: 170px;
 }
 
 .img-section-about {
   position: relative;
+  margin-top: 148px;
   height: 90vh;
   display: flex;
   flex-direction: column;
@@ -30,7 +31,7 @@ body,
 }
 
 .background-image2 {
-  background-image: url("/src/images/Equipo Alma Lactancia.jpg");
+  background-image: url('/src/images/Equipo Alma Lactancia.jpg');
   background-size: cover;
   background-position: center;
   height: 90vh;
@@ -42,7 +43,7 @@ body,
 }
 
 .background-image2::before {
-  content: "";
+  content: '';
   position: absolute;
   top: 0;
   left: 0;
@@ -56,7 +57,7 @@ body,
   color: white;
   font-size: 1rem;
   margin-left: 5.2rem;
-  z-index: 998;
+  z-index: 500;
   font-weight: lighter;
 }
 
@@ -67,7 +68,7 @@ body,
   margin-bottom: 3rem;
   font-weight: bold;
   margin-left: 5rem;
-  z-index: 998;
+  z-index: 500;
   margin-top: 0;
 }
 
@@ -137,7 +138,7 @@ body,
 }
 
 .person-card-front::before {
-  content: "";
+  content: '';
   position: absolute;
   top: 0;
   left: 0;
@@ -340,7 +341,8 @@ h3 {
 /* Estilos responsive */
 @media (max-width: 768px) {
   .about-main {
-    padding-top: 0px;
+    padding: 0px;
+    margin: 0;
   }
   .img-section-about {
     position: relative;
@@ -348,7 +350,7 @@ h3 {
   }
 
   .background-image2 {
-    background-image: url("/src/images/Equipo Alma Lactancia.jpg");
+    background-image: url('/src/images/Equipo Alma Lactancia.jpg');
     background-size: cover;
     background-position: center;
     height: 50vh;
@@ -455,5 +457,11 @@ h3 {
 
   .fedegalma-img {
     width: 13rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .img-section-about {
+    margin-top: 0;
   }
 }

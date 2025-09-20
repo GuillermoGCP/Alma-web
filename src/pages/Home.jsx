@@ -28,7 +28,10 @@ const Home = ({ homeData, scrolled }) => {
   const [error, setError] = useState(null)
 
   // Derivados seguros
-  const imageHomeSrc = home?.imageHome || DEFAULT_IMAGE_URL
+  const imageHomeSrc =
+    home?.imageHome ||
+    'src/images/Alma_Lactancia_-_Foto_hero.jpg' ||
+    DEFAULT_IMAGE_URL
   const textsNosotras = useMemo(() => {
     const s = home?.sectionText
     if (!s) return []

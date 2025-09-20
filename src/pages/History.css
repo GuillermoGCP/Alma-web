@@ -3,7 +3,7 @@
   flex-direction: column;
   min-height: 100vh;
   width: 100%; /* Cambiar min-width a width */
-  padding-top: 170px;
+  margin-top: -45px;
 }
 .history-page .navbar {
   background-color: #b380b5;
@@ -20,6 +20,7 @@
 }
 .history-header {
   padding-bottom: 20px;
+  margin-top: 140px;
 }
 .history-title {
   font-family: outfit;

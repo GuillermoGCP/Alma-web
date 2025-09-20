@@ -184,7 +184,10 @@ const Contact = () => {
               cualquiera de los siguientes medios:
             </p>
             <p>
-              <a href={email} className="contact-info-icon">
+              <a
+                href={email ? `mailto:${email}` : undefined}
+                className="contact-info-icon"
+              >
                 <i className="fas fa-envelope"></i> {email}
               </a>
             </p>

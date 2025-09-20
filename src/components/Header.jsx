@@ -60,22 +60,15 @@ const Header = ({ scrolled }) => {
         isHero ? 'on-hero' : ''
       }`}
     >
-      <nav className='navbar ' aria-label='Principal'>
-        <Link to='/' className='logo-link' onClick={closeMenu}>
-          <img src={logoSrc} alt='Logo de Alma' className='logo' />
-        </Link>
+      {/* Izquierda: Logo */}
+      <Link to='/' className='logo-link' onClick={closeMenu}>
+        <img src={logoSrc} alt='Logo de Alma' className='logo' />
+      </Link>
 
-        <button
-          className='menu-toggle'
-          onClick={toggleMenu}
-          aria-expanded={menuOpen}
-          aria-label={menuOpen ? 'Cerrar menú' : 'Abrir menú'}
-          type='button'
-        >
-          {menuOpen ? '✕' : '☰'}
-        </button>
-
-        <div className={`social-media ${menuOpen ? 'active' : ''}`}>
+      {/* Derecha: columna con idioma/redes arriba y botón debajo */}
+      <div className='nav-right'>
+        {/* Añadimos también la clase social-media para heredar estilos del usuario */}
+        <div className='lang-and-social social-media'>
           {instagramLink && (
             <a
               href={instagramLink}
@@ -109,6 +102,16 @@ const Header = ({ scrolled }) => {
           </button>
           <LanguageSwitcher />
         </div>
+
+        <button
+          className='menu-toggle'
+          onClick={toggleMenu}
+          aria-expanded={menuOpen}
+          aria-label={menuOpen ? 'Cerrar menú' : 'Abrir menú'}
+          type='button'
+        >
+          {menuOpen ? '✕' : '☰'}
+        </button>
 
         <ul className={`menu ${menuOpen ? 'active' : ''}`}>
           <li className='menu-item'>
@@ -180,7 +183,7 @@ const Header = ({ scrolled }) => {
             </NavLink>
           </li>
         </ul>
-      </nav>
+      </div>
 
       {isModalOpen && <MySubscriptionModal onClose={closeModal} />}
     </header>

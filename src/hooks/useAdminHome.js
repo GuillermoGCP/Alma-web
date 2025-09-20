@@ -7,8 +7,20 @@ const useAdminHome = (setHomeData) => {
   const [file, setFile] = useState(null)
   const [charactersRemaining, setCharactersRemaining] = useState(MAX_CHARACTERS)
   const [originalTitle, setOriginalTitle] = useState('')
-  const [originalText, setOriginalText] = useState('')
+  const [originalText, setOriginalText] = useState({ es: '', gl: '' })
   const fileInputRef = useRef(null)
+
+  const ensureSectionTextShape = (value) => {
+    if (value && typeof value === 'object') {
+      return {
+        es: value.es ?? '',
+        gl: value.gl ?? '',
+      }
+    }
+
+    const textValue = typeof value === 'string' ? value : ''
+    return { es: textValue, gl: '' }
+  }
 
   useEffect(() => {
     const controller = new AbortController()
@@ -35,16 +47,20 @@ const useAdminHome = (setHomeData) => {
         const form = data?.form ?? data?.data?.form ?? null
         const home = form && typeof form === 'object' ? form.home ?? null : null
 
-        const sectionText =
-          typeof home?.sectionText === 'string' ? home.sectionText : ''
+        const normalizedSectionText = ensureSectionTextShape(home?.sectionText)
+        const normalizedHome = home
+          ? { ...home, sectionText: normalizedSectionText }
+          : { sectionText: normalizedSectionText }
         const titleHome = home?.titleHome ?? ''
         const imageHome = home?.imageHome ?? null
 
-        setHomeData(home ?? {})
+        setHomeData(normalizedHome)
         setOriginalTitle(titleHome)
-        setOriginalText(sectionText)
-        setCharactersRemaining(MAX_CHARACTERS - sectionText.length)
-        setFile(imageHome)
+        setOriginalText(normalizedSectionText)
+        setCharactersRemaining(
+          MAX_CHARACTERS - (normalizedSectionText.es ?? '').length
+        )
+        setFile(imageHome ?? null)
       } catch (err) {
         // Silencia aborts de desarrollo / navegación
         if (err?.name === 'AbortError') return
@@ -70,7 +86,13 @@ const useAdminHome = (setHomeData) => {
   const handleTextChange = (e) => {
     const newText = e.target.value
     if (newText.length <= MAX_CHARACTERS) {
-      setHomeData((prev) => ({ ...prev, sectionText: newText }))
+      setHomeData((prev) => {
+        const previous = ensureSectionTextShape(prev?.sectionText)
+        return {
+          ...prev,
+          sectionText: { ...previous, es: newText },
+        }
+      })
       setCharactersRemaining(MAX_CHARACTERS - newText.length)
     }
   }
@@ -82,8 +104,12 @@ const useAdminHome = (setHomeData) => {
 
   // Cancelaciones
   const handleCancelText = () => {
-    setHomeData((prev) => ({ ...prev, sectionText: originalText }))
-    setCharactersRemaining(MAX_CHARACTERS - originalText.length)
+    const restored = ensureSectionTextShape(originalText)
+    setHomeData((prev) => ({
+      ...prev,
+      sectionText: restored,
+    }))
+    setCharactersRemaining(MAX_CHARACTERS - restored.es.length)
   }
   const handleCancelTitle = () => {
     setHomeData((prev) => ({ ...prev, titleHome: originalTitle }))
