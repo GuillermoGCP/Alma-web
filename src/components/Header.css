@@ -10,7 +10,7 @@ body {
 .navbar {
   margin: 64px auto;
   display: flex;
-  width: 99vw;
+  width: 100%;
   background-color: #9c6fa0;
   flex-direction: row;
   align-items: center;
@@ -244,7 +244,7 @@ body {
     position: fixed;
     top: 164px;           /* altura del header actual */
     left: 0;
-    width: 99vw;
+    width: 100%;
     height: auto;
     background-color: #9c6fa0;
     z-index: 3000;
@@ -359,7 +359,7 @@ body {
     position: fixed;
     top: 140px;   /* altura del header */
     left: 0;
-    width: 99vw;
+    width: 100%;
     background-color: #9c6fa0;
     z-index: 3000;
     text-align: center;
@@ -456,7 +456,7 @@ body {
   .menu-item > .submenu-toggle::after {
     content: '';
     position: absolute;
-    left: 0,
+    left: 0;
     bottom: -2px;
     width: 100%;
     height: 2px;

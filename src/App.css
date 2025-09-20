@@ -27,7 +27,7 @@
   z-index: 1000;
   margin-top: 0;
   background-color: #b380b5;
-  width: 100vw;
+  width: 100%;
 }
 .alert-text {
   font-family: Outfit;

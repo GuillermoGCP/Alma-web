@@ -11,7 +11,7 @@ body,
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  min-width: 100vw;
+  min-width: 100%;
   margin-top: -46px;
 }
 
@@ -390,7 +390,7 @@ body,
     flex-direction: column;
     justify-content: flex-start;
     margin-right: 0;
-    overflow-x: 0;
+    overflow-x: hidden;
     max-width: 200px;
   }
   .contact-info p {
