@@ -1,11 +1,11 @@
 import AppRoutes from './components/AppRoutes'
 import Alert from './components/Alert'
-import { BrowserRouter as Router } from 'react-router-dom'
 import './App.css'
 import useApp from './hooks/useApp'
 import ScrollToTopButton from './components/ScrollToTopButton'
 import { useEffect, useRef, useState } from 'react'
 import Header from './components/Header'
+import { useLocation } from 'react-router-dom'
 
 function App() {
   const {
@@ -25,6 +25,10 @@ function App() {
 
   const appRef = useRef(null)
   const [scrolled, setScrolled] = useState(false)
+  const location = useLocation()
+  const shouldHideHeader =
+    location.pathname.startsWith('/admin') ||
+    location.pathname.startsWith('/dashboard')
 
   useEffect(() => {
     const handleScroll = () => {
@@ -46,32 +50,30 @@ function App() {
   }, [])
 
   return (
-    <Router>
-      <div className='App' ref={appRef}>
-        <Header scrolled={scrolled} />
+    <div className='App' ref={appRef}>
+      {!shouldHideHeader && <Header scrolled={scrolled} />}
 
-        <Alert
-          title={'XX CONGRESO DE LACTANCIA MATERNA FEDALMA'}
-          date={'3 y 4 de Octubre de 2025'}
-          link={'https://www.fedalma.org/congreso-2025/'}
-        />
-        <AppRoutes
-          instagramPost={instagramPost}
-          setInstagramPost={setInstagramPost}
-          publishedForm={publishedForm}
-          setPublishedForm={setPublishedForm}
-          activities={activities}
-          setActivities={setActivities}
-          checkedExperiences={checkedExperiences}
-          setCheckedExperiences={setCheckedExperiences}
-          homeData={homeData}
-          setHomeData={setHomeData}
-          formList={formList}
-          instagramPostList={instagramPostList}
-        />
-        <ScrollToTopButton />
-      </div>
-    </Router>
+      <Alert
+        title={'XX CONGRESO DE LACTANCIA MATERNA FEDALMA'}
+        date={'3 y 4 de Octubre de 2025'}
+        link={'https://www.fedalma.org/congreso-2025/'}
+      />
+      <AppRoutes
+        instagramPost={instagramPost}
+        setInstagramPost={setInstagramPost}
+        publishedForm={publishedForm}
+        setPublishedForm={setPublishedForm}
+        activities={activities}
+        setActivities={setActivities}
+        checkedExperiences={checkedExperiences}
+        setCheckedExperiences={setCheckedExperiences}
+        homeData={homeData}
+        setHomeData={setHomeData}
+        formList={formList}
+        instagramPostList={instagramPostList}
+      />
+      <ScrollToTopButton />
+    </div>
   )
 }
 

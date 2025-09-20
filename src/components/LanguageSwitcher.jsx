@@ -1,26 +1,25 @@
-import React from "react";
-import useLanguage from "../hooks/useLanguage";
-import "./LanguageSwitcher.css";
+import useLanguage from '../hooks/useLanguage'
+import './LanguageSwitcher.css'
 
 const LanguageSwitcher = () => {
-  const { currentLanguage, changeLanguage } = useLanguage();
+  const { currentLanguage, changeLanguage } = useLanguage()
 
   return (
-    <div className="language-switcher">
+    <div className='language-switcher'>
       <button
-        onClick={() => changeLanguage("es")}
-        className={currentLanguage === "es" ? "active" : ""}
+        onClick={() => changeLanguage('es')}
+        className={currentLanguage === 'es' ? 'active' : ''}
       >
         ESP
       </button>
       <button
-        onClick={() => changeLanguage("gl")}
-        className={currentLanguage === "gl" ? "active" : ""}
+        onClick={() => changeLanguage('gl')}
+        className={currentLanguage === 'gl' ? 'active' : ''}
       >
         GAL
       </button>
     </div>
-  );
-};
+  )
+}
 
-export default LanguageSwitcher;
+export default LanguageSwitcher

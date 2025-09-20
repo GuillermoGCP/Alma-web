@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import './MySubscriptionModal.css'
 import { toast } from 'react-toastify'
 
@@ -6,10 +6,9 @@ const MySubscriptionModal = ({ onClose }) => {
   const [loading, setLoading] = useState(false)
   const [email, setEmail] = useState('')
   const [id, setId] = useState('')
-  const [step, setStep] = useState(1) // Controla en qué paso está el modal
-  const [subscriptionStatus, setSubscriptionStatus] = useState('') // Estado de la suscripción
+  const [step, setStep] = useState(1)
+  const [subscriptionStatus, setSubscriptionStatus] = useState('')
 
-  //Añadimos un estado para la confirmación de que el usuario se ha dado de baja
   const [showUnsubscribeConfirmation, setShowUnsubscribeConfirmation] =
     useState(false)
 
@@ -17,7 +16,6 @@ const MySubscriptionModal = ({ onClose }) => {
     onClose()
   }
 
-  // Validación simple de email y id
   const isValid = email.trim() !== '' && id.trim() !== ''
 
   const handleCheckSubscription = async () => {
@@ -51,10 +49,8 @@ const MySubscriptionModal = ({ onClose }) => {
         return
       }
 
-      // Verificar si el usuario tiene una suscripción activa
       setSubscriptionStatus(data.data.state)
 
-      // Cambiar a la siguiente etapa (paso 2) solo si la suscripción fue exitosa
       setStep(2)
     } catch (error) {
       toast.error(
@@ -125,7 +121,7 @@ const MySubscriptionModal = ({ onClose }) => {
       if (!response.ok) {
         toast.error(data.message || 'Error al darse de baja.')
       } else {
-        toast.success(data.message) // Confirmación de baja exitosa
+        toast.success(data.message)
       }
     } catch (error) {
       toast.error(`Error al darse de baja: ${error.message || 'Desconocido'}`)
