@@ -14,20 +14,54 @@ const useFormDropdown = (
   const [publishedActivities, setPublishedActivities] = useState([])
   const { i18n } = useTranslation()
 
-  //Para textos dinámicos en el idioma seleccionado:
+  //Para textos dinamicos en el idioma seleccionado:
   const currentLang = i18n.language
 
   //Obtener los formularios creados:
   useEffect(() => {
-    fetch(import.meta.env.VITE_API_URL + '/get-all-forms')
-      .then((response) => response.json())
-      .then((data) => {
-        setForms(data.forms || {})
-      })
-      .catch((error) => {
+    const controller = new AbortController()
+    const fetchForms = async () => {
+      try {
+        const response = await fetch(
+          `${import.meta.env.VITE_API_URL}/get-all-forms`,
+          { signal: controller.signal }
+        )
+
+        if (!response.ok) {
+          throw new Error('No se pudieron obtener los formularios')
+        }
+
+        const data = await response.json()
+        const fetchedForms = data?.forms || {}
+
+        if (controller.signal.aborted) {
+          return
+        }
+
+        setForms((prevForms) => {
+          if (!prevForms || Object.keys(prevForms).length === 0) {
+            return fetchedForms
+          }
+
+          return {
+            ...fetchedForms,
+            ...prevForms,
+          }
+        })
+      } catch (error) {
+        if (controller.signal.aborted) {
+          return
+        }
         console.error('Error al obtener los formularios:', error)
-      })
-  }, [])
+      }
+    }
+
+    fetchForms()
+
+    return () => {
+      controller.abort()
+    }
+  }, [setForms])
 
   //Los eventos publicados (para asociarlos a las hojas al publicar)
   useEffect(() => {
@@ -78,7 +112,7 @@ const useFormDropdown = (
       const response = await fetch(
         `${
           import.meta.env.VITE_API_URL
-        }/get-form/${formId}/publish/${jsonNumber}` //Este último parámetro es opcional, si se envía (un valor truthy), se guardarán los datos en el servidor y estarán disponibles para el endpoint de formulario publicado.
+        }/get-form/${formId}/publish/${jsonNumber}` //Este ultimo parametro es opcional, si se envia (un valor truthy), se guardaran los datos en el servidor y estaran disponibles para el endpoint de formulario publicado.
       )
 
       if (response.ok) {
@@ -130,7 +164,7 @@ const useFormDropdown = (
       const data = await response.json()
       if (data.isPublished) {
         const unPublish = window.confirm(
-          'El formulario está publicado, ¿quiere despublicarlo?'
+          'El formulario esta publicado, quiere despublicarlo?'
         )
         if (unPublish) {
           unPublishHandler(jsonNumber)
@@ -151,10 +185,10 @@ const useFormDropdown = (
   }
 
   const handleYes = async (id, sheetName, jsonNumber) => {
-    //Compruebo si el formulario que se quiere borrar está publicado:
+    //Compruebo si el formulario que se quiere borrar esta publicado:
     checkIsPublishHandler(id, jsonNumber)
 
-    //Sigo con la lógica de borrado:
+    //Sigo con la logica de borrado:
     const url = `${
       import.meta.env.VITE_API_URL
     }/delete-form/${id}/deleteSheet/${sheetName}`

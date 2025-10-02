@@ -1,6 +1,4 @@
-import React from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
-import { Outlet } from 'react-router-dom'
 import LogoutButton from '../../components/LogoutButton'
 import './AdminDashboard.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'

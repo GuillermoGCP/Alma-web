@@ -14,8 +14,6 @@ const handleResponse = async (response) => {
 
 // Activities
 export const createActivityService = async (formData) => {
-  for (const [key, value] of formData.entries()) {
-  }
   try {
     const response = await fetch(`${API_BASE_URL}/create-activity`, {
       method: 'POST',
