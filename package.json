@@ -36,7 +36,8 @@
   "scripts": {
     "build": "vite build",
     "dev": "vite",
-    "serve": "vite preview"
+    "serve": "vite preview",
+    "test": "node --test \"tests/**/*.test.js\""
   },
   "browserslist": {
     "production": [

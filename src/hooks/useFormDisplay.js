@@ -1,29 +1,39 @@
 import { useEffect, useRef, useState } from 'react'
 import { toast } from 'react-toastify'
+
 const useFormDisplay = (jsonNumber) => {
   const [formToShow, setFormToShow] = useState({})
 
-  //Para obtener el formulario publicado:
+  // Para obtener el formulario publicado:
   useEffect(() => {
+    const controller = new AbortController()
     const getPublishedForm = async () => {
       try {
         const response = await fetch(
-          import.meta.env.VITE_API_URL + `/get-published-form/${jsonNumber}`
+          import.meta.env.VITE_API_URL + `/get-published-form/${jsonNumber}`,
+          { signal: controller.signal }
         )
         if (response.ok) {
           const data = await response.json()
-          setFormToShow(data.form)
+          setFormToShow(data.form || {})
         } else {
-          console.error('Error al enviar los datos')
+          console.error('Error al obtener el formulario publicado')
         }
-      } catch (error) {}
+      } catch (error) {
+        if (!controller.signal.aborted) {
+          console.error('Error al obtener el formulario publicado:', error)
+        }
+      }
     }
     getPublishedForm()
-  }, [])
+
+    return () => controller.abort()
+  }, [jsonNumber])
 
   // Ref para el formulario
   const formRef = useRef(null)
-  //Para enviar los resultados del formulario:
+
+  // Para enviar los resultados del formulario:
   const sendDataHandler = async () => {
     if (!formRef.current) return
     const formElements = formRef.current.elements
@@ -34,10 +44,18 @@ const useFormDisplay = (jsonNumber) => {
       return acc
     }, {})
 
+    // Asegurar que usamos un nombre de formulario en string (no objeto)
+    const formNameValue =
+      typeof formToShow?.formName === 'string'
+        ? formToShow.formName
+        : formToShow?.formName?.es || formToShow?.formName?.gl || ''
+
     try {
-      toast.loading('Enviando datos...')
+      const loadingId = toast.loading('Enviando datos...')
       const response = await fetch(
-        import.meta.env.VITE_API_URL + '/submit-form/' + formToShow.formName,
+        import.meta.env.VITE_API_URL +
+          '/submit-form/' +
+          encodeURIComponent(formNameValue),
         {
           method: 'POST',
           headers: {
@@ -45,26 +63,28 @@ const useFormDisplay = (jsonNumber) => {
           },
           body: JSON.stringify({
             ...formValues,
-            formName: formToShow.formName,
+            formName: formNameValue,
           }),
         }
       )
 
-      if (response.ok) {
-        toast.dismiss()
-        toast.success('Datos enviados exitosamente')
+      toast.dismiss(loadingId)
 
+      if (response.ok) {
+        toast.success('Datos enviados exitosamente')
         formRef.current.reset()
       } else {
-        const errorData = await response.json()
-        const errorMessage = errorData.error || response.statusText
+        const errorData = await response.json().catch(() => ({}))
+        const errorMessage =
+          errorData.error || response.statusText || 'Error desconocido'
         throw new Error(errorMessage)
       }
     } catch (error) {
-      toast.success('Error al enviar los datos')
+      toast.error('Error al enviar los datos')
       console.error('Ha ocurrido un error:', error)
     }
   }
+
   return { sendDataHandler, formRef, formToShow }
 }
 

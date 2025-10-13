@@ -42,13 +42,16 @@ const FormDisplay = ({ jsonNumber, title }) => {
               ) : (
                 <input
                   type={field.type}
-                  name={
-                    currentLang === 'es'
-                      ? field.label.es.toLowerCase().replace(/\s+/g, '_')
-                      : field.label.gl.toLowerCase().replace(/\s+/g, '_')
-                  }
+                  name={(currentLang === 'es'
+                    ? field.label?.es ?? ''
+                    : field.label?.gl || field.label?.es || ''
+                  )
+                    .toLowerCase()
+                    .replace(/\s+/g, '_')}
                   placeholder={
-                    currentLang === 'es' ? field.label.es : field.label.gl
+                    currentLang === 'es'
+                      ? field.label?.es ?? ''
+                      : field.label?.gl || field.label?.es || ''
                   }
                   required
                   className='formulario-inscripcion-input'

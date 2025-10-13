@@ -50,15 +50,21 @@ const EditForm = ({
         </div>
 
         <div>
-          {fields?.map(
-            (field, index) =>
-              field.label.es !== 'partner' &&
-              field.label.es !== 'Partner' && (
+          {fields?.map((field, index) => {
+            const labelEsValue =
+              typeof field.label === 'string'
+                ? field.label
+                : field.label?.es || ''
+            const isPartner = labelEsValue.toLowerCase() === 'partner'
+
+            return (
+              !isPartner && (
                 <div key={field.id} style={{ marginBottom: '20px' }}>
                   <input
                     className='input-editor-formularios'
                     {...register(`fields[${index}].label.es`)}
                     placeholder='Etiqueta del Campo'
+                    defaultValue={labelEsValue}
                     style={{ marginRight: '10px' }}
                   />
                   <select
@@ -80,13 +86,14 @@ const EditForm = ({
                   </button>
                 </div>
               )
-          )}
+            )
+          })}
         </div>
 
         <button
           className='boton-añadir-campo-editar-formulario'
           type='button'
-          onClick={() => append({ label: '', type: 'text' })}
+          onClick={() => append({ label: { es: '', gl: '' }, type: 'text' })}
           style={{ marginRight: '10px' }}
         >
           <FontAwesomeIcon icon={faPlus} /> Añadir Campo

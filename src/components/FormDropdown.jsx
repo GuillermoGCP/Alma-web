@@ -3,7 +3,6 @@ import CustomDialog from './customDialog.jsx'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import './FormDropdown.css'
-import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 
 const FormDropdown = ({
@@ -33,6 +32,7 @@ const FormDropdown = ({
     filteredFormEntries,
     editFormHandler,
     publishedActivities,
+    refreshPublishedActivities,
   } = useFormDropdown(
     forms,
     setForms,
@@ -63,13 +63,13 @@ const FormDropdown = ({
       <div className='contenedor-listado-formularios'>
         <ul>
           {filteredFormEntries?.map(([formId, form], index) => {
-            return currentLang === 'es' ? (
+            const name =
+              currentLang === 'es'
+                ? form.formName.es
+                : form.formName.gl || form.formName.es // Fallback a ES si GL está vacío
+            return (
               <li key={index} onClick={() => handleSelectForm(formId)}>
-                {form.formName.es}
-              </li>
-            ) : (
-              <li key={index} onClick={() => handleSelectForm(formId)}>
-                {form.formName.gl}
+                {name || '(Sin título)'}
               </li>
             )
           })}
@@ -81,7 +81,7 @@ const FormDropdown = ({
             Formulario:
             {currentLang === 'es'
               ? selectedForm?.formName.es
-              : selectedForm?.formName.gl}
+              : selectedForm?.formName.gl || selectedForm?.formName.es}
           </h3>
           <ul>
             {currentLang === 'es'
@@ -93,11 +93,9 @@ const FormDropdown = ({
                     return <li key={index}>{field.label.es}</li>
                 })
               : selectedForm?.fields.map((field, index) => {
-                  if (
-                    field.label.gl !== 'Partner' &&
-                    field.label.gl !== 'partner'
-                  )
-                    return <li key={index}>{field.label.gl}</li>
+                  const lbl = field.label.gl || field.label.es // Fallback a ES si GL está vacío
+                  if (lbl !== 'Partner' && lbl !== 'partner')
+                    return <li key={index}>{lbl}</li>
                 })}
           </ul>
 
@@ -131,6 +129,7 @@ const FormDropdown = ({
                   className='selector-evento-formularios'
                   name='activity'
                   id='activity'
+                  onFocus={refreshPublishedActivities}
                 >
                   <option value=''>Seleccione evento</option>
                   {publishedActivities.map((activity, index) => {

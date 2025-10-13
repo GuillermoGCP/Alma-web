@@ -1,6 +1,7 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { getCalendarEvents } from '../services/api'
 import { useTranslation } from 'react-i18next'
+import { loadPublishedActivities } from '../utils/formDropdownUtils'
 
 const useFormDropdown = (
   forms,
@@ -14,10 +15,10 @@ const useFormDropdown = (
   const [publishedActivities, setPublishedActivities] = useState([])
   const { i18n } = useTranslation()
 
-  //Para textos dinamicos en el idioma seleccionado:
+  // Para textos dinámicos en el idioma seleccionado:
   const currentLang = i18n.language
 
-  //Obtener los formularios creados:
+  // Obtener los formularios creados:
   useEffect(() => {
     const controller = new AbortController()
     const fetchForms = async () => {
@@ -63,56 +64,53 @@ const useFormDropdown = (
     }
   }, [setForms])
 
-  //Los eventos publicados (para asociarlos a las hojas al publicar)
-  useEffect(() => {
-    async function fetchCalendar() {
-      const calendarEvents = await getCalendarEvents()
-      if (calendarEvents) {
-        setPublishedActivities(calendarEvents)
-      }
-    }
-
-    fetchCalendar()
+  // Los eventos publicados (para asociarlos a las hojas al publicar)
+  const fetchPublishedActivities = useCallback(async () => {
+    await loadPublishedActivities(getCalendarEvents, setPublishedActivities)
   }, [])
 
-  //Seleccionar un formulario de la lista:
+  useEffect(() => {
+    fetchPublishedActivities()
+  }, [fetchPublishedActivities])
+
+  // Seleccionar un formulario de la lista:
   const handleSelectForm = (formId) => {
-    const data = forms[formId]
-    const newData = { ...data, formId: formId }
+    const data = forms?.[formId]
+    if (!data) return
+    const newData = { ...data, formId }
     setSelectedForm(newData)
   }
 
-  //Convierto el objeto de formularios a una matriz y omito el primer objeto(que son las cabeceras):
-  let formEntries = {}
+  // Convierto el objeto de formularios a una matriz y omito el primer objeto (cabeceras):
+  let formEntries = []
   if (forms) {
     formEntries = Object.entries(forms)
   }
 
-  //Filtro los datos por el buscador:
+  // Filtro los datos por el buscador (con fallbacks gl || es):
+  const needle = searchTerm.toLowerCase().trim()
   const filteredFormEntries =
     currentLang === 'es'
       ? formEntries
           .slice(1)
           .filter(([_, form]) =>
-            form.formName.es
-              .toLowerCase()
-              .includes(searchTerm.toLowerCase().trim())
+            (form?.formName?.es || '').toLowerCase().includes(needle)
           )
       : formEntries
           .slice(1)
           .filter(([_, form]) =>
-            form.formName.gl
+            (form?.formName?.gl || form?.formName?.es || '')
               .toLowerCase()
-              .includes(searchTerm.toLowerCase().trim())
+              .includes(needle)
           )
 
-  //Publicar formulario:
+  // Publicar formulario:
   const publishHandler = async (formId, jsonNumber) => {
     try {
       const response = await fetch(
         `${
           import.meta.env.VITE_API_URL
-        }/get-form/${formId}/publish/${jsonNumber}` //Este ultimo parametro es opcional, si se envia (un valor truthy), se guardaran los datos en el servidor y estaran disponibles para el endpoint de formulario publicado.
+        }/get-form/${formId}/publish/${jsonNumber}` // Este último parámetro es opcional
       )
 
       if (response.ok) {
@@ -130,7 +128,7 @@ const useFormDropdown = (
     }
   }
 
-  //Despublicar formulario:
+  // Despublicar formulario:
   const unPublishHandler = async (jsonNumber) => {
     try {
       const response = await fetch(
@@ -140,7 +138,7 @@ const useFormDropdown = (
       )
 
       if (response.ok) {
-        const data = await response.json()
+        await response.json()
         setPublishedForm((prevData) => {
           const newData = [...prevData]
           newData[jsonNumber] = {}
@@ -175,7 +173,7 @@ const useFormDropdown = (
     }
   }
 
-  //Handlers del modal customDialog:
+  // Handlers del modal customDialog:
   const openModal = () => {
     setIsModalOpen(true)
   }
@@ -185,10 +183,10 @@ const useFormDropdown = (
   }
 
   const handleYes = async (id, sheetName, jsonNumber) => {
-    //Compruebo si el formulario que se quiere borrar esta publicado:
+    // Compruebo si el formulario que se quiere borrar está publicado:
     checkIsPublishHandler(id, jsonNumber)
 
-    //Sigo con la logica de borrado:
+    // Sigo con la lógica de borrado:
     const url = `${
       import.meta.env.VITE_API_URL
     }/delete-form/${id}/deleteSheet/${sheetName}`
@@ -207,15 +205,15 @@ const useFormDropdown = (
     closeModal()
   }
 
-  //Borrar un formulario:
+  // Borrar un formulario:
   const deleteForm = async (formId, url) => {
     try {
       const response = await fetch(url, { method: 'DELETE' })
       if (response.ok) {
-        const data = await response.json()
+        await response.json()
         setSelectedForm(null)
 
-        //Actualizo el estado para que se reflejen los cambios inmediatamante:
+        // Actualizo el estado para que se reflejen los cambios inmediatamente:
         const filteredForms = formEntries.filter(([key]) => key !== formId)
         if (filteredForms.length > 0) {
           // Reconstruyo el nuevo objeto de formularios con los valores filtrados:
@@ -229,6 +227,7 @@ const useFormDropdown = (
       console.error('Ha ocurrido un error:', error)
     }
   }
+
   const editFormHandler = () => {
     setEditingForm(true)
   }
@@ -249,6 +248,7 @@ const useFormDropdown = (
     filteredFormEntries,
     editFormHandler,
     publishedActivities,
+    refreshPublishedActivities: fetchPublishedActivities,
   }
 }
 export default useFormDropdown

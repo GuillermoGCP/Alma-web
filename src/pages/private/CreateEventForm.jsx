@@ -6,6 +6,7 @@ import {
   updateCalendarEventService,
 } from '../../services/api'
 import formatDate from '../../utils/formatDate'
+import { resolveEventDateTimes } from '../../utils/eventFormUtils'
 import silueta from '../../images/Alma_Lactancia_-_Foto_hero.jpg'
 import { toast } from 'react-toastify'
 import ConfirmationModal from '../../components/ConfirmationModal.jsx'
@@ -41,6 +42,7 @@ export default function EventForm({ toEdit, onSuccess }) {
         access: toEdit.extendedProperties?.private?.access || '',
         parsedStart: formatDate(toEdit.start.dateTime, 'local'),
         parsedEnd: formatDate(toEdit.end.dateTime, 'local'),
+        ...resolveEventDateTimes(toEdit),
       }
       setActivity(adaptedData)
 
@@ -166,13 +168,15 @@ export default function EventForm({ toEdit, onSuccess }) {
     e.preventDefault()
     if (!validateForm()) return
     const processToast = toast.loading('Guardando cambios...')
+    const { startDateTime, endDateTime } = resolveEventDateTimes(activity)
+
     const start = {
-      dateTime: activity.start?.dateTime || activity.startDateTime,
+      dateTime: startDateTime,
       timeZone: 'Europe/Madrid',
     }
 
     const end = {
-      dateTime: activity.end?.dateTime || activity.endDateTime,
+      dateTime: endDateTime,
       timeZone: 'Europe/Madrid',
     }
 

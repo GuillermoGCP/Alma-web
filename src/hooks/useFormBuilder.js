@@ -33,7 +33,8 @@ const useFormBuilder = (setForms) => {
 
       if (!response.ok) {
         const errorPayload = await response.json().catch(() => null)
-        const message = errorPayload?.message || 'No se pudo crear el formulario'
+        const message =
+          errorPayload?.message || 'No se pudo crear el formulario'
         throw new Error(message)
       }
 
