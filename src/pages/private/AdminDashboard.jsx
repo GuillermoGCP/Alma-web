@@ -21,6 +21,8 @@ const useDynamicTitle = () => {
       return 'BIBLIOTECA'
     case '/dashboard/CreadorFormularios':
       return 'FORMULARIOS'
+    case '/dashboard/socios':
+      return 'SOCIOS'
     default:
       return 'AJUSTES GENERALES'
   }
@@ -115,6 +117,14 @@ const AdminDashboard = () => {
                 onClick={() => handleTabChange('CreadorFormularios')}
               >
                 FORMULARIOS
+              </button>
+            </li>
+            <li>
+              <button
+                className={`sidebar-btn ${isActive('socios') ? 'active' : ''}`}
+                onClick={() => handleTabChange('socios')}
+              >
+                SOCIOS
               </button>
             </li>
           </ul>

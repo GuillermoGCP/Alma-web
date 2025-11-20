@@ -1,0 +1,24 @@
+.partners-list {
+  padding: 20px;
+}
+
+.partners-list h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.partners-list table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.partners-list th,
+.partners-list td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.partners-list th {
+  background-color: #f2f2f2;
+}
