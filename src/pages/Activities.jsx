@@ -62,7 +62,9 @@ const Activities = ({ activities, setActivities }) => {
       const response = await fetch(
         `${import.meta.env.VITE_API_URL}/check-is-published/${
           activity.id
-        }/${Number(activityNumber)}/true`
+        }/${Number(activityNumber)}/true?eventId=${encodeURIComponent(
+          activity.id
+        )}`
       )
 
       if (response.ok) {

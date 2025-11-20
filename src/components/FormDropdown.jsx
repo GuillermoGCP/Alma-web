@@ -48,6 +48,18 @@ const FormDropdown = ({
       ? publishedForm.findIndex((form) => form.formId === selectedForm.formId)
       : -1
 
+  const currentPublishedForm =
+    publishFormIndex !== -1 && Array.isArray(publishedForm)
+      ? publishedForm[publishFormIndex]
+      : undefined
+
+  const associatedActivity =
+    currentPublishedForm?.eventId && Array.isArray(publishedActivities)
+      ? publishedActivities.find(
+          (activity) => activity.id === currentPublishedForm.eventId
+        )
+      : undefined
+
   return (
     <div className='contenedor-seleccione-formulario'>
       <div className='contenedor-titulo-buscador'>
@@ -99,12 +111,14 @@ const FormDropdown = ({
                 })}
           </ul>
 
-          {publishFormIndex !== -1 && publishedActivities[publishFormIndex] ? (
+          {publishFormIndex !== -1 &&
+          currentPublishedForm &&
+          Object.keys(currentPublishedForm).length > 0 ? (
             <>
               <p className='texto-asociado-evento'>
                 {`Asociado al evento: ${
-                  publishedActivities[publishFormIndex] &&
-                  publishedActivities[publishFormIndex]?.summary
+                  associatedActivity?.summary ||
+                  '(evento no disponible)'
                 }`}
               </p>
               <button
@@ -119,10 +133,24 @@ const FormDropdown = ({
               <form
                 onSubmit={(e) => {
                   e.preventDefault()
-                  publishHandler(
-                    selectedForm?.formId,
-                    e.target.elements.activity.value
-                  )
+                  const selectElement = e.target.elements.activity
+                  const selectedOption = selectElement?.selectedOptions?.[0]
+                  const jsonNumber = selectElement?.value || ''
+                  const eventId = selectedOption?.dataset?.eventId || ''
+
+                  if (!jsonNumber) {
+                    window.alert('Selecciona un evento para publicar.')
+                    return
+                  }
+
+                  if (!eventId) {
+                    window.alert(
+                      'No se pudo identificar el evento seleccionado. Actualiza la lista e inténtalo de nuevo.'
+                    )
+                    return
+                  }
+
+                  publishHandler(selectedForm?.formId, jsonNumber, eventId)
                 }}
               >
                 <select
@@ -134,7 +162,11 @@ const FormDropdown = ({
                   <option value=''>Seleccione evento</option>
                   {publishedActivities.map((activity, index) => {
                     return (
-                      <option key={index} value={index + 1}>
+                      <option
+                        key={activity.id || index}
+                        value={index + 1}
+                        data-event-id={activity.id || ''}
+                      >
                         {activity.summary}
                       </option>
                     )

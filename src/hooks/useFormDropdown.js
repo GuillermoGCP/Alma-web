@@ -105,12 +105,18 @@ const useFormDropdown = (
           )
 
   // Publicar formulario:
-  const publishHandler = async (formId, jsonNumber) => {
+  const publishHandler = async (formId, jsonNumber, eventId) => {
     try {
+      if (!formId || !jsonNumber || !eventId) {
+        throw new Error('Faltan datos para publicar el formulario.')
+      }
+
       const response = await fetch(
         `${
           import.meta.env.VITE_API_URL
-        }/get-form/${formId}/publish/${jsonNumber}` // Este último parámetro es opcional
+        }/get-form/${formId}/publish/${jsonNumber}?eventId=${encodeURIComponent(
+          eventId
+        )}`
       )
 
       if (response.ok) {

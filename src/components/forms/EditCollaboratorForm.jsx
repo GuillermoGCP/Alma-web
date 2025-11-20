@@ -39,10 +39,22 @@ const EditCollaboratorForm = ({ collaboratorData, onSuccess }) => {
 
   const handleChange = (e) => {
     const { name, value } = e.target
-    setCollaborator((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }))
+    
+    // Si el campo es role o description, mantener estructura de traducción
+    if (name === 'role' || name === 'description') {
+      setCollaborator((prevState) => ({
+        ...prevState,
+        [name]: {
+          es: value,
+          gl: prevState[name]?.gl || value, // Mantener traducción existente o usar mismo valor
+        },
+      }))
+    } else {
+      setCollaborator((prevState) => ({
+        ...prevState,
+        [name]: value,
+      }))
+    }
   }
 
   const handleFileChange = (e) => {
@@ -105,8 +117,9 @@ const EditCollaboratorForm = ({ collaboratorData, onSuccess }) => {
     const formData = new FormData()
     formData.append('name', collaborator.name)
     formData.append('surname', collaborator.surname)
-    formData.append('role', collaborator.role)
-    formData.append('description', collaborator.description)
+    // Manejar tanto objetos de traducción como strings simples
+    formData.append('role', collaborator.role?.es || collaborator.role)
+    formData.append('description', collaborator.description?.es || collaborator.description)
 
     if (selectedFile) {
       formData.append('collaboratorImage', selectedFile) // Añadir nueva imagen si se ha seleccionado

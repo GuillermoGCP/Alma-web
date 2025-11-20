@@ -5,12 +5,16 @@ import "./FormActivityPage.css";
 import { useParams } from "react-router-dom";
 
 const FormActivityPage = () => {
-  const { activityNumber, title } = useParams();
+  const { activityNumber, title, eventId } = useParams();
 
   return (
     <div className="register-page">
       <main className="register-main">
-        <FormDisplay jsonNumber={activityNumber} title={title} />
+        <FormDisplay
+          jsonNumber={activityNumber}
+          title={title}
+          eventId={eventId}
+        />
       </main>
       <Footer />
     </div>

@@ -153,8 +153,9 @@
 .activity-image img {
   width: 100%;
   height: 200px; /* Ajusta la altura según sea necesario */
-  object-fit: cover;
+  object-fit: contain; /* Cambiado de cover a contain para mostrar imagen completa */
   display: block; /* Asegura que la imagen no tenga espacios alrededor */
+  background-color: #d8e2dc; /* Fondo para áreas vacías que coincide con el color de las tarjetas */
 }
 
 .activities-title {
