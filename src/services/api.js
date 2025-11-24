@@ -259,6 +259,18 @@ export const saveMessageService = async (messageData) => {
 }
 
 // Socios
+export const getPartnersService = async () => {
+  try {
+    const response = await fetch(`${API_BASE_URL}/partners/get-partners`, {
+      method: 'GET',
+    })
+    return handleResponse(response)
+  } catch (error) {
+    console.error('Error getting partners:', error)
+    throw error
+  }
+}
+
 export const newPartnerService = async (partnerData) => {
   try {
     const response = await fetch(`${API_BASE_URL}/newPartner`, {

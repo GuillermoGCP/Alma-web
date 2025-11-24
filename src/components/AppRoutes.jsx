@@ -18,6 +18,7 @@ import AdminLibrary from './private/AdminLibrary'
 import CreadorFormularios from './private/CreadorFormularios'
 import FormActivityPage from '../pages/FormActivityPage'
 import PublicLayout from '../pages/private/PublicLayout'
+import PartnersList from '../pages/private/PartnersList'
 
 const AppRoutes = ({
   homeData,
@@ -68,6 +69,7 @@ const AppRoutes = ({
             />
           }
         />
+        <Route path='socios' element={<PartnersList />} />
       </Route>
 
       <Route element={<PublicLayout />}>

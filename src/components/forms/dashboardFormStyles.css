@@ -196,16 +196,59 @@ textarea {
 }
 /* Versión móvil */
 @media (max-width: 768px) {
+  /* Ajustar anchos de labels, inputs y textareas al 100% */
+  .dashboard-form label,
+  .dashboard-form input,
+  .dashboard-form textarea {
+    width: 100% !important;
+    margin: 0.5rem 0;
+  }
+
+  .dashboard-form input,
+  .dashboard-form textarea {
+    padding: 0.75rem;
+    font-size: 16px; /* Evita zoom automático en iOS */
+    width: 100% !important;
+  }
+
+  /* Selector de fecha/hora en una columna */
   .datetime-selector {
-    grid-template-columns: 1fr; /* Apila en una sola columna */
+    grid-template-columns: 1fr !important; /* Apila en una sola columna */
     grid-template-rows: auto; /* Filas automáticas */
     gap: 1rem; /* Añade espacio entre los elementos */
-    width: 100%; /* Puedes ajustar el ancho si es necesario */
+    width: 100% !important; /* Ancho completo */
   }
+
+  /* Formulario de colaboradores en una columna */
+  .collaborator-form {
+    grid-template-columns: 1fr !important;
+    grid-gap: 1rem;
+  }
+
+  .image-preview {
+    grid-row: auto;
+    margin-bottom: 1rem;
+    max-width: 100%;
+  }
+
+  /* Botones */
   .boton-eliminar-actividad-dashboard {
     margin-right: 1rem;
+    width: 100%;
+    max-width: 15rem;
   }
+
+  .boton-cancelar-dashboard {
+    width: 100%;
+    max-width: 15rem;
+  }
+
   .label-acceso-formulario {
     margin-bottom: 1rem;
+  }
+
+  /* Select también al 100% */
+  .dashboard-form select {
+    width: 100% !important;
   }
 }
