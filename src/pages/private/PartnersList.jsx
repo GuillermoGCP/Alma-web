@@ -37,25 +37,24 @@ const PartnersList = ({ getPartnersService = defaultGetPartnersService }) => {
         <thead>
           <tr>
             <th>Nombre</th>
-            <th>Email</th>
             <th>Teléfono</th>
+            <th>Última renovación</th>
+            <th>Dirección</th>
+            <th>Código postal</th>
+            <th>Email</th>
           </tr>
         </thead>
         <tbody>
-          {partners.map((partner, index) => {
-            const nombre = partner.nombre || partner.name || partner[0] || ''
-            const email = partner.email || partner.correo || partner[1] || ''
-            const telefono =
-              partner.telefono || partner['teléfono'] || partner[2] || ''
-
-            return (
-              <tr key={index}>
-                <td>{nombre}</td>
-                <td>{email}</td>
-                <td>{telefono}</td>
-              </tr>
-            )
-          })}
+          {partners.map((partner, index) => (
+            <tr key={index}>
+              <td>{partner.name || ''}</td>
+              <td>{partner.phone || ''}</td>
+              <td>{partner.lastRenovation || ''}</td>
+              <td>{partner.address || ''}</td>
+              <td>{partner.CP || ''}</td>
+              <td>{partner.email || ''}</td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>
