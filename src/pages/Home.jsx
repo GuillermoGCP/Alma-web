@@ -194,9 +194,7 @@ const Home = ({ homeData, scrolled }) => {
                           (e.currentTarget.src = DEFAULT_IMAGE_URL)
                         }
                       />
-                      <p>
-                        {currentLang === 'es' ? exp?.text?.es : exp?.text?.gl}
-                      </p>
+                      <p>{exp?.text?.es}</p>
                     </div>
                   ))}
               </div>

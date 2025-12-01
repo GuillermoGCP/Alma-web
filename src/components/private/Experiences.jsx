@@ -115,9 +115,7 @@ const Experiences = ({
                       style={{ cursor: 'pointer' }}
                     />
                     <p className='texto-experiencias-dashboard'>
-                      {currentLang === 'es'
-                        ? experience.text.es
-                        : experience.text.gl}
+                      {experience.text.es}
                     </p>
                   </div>
                   {/* Checkbox para seleccionar la experiencia */}
