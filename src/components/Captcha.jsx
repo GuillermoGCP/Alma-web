@@ -69,7 +69,9 @@ const CaptchaComponent = ({
 
       if (data.success) {
         toast.dismiss()
-        toast.loading('Enviando, no cierre la página...')
+        const loadingToastId = toast.loading('Enviando, no cierre la página...')
+        // Store the toast ID globally so it can be dismissed after submission
+        window.currentLoadingToast = loadingToastId
         handleSubmit()
         setCaptchaInput('')
       } else {

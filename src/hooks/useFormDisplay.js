@@ -95,6 +95,11 @@ const useFormDisplay = (jsonNumber, eventId) => {
       toast.error('Error al enviar los datos')
       console.error('Ha ocurrido un error:', error)
     } finally {
+         // Dismiss the loading toast from Captcha component if it exists
+      if (window.currentLoadingToast) {
+        toast.dismiss(window.currentLoadingToast)
+        window.currentLoadingToast = null
+      }
       setIsSubmitting(false)
     }
   }
