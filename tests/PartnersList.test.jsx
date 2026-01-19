@@ -11,8 +11,8 @@ describe('PartnersList', () => {
 
   test('renders partners correctly after loading', async () => {
     const mockPartners = [
-      { nombre: 'John Doe', email: 'john.doe@example.com', telefono: '123456789' },
-      { nombre: 'Jane Doe', email: 'jane.doe@example.com', telefono: '987654321' },
+      { name: 'John Doe', email: 'john.doe@example.com', phone: '123456789' },
+      { name: 'Jane Doe', email: 'jane.doe@example.com', phone: '987654321' },
     ]
     render(<PartnersList getPartnersService={() => Promise.resolve(mockPartners)} />)
 
