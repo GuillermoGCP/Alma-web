@@ -84,7 +84,7 @@ const AdminLibrary = () => {
                   handleChange(
                     'lactationResources',
                     libraryData.lactationResources.map((r, i) =>
-                      i === index ? { ...r, title: e.target.value } : r
+                      i === index ? { ...r, title: { ...r.title, es: e.target.value } } : r
                     )
                   )
                 }
@@ -129,7 +129,7 @@ const AdminLibrary = () => {
               ...prevState,
               lactationResources: [
                 ...prevState.lactationResources,
-                { title: '', link: '' },
+                { title: { es: '' }, link: '' },
               ],
             }))
           }
@@ -167,7 +167,7 @@ const AdminLibrary = () => {
                   handleChange(
                     'pregnancyResources',
                     libraryData.pregnancyResources.map((r, i) =>
-                      i === index ? { ...r, title: e.target.value } : r
+                      i === index ? { ...r, title: { ...r.title, es: e.target.value } } : r
                     )
                   )
                 }
@@ -207,7 +207,7 @@ const AdminLibrary = () => {
               ...prevState,
               pregnancyResources: [
                 ...prevState.pregnancyResources,
-                { title: '', link: '' },
+                { title: { es: '' }, link: '' },
               ],
             }))
           }
@@ -245,7 +245,7 @@ const AdminLibrary = () => {
                   handleChange(
                     'parentingResources',
                     libraryData.parentingResources.map((r, i) =>
-                      i === index ? { ...r, title: e.target.value } : r
+                      i === index ? { ...r, title: { ...r.title, es: e.target.value } } : r
                     )
                   )
                 }
@@ -285,7 +285,7 @@ const AdminLibrary = () => {
               ...prevState,
               parentingResources: [
                 ...prevState.parentingResources,
-                { title: '', link: '' },
+                { title: { es: '' }, link: '' },
               ],
             }))
           }
@@ -323,7 +323,7 @@ const AdminLibrary = () => {
                   handleChange(
                     'nutritionBlogs',
                     libraryData.nutritionBlogs.map((r, i) =>
-                      i === index ? { ...r, title: e.target.value } : r
+                      i === index ? { ...r, title: { ...r.title, es: e.target.value } } : r
                     )
                   )
                 }
@@ -363,7 +363,7 @@ const AdminLibrary = () => {
               ...prevState,
               nutritionBlogs: [
                 ...prevState.nutritionBlogs,
-                { title: '', link: '' },
+                { title: { es: '' }, link: '' },
               ],
             }))
           }
@@ -401,7 +401,7 @@ const AdminLibrary = () => {
                   handleChange(
                     'archiveBlogs',
                     libraryData.archiveBlogs.map((r, i) =>
-                      i === index ? { ...r, title: e.target.value } : r
+                      i === index ? { ...r, title: { ...r.title, es: e.target.value } } : r
                     )
                   )
                 }
@@ -441,7 +441,7 @@ const AdminLibrary = () => {
               ...prevState,
               archiveBlogs: [
                 ...prevState.archiveBlogs,
-                { title: '', link: '' },
+                { title: { es: '' }, link: '' },
               ],
             }))
           }
