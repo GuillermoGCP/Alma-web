@@ -3,7 +3,6 @@ import useAdminLibrary from '../../hooks/useAdminLibrary.js'
 import './AdminLibrary.css'
 import Modal from '../../modal/ModalBooks.jsx'
 import ModalInstructions from '../../modal/ModalInstructions.jsx'
-import { useTranslation } from 'react-i18next'
 
 const AccordionSection = ({
   title,
@@ -32,8 +31,6 @@ const AccordionSection = ({
 )
 
 const AdminLibrary = () => {
-  const { i18n } = useTranslation()
-  const currentLang = i18n.language
   const {
     libraryData,
     handleChange,
@@ -68,7 +65,7 @@ const AdminLibrary = () => {
         title='Lactancia'
         isOpen={openSection === 'lactancia'}
         toggleOpen={() => toggleSection('lactancia')}
-        onSubmit={(e) => handleSubmit(e)}
+        onSubmit={(e) => handleSubmit(e, 'lactancia')}
       >
         {libraryData.lactationResources.map((resource, index) => (
           <div key={index} className='admin-library-resource-inputs'>
@@ -152,7 +149,7 @@ const AdminLibrary = () => {
         title='Embarazo'
         isOpen={openSection === 'embarazo'}
         toggleOpen={() => toggleSection('embarazo')}
-        onSubmit={(e) => handleSubmit(e)}
+        onSubmit={(e) => handleSubmit(e, 'embarazo')}
       >
         {libraryData.pregnancyResources.map((resource, index) => (
           <div key={index} className='admin-library-resource-inputs'>
@@ -230,7 +227,7 @@ const AdminLibrary = () => {
         title='Crianza'
         isOpen={openSection === 'crianza'}
         toggleOpen={() => toggleSection('crianza')}
-        onSubmit={(e) => handleSubmit(e)}
+        onSubmit={(e) => handleSubmit(e, 'crianza')}
       >
         {libraryData.parentingResources.map((resource, index) => (
           <div key={index} className='admin-library-resource-inputs'>
@@ -308,7 +305,7 @@ const AdminLibrary = () => {
         title='Alimentación Complementaria'
         isOpen={openSection === 'alimentacion'}
         toggleOpen={() => toggleSection('alimentacion')}
-        onSubmit={(e) => handleSubmit(e)}
+        onSubmit={(e) => handleSubmit(e, 'alimentacion')}
       >
         {libraryData.nutritionBlogs.map((resource, index) => (
           <div key={index} className='admin-library-resource-inputs'>
@@ -386,7 +383,7 @@ const AdminLibrary = () => {
         title='Hemeroteca'
         isOpen={openSection === 'hemeroteca'}
         toggleOpen={() => toggleSection('hemeroteca')}
-        onSubmit={(e) => handleSubmit(e)}
+        onSubmit={(e) => handleSubmit(e, 'hemeroteca')}
       >
         {libraryData.archiveBlogs.map((resource, index) => (
           <div key={index} className='admin-library-resource-inputs'>

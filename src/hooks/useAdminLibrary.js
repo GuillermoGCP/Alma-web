@@ -6,6 +6,13 @@ const API_BASE_URL = import.meta.env.VITE_API_URL
 
 const useAdminLibrary = () => {
   const MAX_CHARACTERS = 1000
+  const SECTION_FIELDS = {
+    lactancia: ['lactationResources', 'lactationBooks'],
+    embarazo: ['pregnancyResources', 'pregnancyBooks'],
+    crianza: ['parentingResources', 'parentingBooks'],
+    alimentacion: ['nutritionBlogs', 'nutritionBooks'],
+    hemeroteca: ['archiveBlogs'],
+  }
   const [libraryData, setLibraryData] = useState({
     lactationResources: [],
     lactationBooks: '',
@@ -16,6 +23,33 @@ const useAdminLibrary = () => {
     nutritionBlogs: [],
     nutritionBooks: '',
     archiveBlogs: [],
+  })
+
+  const normalizeResource = (resource) => {
+    const title =
+      resource?.title && typeof resource.title === 'object'
+        ? resource.title
+        : { es: resource?.title ?? '' }
+    return {
+      ...resource,
+      title: {
+        es: title?.es ?? '',
+        gl: title?.gl ?? '',
+      },
+      link: resource?.link ?? '',
+    }
+  }
+
+  const normalizeLibrary = (lib) => ({
+    lactationResources: (lib?.lactationResources ?? []).map(normalizeResource),
+    lactationBooks: lib?.lactationBooks ?? '',
+    pregnancyResources: (lib?.pregnancyResources ?? []).map(normalizeResource),
+    pregnancyBooks: lib?.pregnancyBooks ?? '',
+    parentingResources: (lib?.parentingResources ?? []).map(normalizeResource),
+    parentingBooks: lib?.parentingBooks ?? '',
+    nutritionBlogs: (lib?.nutritionBlogs ?? []).map(normalizeResource),
+    nutritionBooks: lib?.nutritionBooks ?? '',
+    archiveBlogs: (lib?.archiveBlogs ?? []).map(normalizeResource),
   })
 
   useEffect(() => {
@@ -35,7 +69,7 @@ const useAdminLibrary = () => {
           form && typeof form === 'object' ? form.library ?? null : null
 
         if (lib && typeof lib === 'object') {
-          setLibraryData(lib)
+          setLibraryData(normalizeLibrary(lib))
           isSuccessToast(true, 'Datos cargados correctamente', toastId)
         } else {
           // No sobreescribimos el estado inicial si no hay datos válidos
@@ -67,9 +101,25 @@ const useAdminLibrary = () => {
     }))
   }
 
-  const areFieldsValid = () => {
-    return Object.keys(libraryData).every((field) => {
-      const value = libraryData[field]
+  const buildSectionPayload = (sectionKey, data) => {
+    if (!sectionKey) return data
+    const fields = SECTION_FIELDS[sectionKey] ?? []
+    return fields.reduce((acc, field) => {
+      acc[field] = data[field]
+      return acc
+    }, {})
+  }
+
+  const pruneEmptyResources = (resources) =>
+    resources.filter((resource) => {
+      const title = resource?.title?.es?.trim?.() ?? ''
+      const link = resource?.link?.trim?.() ?? ''
+      return title !== '' || link !== ''
+    })
+
+  const areFieldsValid = (data) => {
+    return Object.keys(data).every((field) => {
+      const value = data[field]
 
       if (Array.isArray(value)) {
         // Evita reventar si falta algo en algún item
@@ -80,16 +130,29 @@ const useAdminLibrary = () => {
       }
 
       if (typeof value === 'string') {
-        return value.trim() !== ''
+        return true
       }
 
       return true
     })
   }
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e, sectionKey = null) => {
     e.preventDefault()
-    if (!areFieldsValid()) {
+    const payloadLibrary = buildSectionPayload(sectionKey, libraryData)
+    const normalizedPayload = {
+      ...payloadLibrary,
+      ...Object.fromEntries(
+        Object.entries(payloadLibrary).map(([key, value]) => {
+          if (Array.isArray(value)) {
+            return [key, pruneEmptyResources(value).map(normalizeResource)]
+          }
+          return [key, value ?? '']
+        })
+      ),
+    }
+
+    if (!areFieldsValid(normalizedPayload)) {
       toast.error('Por favor, completa todos los campos antes de enviar.')
       return
     }
@@ -97,7 +160,7 @@ const useAdminLibrary = () => {
     const toastId = toast.loading('Guardando cambios...')
 
     try {
-      const updateData = { library: libraryData }
+      const updateData = { library: normalizedPayload }
 
       const response = await fetch(`${API_BASE_URL}/update-home-data`, {
         method: 'PATCH',
@@ -121,6 +184,7 @@ const useAdminLibrary = () => {
     handleChange,
     handleSubmit,
     setLibraryData,
+    MAX_CHARACTERS,
   }
 }
 
